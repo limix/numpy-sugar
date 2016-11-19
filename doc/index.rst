@@ -85,7 +85,40 @@ Solvers
 Special functions
 *****************
 
+--------------------
+Distribution related
+--------------------
+
 .. automodule:: numpy_sugar.special
 
+  .. autofunction:: beta_isf
   .. autofunction:: chi2_sf
   .. autofunction:: lgamma
+  .. autofunction:: normal_pdf
+  .. autofunction:: normal_cdf
+  .. autofunction:: normal_icdf
+  .. autofunction:: normal_sf
+  .. autofunction:: normal_isf
+  .. autofunction:: normal_logpdf
+  .. autofunction:: normal_logcdf
+  .. autofunction:: normal_logsf
+
+-------
+Log sum
+-------
+
+.. automodule:: numpy_sugar.special
+
+  .. autofunction:: logbinom
+  .. autofunction:: logaddexp
+  .. autofunction:: logaddexps
+  .. autofunction:: logaddexpss
+  .. autofunction:: logsumexp
+
+-------
+Pearson
+-------
+
+.. automodule:: numpy_sugar.special
+
+  .. autofunction:: r_squared

@@ -25,14 +25,14 @@ _logbinom = _special_ffi.lib.nsugar_logbinom
 
 @vectorize([float64(int64, float64)], nopython=True)
 def chi2_sf(k, x):
-    r"""Chi-squared distribution [1]_ survival function.
+    r"""Chi-squared distribution [1] survival function.
 
     Args:
         k (array_like): Degrees of fredom.
         x (array_like): Evaluation point.
 
     Returns:
-        :class:`numpy.ndarray`: Survival function of the :math:`\Chi_k^2`
+        :class:`numpy.ndarray`: Survival function of the :math:`\chi_k^2`
                                 distribution.
 
     References
@@ -44,7 +44,7 @@ def chi2_sf(k, x):
 
 @vectorize([float64(float64)], nopython=True)
 def lgamma(x):
-    r"""Natural logarithm of the Gamma function [1]_.
+    r"""Natural logarithm of the Gamma function [1].
 
     Args:
         x (array_like): evaluation point.
