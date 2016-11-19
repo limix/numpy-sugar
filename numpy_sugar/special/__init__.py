@@ -1,4 +1,4 @@
-from __future__ import absolute_import as absolute_import_
+from __future__ import absolute_import as _
 
 from .special import (chi2_sf, lgamma, normal_pdf, normal_cdf, normal_icdf,
                       normal_sf, normal_isf, normal_logpdf, normal_logcdf,

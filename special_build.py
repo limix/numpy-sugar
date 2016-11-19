@@ -9,13 +9,13 @@ def _make():
     from ncephes import get_include
     from ncephes import get_lib
 
-    sources = [join('limix_math', 'special', 'special.c')]
-    hdr = join('limix_math', 'include', 'limix_math', 'special.h')
-    incls = [join('limix_math', 'include'), get_include()]
+    sources = [join('numpy_sugar', 'special', 'special.c')]
+    hdr = join('numpy_sugar', 'include', 'numpy_sugar', 'special.h')
+    incls = [join('numpy_sugar', 'include'), get_include()]
 
     ffi.set_source(
-        'limix_math.special._special_ffi',
-        '#include "limix_math/special.h"',
+        'numpy_sugar.special._special_ffi',
+        '#include "numpy_sugar/special.h"',
         include_dirs=incls,
         sources=sources,
         extra_compile_args=['-Ofast'],

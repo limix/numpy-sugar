@@ -1,23 +1,23 @@
 import os
-# from os.path import join
+from os.path import join
 import sys
 from setuptools import setup
 from setuptools import find_packages
 
 
-# def get_capi_lib():
-#     from build_capi import CApiLib
-#     from ncephes import get_include
-#
-#     sources = [join('numpy_sugar', 'special', 'special.c')]
-#     hdrs = [join('numpy_sugar', 'special', 'special.h')]
-#     incls = [join('numpy_sugar', 'include'), get_include()]
-#
-#     return CApiLib(
-#         name='numpy_sugar.lib.numpy_sugar',
-#         sources=sources,
-#         include_dirs=incls,
-#         depends=hdrs)
+def get_capi_lib():
+    from build_capi import CApiLib
+    from ncephes import get_include
+
+    sources = [join('numpy_sugar', 'special', 'special.c')]
+    hdrs = [join('numpy_sugar', 'special', 'special.h')]
+    incls = [join('numpy_sugar', 'include'), get_include()]
+
+    return CApiLib(
+        name='numpy_sugar.lib.numpy_sugar',
+        sources=sources,
+        include_dirs=incls,
+        depends=hdrs)
 
 
 def setup_package():
@@ -47,13 +47,13 @@ def setup_package():
         url='http://github.com/Horta/numpy-sugar',
         packages=find_packages(),
         zip_safe=False,
-        # cffi_modules=['special_build.py:special'],
+        cffi_modules=['special_build.py:special'],
         install_requires=install_requires,
         tests_require=tests_require,
         setup_requires=setup_requires,
         include_package_data=True,
-        # capi_libs=[get_capi_lib],
-        # package_data={'': [join('numpy_sugar', 'lib', '*.*')]}
+        capi_libs=[get_capi_lib],
+        package_data={'': [join('numpy_sugar', 'lib', '*.*')]}
     )
 
     try:
