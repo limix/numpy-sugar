@@ -15,7 +15,7 @@ def economic_qs(K, epsilon=epsilon.small):
     Args:
         K (array_like): Symmetric matrix.
         epsilon (float): Eigen value threshold. Default is
-        `numpy_sugar.epsilon.small`.
+                         `numpy_sugar.epsilon.small`.
 
     Returns:
         tuple: ``((Q0, Q1), S0)``.
