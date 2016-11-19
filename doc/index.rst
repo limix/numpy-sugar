@@ -37,8 +37,6 @@ Bla bla bla
 Linear algebra
 **************
 
--
-
 .. automodule:: numpy_sugar.linalg
 
   .. autofunction:: cho_solve
