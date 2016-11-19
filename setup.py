@@ -4,6 +4,11 @@ import sys
 from setuptools import setup
 from setuptools import find_packages
 
+try:
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
+except(IOError, ImportError):
+    long_description = open('README.md').read()
 
 def get_capi_lib():
     from build_capi import CApiLib
@@ -33,17 +38,19 @@ def setup_package():
         'build_capi>=1.0', 'ncephes>=1.0.5', 'cffi>=1.7', 'numba>=0.28'
     ] + pytest_runner
     install_requires = [
-        'pytest', 'ncephes>=1.0.5', 'scipy>=0.18.1', 'numpy>=1.11',
-        'numba>=0.28', 'cffi>=1.7'
+        'ncephes>=1.0.5', 'scipy>=0.18.1', 'numpy>=1.11', 'numba>=0.28',
+        'cffi>=1.7'
     ]
-    tests_require = install_requires
+    tests_require = ['pytest']
 
     metadata = dict(
         name='numpy_sugar',
-        version='1.0.0',
+        version='1.0.1',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
+        description="Missing NumPy functionalities.",
+        long_description=long_description,
         url='http://github.com/Horta/numpy-sugar',
         packages=find_packages(),
         zip_safe=False,
