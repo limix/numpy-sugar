@@ -100,7 +100,7 @@ Beta
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: beta_isf
+  .. autofunction:: beta_isf(a, b, x)
 
 -----------
 Chi-squared
@@ -108,7 +108,7 @@ Chi-squared
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: chi2_sf
+  .. autofunction:: chi2_sf(k, x)
 
 -----
 Gamma
@@ -116,7 +116,7 @@ Gamma
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: lgamma
+  .. autofunction:: lgamma(x)
 
 -------
 Log sum
@@ -124,11 +124,11 @@ Log sum
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: logbinom
-  .. autofunction:: logaddexp
-  .. autofunction:: logaddexps
-  .. autofunction:: logaddexpss
-  .. autofunction:: logsumexp
+  .. autofunction:: logbinom(a, b)
+  .. autofunction:: logaddexp(x, y)
+  .. autofunction:: logaddexps(x, y, sx, sy)
+  .. autofunction:: logaddexpss(x, y, sx, sy, r, sign)
+  .. autofunction:: logsumexp(x)
 
 ------
 Normal
@@ -136,14 +136,14 @@ Normal
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: normal_pdf
-  .. autofunction:: normal_cdf
-  .. autofunction:: normal_icdf
-  .. autofunction:: normal_sf
-  .. autofunction:: normal_isf
-  .. autofunction:: normal_logpdf
-  .. autofunction:: normal_logcdf
-  .. autofunction:: normal_logsf
+  .. autofunction:: normal_pdf(x)
+  .. autofunction:: normal_cdf(x)
+  .. autofunction:: normal_icdf(x)
+  .. autofunction:: normal_sf(x)
+  .. autofunction:: normal_isf(x)
+  .. autofunction:: normal_logpdf(x)
+  .. autofunction:: normal_logcdf(x)
+  .. autofunction:: normal_logsf(x)
 
 -------
 Pearson
@@ -151,4 +151,4 @@ Pearson
 
 .. automodule:: numpy_sugar.special
 
-  .. autofunction:: r_squared
+  .. autofunction:: r_squared(x, y)
