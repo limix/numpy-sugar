@@ -16,6 +16,6 @@ def stl(A, b):
 
     See Also
     --------
-    scipy.linalg.solve_triangular
+    scipy.linalg.solve_triangular: Solve triangular linear equations.
     """
     return solve_triangular(A, b, lower=True, check_finite=False)
