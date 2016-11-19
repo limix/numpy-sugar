@@ -1,4 +1,4 @@
-#include "limix_math/special.h"
+#include "numpy_sugar/special.h"
 
 #include <float.h>
 #include <math.h>
