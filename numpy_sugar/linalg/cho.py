@@ -13,7 +13,7 @@ def cho_solve(L, b):
 
     Returns:
         :class:`numpy.ndarray`: The solution to the system
-        :math:`\mathrm A \mathbf x = \mathbf b`.
+                                :math:`\mathrm A \mathbf x = \mathbf b`.
 
     See Also
     --------

@@ -9,7 +9,7 @@ from numpy import newaxis
 def dotd(A, B, out=None):
     r"""Diagonal of :math:`\mathrm A\mathrm B^\intercal`.
 
-    If `A` is :math:`n\times p` and `B` is :math:`p\times n`, it is done in
+    If ``A`` is :math:`n\times p` and ``B`` is :math:`p\times n`, it is done in
     :math:`O(pn)`.
 
     Args:
