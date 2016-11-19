@@ -11,7 +11,7 @@ def cho_solve(L, b):
         b (array_like): Right-hand side.
 
     Returns:
-        :npy:`ndarray`: The solution to the system A x = b.
+        :class:`numpy.ndarray`: The solution to the system A x = b.
 
     See Also
     --------
