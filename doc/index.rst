@@ -50,6 +50,8 @@ Linear algebra
   .. autofunction:: economic_qs_linear
   .. autofunction:: economic_svd
   .. autofunction:: stl
+  .. autofunction:: check_definite_positiveness
+  .. autofunction:: check_symmetry
 
 *****************
 Special functions
