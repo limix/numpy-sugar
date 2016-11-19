@@ -7,7 +7,7 @@ from numpy import newaxis
 
 
 def dotd(A, B, out=None):
-    """Retrieves the diagonal of ``numpy.dot(A, B.T)``.
+    r"""Diagonal of :math:`\mathrm A\mathrm B^\intercal`.
 
     If `A` is :math:`n\times p` and `B` is :math:`p\times n`, it is done in
     :math:`O(pn)`.
@@ -15,7 +15,10 @@ def dotd(A, B, out=None):
     Args:
         A (array_like): Left matrix.
         B (array_like): Right matrix.
-        out (array_like): copy result to.
+        out (:class:`numpy.ndarray`, optional): copy result to.
+
+    Returns:
+        :class:`numpy.ndarray`: Resulting diagonal.
     """
     if A.ndim == 1 and B.ndim == 1:
         if out is None:
@@ -27,15 +30,17 @@ def dotd(A, B, out=None):
 
 
 def ddot(L, R, left=True, out=None):
-    """Multiply a matrix by a diagonal one.
+    r"""Dot product of a matrix and a diagonal one.
 
     Args:
-        L (array_like): Left matrix or vector.
-        R (array_like): Right matrix or vector.
-        left (bool): ``True`` for vector `L`, ``False`` for vector `R`.
+        L (array_like): Left matrix.
+        R (array_like): Right matrix.
+        left (bool): ``True`` if ``L`` is the diagonal matrix;
+                     ``False`` otherwise.
+        out (:class:`numpy.ndarray`, optional): copy result to.
 
     Returns:
-        Resulting matrix.
+        :class:`numpy.ndarray`: Resulting matrix.
     """
     if left:
         if out is None:

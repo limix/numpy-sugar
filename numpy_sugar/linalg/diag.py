@@ -24,7 +24,7 @@ def sum2diag(A, D, out=None):
 
     Args:
         A (array_like): Left-hand side.
-        D (array_like or scalar): Values to add.
+        D (array_like or float): Values to add.
         out (:class:`numpy.ndarray`, optional): copy result to.
 
     Returns:

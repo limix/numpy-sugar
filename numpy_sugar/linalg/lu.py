@@ -9,7 +9,14 @@ from numpy import abs
 
 
 def lu_slogdet(LU):
-    """Natural logarithm of a LU decomposition."""
+    r"""Natural logarithm of a LU decomposition.
+
+    Args:
+        LU (tuple): LU decomposition.
+
+    Returns:
+        tuple: sign and log-determinant.
+    """
     adet = sum(log(abs(LU[0].diagonal())))
 
     s = prod(sign(LU[0].diagonal()))
@@ -24,6 +31,23 @@ def lu_slogdet(LU):
     return (s, adet)
 
 
-def lu_solve(LU, x):
-    """Compute ``numpy.dot(numpy.linalg.inv(LU), x)`` for LU decomposition."""
-    return sp_lu_solve(LU, x, check_finite=False)
+def lu_solve(LU, b):
+    r"""Solve for LU decomposition.
+
+    Solve the linear equations :math:`\mathrm A \mathbf x = \mathbf b`,
+    given the LU factorization of :math:`\mathrm A`.
+
+    Args:
+        LU (array_like): LU decomposition.
+        b (array_like): Right-hand side.
+
+    Returns:
+        :class:`numpy.ndarray`: The solution to the system
+        :math:`\mathrm A \mathbf x = \mathbf b`.
+
+    See Also
+    --------
+    scipy.linalg.lu_factor : LU decomposition.
+    scipy.linalg.lu_solve : Solve linear equations given LU factorization.
+    """
+    return sp_lu_solve(LU, b, check_finite=False)
