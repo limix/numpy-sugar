@@ -50,8 +50,6 @@ Linear algebra
   .. autofunction:: economic_qs_linear
   .. autofunction:: economic_svd
   .. autofunction:: stl
-  .. autofunction:: stu
-  .. autofunction:: tri_solve
 
 *****************
 Special functions
