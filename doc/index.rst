@@ -1,6 +1,7 @@
 .. toctree::
   :caption: Table of Contents
   :name: mastertoc
+  :maxdepth: 3
 
   index
 
@@ -35,6 +36,8 @@ Bla bla bla
 **************
 Linear algebra
 **************
+
+-
 
 .. automodule:: numpy_sugar.linalg
 
