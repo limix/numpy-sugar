@@ -40,7 +40,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy_sugar',
-        version='1.1.16',
+        version='1.0.0.dev1',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
