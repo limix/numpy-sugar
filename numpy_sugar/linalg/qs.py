@@ -7,17 +7,18 @@ from .. import _epsilon as epsilon
 def economic_qs(K, epsilon=epsilon.small):
     r"""Economic eigen decomposition for symmetric matrices.
 
-    A symmetric matrix `K` can be decomposed in
+    A symmetric matrix ``K`` can be decomposed in
     :math:`\mathrm Q_0 \mathrm S_0 \mathrm Q_0^\intercal + \mathrm Q_1\
     \mathrm S_1 \mathrm Q_1^ \intercal`, where :math:`\mathrm S_1` is a zero
-    matrix with size determined by `K`'s rank deficiency.
+    matrix with size determined by ``K``'s rank deficiency.
 
     Args:
-        K (array_like): symmetric matrix.
-        epsilon (scalar): eigen value threshold.
+        K (array_like): Symmetric matrix.
+        epsilon (float): Eigen value threshold. Default is
+        ``numpy_sugar.epsilon.small`.
 
     Returns:
-        ``((Q0, Q1), S0)``.
+        tuple: ``((Q0, Q1), S0)``.
     """
     (S, Q) = eigh(K)
     ok = S >= epsilon
@@ -29,10 +30,16 @@ def economic_qs(K, epsilon=epsilon.small):
 
 
 def economic_qs_linear(G):
-    """Economic eigen decomposition for symmetric matrices ``dot(G, G.T)``.
+    r"""Economic eigen decomposition for symmetric matrices ``dot(G, G.T)``.
 
-    It is in practice equivalent to ``economic_qs(dot(G, G.T))``. Refer
-    to :func:`limix_math.economic_qs` for further information.
+    It is theoretically equivalent to ``economic_qs(dot(G, G.T))``.
+    Refer to :func:`limix_math.economic_qs` for further information.
+
+    Args:
+        G (array_like): Matrix.
+
+    Returns:
+        tuple: ``((Q0, Q1), S0)``.
     """
     (Q, Ssq, _) = svd(G, full_matrices=True)
     S0 = Ssq**2
