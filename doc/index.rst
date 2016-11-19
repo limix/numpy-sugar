@@ -27,31 +27,59 @@ An alternative way would be via pip::
 
 .. _conda: http://conda.pydata.org/docs/index.html
 
-***********
-Quick start
-***********
-
-Bla bla bla
 
 **************
 Linear algebra
 **************
 
+--------------
+Decompositions
+--------------
+
 .. automodule:: numpy_sugar.linalg
 
-  .. autofunction:: cho_solve
-  .. autofunction:: trace2
-  .. autofunction:: sum2diag
-  .. autofunction:: dotd
-  .. autofunction:: ddot
-  .. autofunction:: lu_slogdet
-  .. autofunction:: lu_solve
   .. autofunction:: economic_qs
   .. autofunction:: economic_qs_linear
   .. autofunction:: economic_svd
-  .. autofunction:: stl
+
+-----------
+Dot and sum
+-----------
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: sum2diag
+  .. autofunction:: ddot
+
+----------
+Properties
+----------
+
+.. automodule:: numpy_sugar.linalg
+
   .. autofunction:: check_definite_positiveness
   .. autofunction:: check_symmetry
+
+--------
+Reducers
+--------
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: lu_slogdet
+  .. autofunction:: trace2
+  .. autofunction:: dotd
+
+-------
+Solvers
+-------
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: cho_solve
+  .. autofunction:: lu_solve
+  .. autofunction:: stl
+
 
 *****************
 Special functions
