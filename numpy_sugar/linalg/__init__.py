@@ -1,6 +1,6 @@
 from .qs import (economic_qs, economic_qs_linear)
 from .svd import economic_svd
-from .tri import (stl, stu, tri_solve)
+from .tri import stl
 from .cho import cho_solve
 from .dot import (dotd, ddot)
 from .lu import (lu_solve, lu_slogdet)
