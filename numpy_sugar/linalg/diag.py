@@ -20,15 +20,15 @@ def trace2(A, B):
 
 
 def sum2diag(A, D, out=None):
-    """Add to the diagonal of a matrix.
+    """Add values ``D`` to the diagonal of matrix ``A``.
 
     Args:
-        A (array_like): Matrix to have its diagonal elements changed.
-        D (array_like or scalar): Add those values to the diagonal of `A`.
-        out (array_like): copy result to.
+        A (array_like): Left-hand side.
+        D (array_like or scalar): Values to add.
+        out (:npy:`ndarray`, optional): copy result to.
 
     Returns:
-        ``A + numpy.diag(D)``.
+        :npy:`ndarray`: Resulting matrix.
     """
     if out is None:
         out = copy(A)
