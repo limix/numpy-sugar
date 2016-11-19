@@ -16,6 +16,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon',
+    'sphinx.ext.mathjax',
 ]
 napoleon_google_docstring = True
 templates_path = ['_templates']

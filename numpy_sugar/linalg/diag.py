@@ -25,10 +25,10 @@ def sum2diag(A, D, out=None):
     Args:
         A (array_like): Left-hand side.
         D (array_like or scalar): Values to add.
-        out (:np-c:`ndarray`, optional): copy result to.
+        out (:class:`numpy.ndarray`, optional): copy result to.
 
     Returns:
-        :np-c:`ndarray`: Resulting matrix.
+        :class:`numpy.ndarray`: Resulting matrix.
     """
     if out is None:
         out = copy(A)
