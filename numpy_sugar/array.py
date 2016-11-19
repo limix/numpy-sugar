@@ -6,16 +6,21 @@ from numba import jit
 
 
 def is_crescent(arr):
+    """Verify if the array values are in non-decreasing order."""
     arr = asarray(arr)
     return _is_crescent(arr)
 
 
 def is_all_equal(arr):
+    """Verify if the array values are all equal."""
     arr = asarray(arr)
     return _is_all_equal(arr)
 
 
 def is_all_finite(arr):
+    """Verify if the array values are all finite.
+
+    NaN is not finite, as well as Inf."""
     return isfinite(sum(arr))
 
 

@@ -27,6 +27,15 @@ An alternative way would be via pip::
 
 .. _conda: http://conda.pydata.org/docs/index.html
 
+*****
+Array
+*****
+
+.. automodule:: numpy_sugar.array
+
+  .. autofunction:: is_all_equal
+  .. autofunction:: is_all_finite
+  .. autofunction:: is_crescent
 
 **************
 Linear algebra
