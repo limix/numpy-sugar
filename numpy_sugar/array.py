@@ -1,16 +1,26 @@
 from numpy import asarray
 from numpy import isfinite
 from numpy import sum
-from numpy import all
 from numba import jit
 
 
-def isint_alike(arr):
-    return all(arr == asarray(arr, int))
+
+def is_crescent(arr):
+    arr = asarray(arr)
+    return _is_crescent(arr)
+
+
+def is_all_equal(arr):
+    arr = asarray(arr)
+    return _is_all_equal(arr)
+
+
+def is_all_finite(arr):
+    return isfinite(sum(arr))
 
 
 @jit
-def _iscrescent(arr):
+def _is_crescent(arr):
     i = 0
     while i < arr.shape[0] - 1:
         if arr[i] > arr[i + 1]:
@@ -19,13 +29,8 @@ def _iscrescent(arr):
     return True
 
 
-def iscrescent(arr):
-    arr = asarray(arr)
-    return _iscrescent(arr)
-
-
 @jit(nogil=True, nopython=True)
-def _issingleton(arr):
+def _is_all_equal(arr):
     arr = arr.ravel()
     v = arr[0]
     i = 1
@@ -34,12 +39,3 @@ def _issingleton(arr):
             return False
         i += 1
     return True
-
-
-def issingleton(arr):
-    arr = asarray(arr)
-    return _issingleton(arr)
-
-
-def is_all_finite(arr):
-    return isfinite(sum(arr))

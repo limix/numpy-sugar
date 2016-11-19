@@ -5,10 +5,10 @@ from pkg_resources import get_distribution as _get_distribution
 from pkg_resources import DistributionNotFound as _DistributionNotFound
 
 from . import linalg
-from . import epsilon
+from . import _epsilon as epsilon
 from . import special
 from .array import (is_all_equal, is_crescent, is_all_finite)
-from .mv import multivariate_normal
+from . import random
 
 # from ._api import get_include
 # from ._api import get_lib

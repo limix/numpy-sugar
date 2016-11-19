@@ -1,7 +1,7 @@
 from numpy import (nan, inf)
 from numpy.testing import assert_equal
 
-from limix_math import is_all_finite
+from numpy_sugar import is_all_finite
 
 
 def test_is_all_finite():

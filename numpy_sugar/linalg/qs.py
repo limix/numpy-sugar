@@ -1,7 +1,7 @@
 from numpy.linalg import eigh
 from numpy.linalg import svd
 from numpy import logical_not
-from ..epsilon import epsilon
+from .. import _epsilon as epsilon
 
 
 def economic_qs(K, epsilon=epsilon.small):

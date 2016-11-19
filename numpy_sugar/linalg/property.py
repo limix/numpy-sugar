@@ -2,7 +2,7 @@ from numpy import empty_like
 from numpy import diag_indices_from
 from numpy.linalg import cholesky
 from numpy.linalg import LinAlgError
-from ..epsilon import epsilon
+from .. import _epsilon as epsilon
 
 
 def check_definite_positiveness(A):

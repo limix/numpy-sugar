@@ -1,5 +1,5 @@
 from numpy.linalg import svd
-from ..epsilon import epsilon
+from .. import _epsilon as epsilon
 
 
 def economic_svd(G, epsilon=epsilon.small):
