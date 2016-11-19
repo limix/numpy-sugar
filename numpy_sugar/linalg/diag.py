@@ -5,14 +5,14 @@ from numpy import einsum
 
 
 def trace2(A, B):
-    r"""Trace of :math::`\mathrm A \mathrm B^\intercal`.
+    r"""Trace of :math:`\mathrm A \mathrm B^\intercal`.
 
     Args:
         A (array_like): Left-hand side.
         B (array_like): Right-hand side.
 
     Returns:
-        float: Trace of :math::`\mathrm A \mathrm B^\intercal`.
+        float: Trace of :math:`\mathrm A \mathrm B^\intercal`.
     """
     assert len(A.shape) == 2 and len(B.shape) == 2
     assert A.shape[1] == B.shape[0] and A.shape[0] == B.shape[1]
@@ -20,7 +20,7 @@ def trace2(A, B):
 
 
 def sum2diag(A, D, out=None):
-    """Add values ``D`` to the diagonal of matrix ``A``.
+    r"""Add values ``D`` to the diagonal of matrix ``A``.
 
     Args:
         A (array_like): Left-hand side.
