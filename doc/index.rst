@@ -1,22 +1,33 @@
-.. numpy-sugar documentation master file, created by
-   sphinx-quickstart on Sat Nov 19 09:54:11 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to numpy-sugar's documentation!
-=======================================
-
-Contents:
-
 .. toctree::
-   :maxdepth: 2
+  :caption: Table of Contents
+  :name: mastertoc
 
+  index
 
+===========================
+Numpy-sugar's documentation
+===========================
 
-Indices and tables
-==================
+You can get the source and open issues on `Github.`_
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. _Github.: https://github.com/Horta/numpy-sugar
 
+*******
+Install
+*******
+
+The recommended way of installing it is via `conda`_::
+
+  conda install -c conda-forge numpy-sugar
+
+An alternative way would be via pip::
+
+  pip install numpy-sugar
+
+.. _conda: http://conda.pydata.org/docs/index.html
+
+***********
+Quick start
+***********
+
+Bla bla bla
