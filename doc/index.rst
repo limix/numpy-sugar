@@ -88,3 +88,4 @@ Special functions
 .. automodule:: numpy_sugar.special
 
   .. autofunction:: chi2_sf
+  .. autofunction:: lgamma

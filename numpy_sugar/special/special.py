@@ -37,7 +37,6 @@ def chi2_sf(k, x):
 
     References
     ----------
-
     .. [1] https://en.wikipedia.org/wiki/Chi-squared_distribution
     """
     return _chi2_sf(k, x)
@@ -45,10 +44,17 @@ def chi2_sf(k, x):
 
 @vectorize([float64(float64)], nopython=True)
 def lgamma(x):
-    """Natural logarithm of the gamma function.
+    r"""Natural logarithm of the Gamma function [1]_.
 
     Args:
         x (array_like): evaluation point.
+
+    Returns:
+        :class:`numpy.ndarray`: Log-gamma of ``x``.
+
+    References
+    ----------
+    .. [1] https://en.wikipedia.org/wiki/Gamma_function
     """
     return _lgamma(x)
 
