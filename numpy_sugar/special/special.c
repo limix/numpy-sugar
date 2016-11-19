@@ -9,32 +9,32 @@
 
 // Gaussian distribution
 
-double lmath_normal_pdf(double x)
+double nsugar_normal_pdf(double x)
 {
-    return exp(lmath_normal_logpdf(x));
+    return exp(nsugar_normal_logpdf(x));
 }
 
-double lmath_normal_cdf(double x)
+double nsugar_normal_cdf(double x)
 {
     return ncephes_ndtr(x);
 }
 
-double lmath_normal_icdf(double x)
+double nsugar_normal_icdf(double x)
 {
     return ncephes_ndtri(x);
 }
 
-double lmath_normal_sf(double x)
+double nsugar_normal_sf(double x)
 {
-    return lmath_normal_cdf(-x);
+    return nsugar_normal_cdf(-x);
 }
 
-double lmath_normal_isf(double x)
+double nsugar_normal_isf(double x)
 {
-    return -lmath_normal_icdf(x);
+    return -nsugar_normal_icdf(x);
 }
 
-double lmath_normal_logpdf(double x)
+double nsugar_normal_logpdf(double x)
 {
     static const double _norm_pdf_logC =
         0.9189385332046726695409688545623794198036193847656250;
@@ -56,7 +56,7 @@ double lmath_normal_logpdf(double x)
 *   = [\mbox{LHS}] * [\mbox{RHS}] + \mbox{error}.
 *
 */
-double lmath_normal_logcdf(double x)
+double nsugar_normal_logcdf(double x)
 {
     // we compute the left hand side of the approx (LHS) in one shot
     double log_LHS;
@@ -91,30 +91,30 @@ double lmath_normal_logcdf(double x)
     return log_LHS + log(right_hand_side);
 }
 
-double lmath_normal_logsf(double x)
+double nsugar_normal_logsf(double x)
 {
-    return lmath_normal_logcdf(-x);
+    return nsugar_normal_logcdf(-x);
 }
 
-double lmath_lgamma(double x)
+double nsugar_lgamma(double x)
 {
   return lgamma(x);
 }
 
 
-double lmath_chi2_sf(int k, double x)
+double nsugar_chi2_sf(int k, double x)
 {
   return ncephes_chdtrc(k, x);
 }
 
 
-double lmath_beta_isf(double a, double b, double x)
+double nsugar_beta_isf(double a, double b, double x)
 {
     return ncephes_incbi(a, b, 1.0 - x);
 }
 
 
-double lmath_logaddexp(double x, double y)
+double nsugar_logaddexp(double x, double y)
 {
     double tmp = x - y;
 
@@ -129,7 +129,7 @@ double lmath_logaddexp(double x, double y)
     return tmp;
 }
 
-double lmath_logaddexps(double x, double y, double sx, double sy)
+double nsugar_logaddexps(double x, double y, double sx, double sy)
 {
     double tmp = x - y;
 
@@ -157,7 +157,7 @@ double lmath_logaddexps(double x, double y, double sx, double sy)
     return tmp;
 }
 
-double lmath_logaddexpss(double x, double y, double sx,
+double nsugar_logaddexpss(double x, double y, double sx,
                          double sy, double* sign)
 {
   // printf("sx sy: %.30f %.30f\n", sx, sy); fflush(stdout);
@@ -203,10 +203,10 @@ double lmath_logaddexpss(double x, double y, double sx,
 
   sx *= *sign;
   sy *= *sign;
-  return lmath_logaddexps(x, y, sx, sy);
+  return nsugar_logaddexps(x, y, sx, sy);
 }
 
-double lmath_logbinom(double N, double K)
+double nsugar_logbinom(double N, double K)
 {
     return -ncephes_lbeta(1 + N - K, 1 + K) - log1p(N);
 }

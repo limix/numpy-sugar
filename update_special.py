@@ -77,13 +77,13 @@ _cffi_support.register_module(_special_ffi)
 """
 
     for f in fdecls:
-        name = f.name.replace('lmath_', '')
+        name = f.name.replace('nsugar_', '')
         data += "_%s = _special_ffi.lib.%s\n" % (name, f.name)
 
     data += "\n"
 
     for f in fdecls:
-        if f.name.startswith('lmath_beta'):
+        if f.name.startswith('nsugar_beta'):
             data += """
 @jit([float64(float64, float64, float64),
       float64[:](float64, float64, float64[:])])
@@ -94,19 +94,19 @@ def {fname}(a, b, x):
     for i in range(x.size):
         r[i] = _{fname}(a, b, x[i])
     return r
-""".format(fname=f.name.replace('lmath_', ''))
-        elif f.name.startswith('lmath_logbinom'):
+""".format(fname=f.name.replace('nsugar_', ''))
+        elif f.name.startswith('nsugar_logbinom'):
             data += """
 @vectorize([float64(float64, float64)], nopython=True)
 def {fname}(a, b):
     return _{fname}(a, b)
-""".format(fname=f.name.replace('lmath_', ''))
-        elif f.name.startswith('lmath_normal'):
+""".format(fname=f.name.replace('nsugar_', ''))
+        elif f.name.startswith('nsugar_normal'):
             data += """
 @vectorize([float64(float64)], nopython=True)
 def {fname}(x):
     return _{fname}(x)
-""".format(fname=f.name.replace('lmath_', ''))
+""".format(fname=f.name.replace('nsugar_', ''))
 
     with open(join('limix_math', 'special', 'special.py'), 'w') as f:
         f.write(data)

@@ -6,21 +6,21 @@ from numba import jit
 import numpy as np
 _cffi_support.register_module(_special_ffi)
 
-_chi2_sf = _special_ffi.lib.lmath_chi2_sf
-_lgamma = _special_ffi.lib.lmath_lgamma
-_normal_pdf = _special_ffi.lib.lmath_normal_pdf
-_normal_cdf = _special_ffi.lib.lmath_normal_cdf
-_normal_icdf = _special_ffi.lib.lmath_normal_icdf
-_normal_sf = _special_ffi.lib.lmath_normal_sf
-_normal_isf = _special_ffi.lib.lmath_normal_isf
-_normal_logpdf = _special_ffi.lib.lmath_normal_logpdf
-_normal_logcdf = _special_ffi.lib.lmath_normal_logcdf
-_normal_logsf = _special_ffi.lib.lmath_normal_logsf
-_beta_isf = _special_ffi.lib.lmath_beta_isf
-_logaddexp = _special_ffi.lib.lmath_logaddexp
-_logaddexps = _special_ffi.lib.lmath_logaddexps
-_logaddexpss = _special_ffi.lib.lmath_logaddexpss
-_logbinom = _special_ffi.lib.lmath_logbinom
+_chi2_sf = _special_ffi.lib.nsugar_chi2_sf
+_lgamma = _special_ffi.lib.nsugar_lgamma
+_normal_pdf = _special_ffi.lib.nsugar_normal_pdf
+_normal_cdf = _special_ffi.lib.nsugar_normal_cdf
+_normal_icdf = _special_ffi.lib.nsugar_normal_icdf
+_normal_sf = _special_ffi.lib.nsugar_normal_sf
+_normal_isf = _special_ffi.lib.nsugar_normal_isf
+_normal_logpdf = _special_ffi.lib.nsugar_normal_logpdf
+_normal_logcdf = _special_ffi.lib.nsugar_normal_logcdf
+_normal_logsf = _special_ffi.lib.nsugar_normal_logsf
+_beta_isf = _special_ffi.lib.nsugar_beta_isf
+_logaddexp = _special_ffi.lib.nsugar_logaddexp
+_logaddexps = _special_ffi.lib.nsugar_logaddexps
+_logaddexpss = _special_ffi.lib.nsugar_logaddexpss
+_logbinom = _special_ffi.lib.nsugar_logbinom
 
 
 @vectorize([float64(int64, float64)], nopython=True)
