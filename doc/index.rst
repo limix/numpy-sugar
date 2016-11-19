@@ -85,4 +85,6 @@ Solvers
 Special functions
 *****************
 
-ss
+.. automodule:: numpy_sugar.special
+
+  .. autofunction:: chi2_sf
