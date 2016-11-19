@@ -5,14 +5,14 @@ from numpy import einsum
 
 
 def trace2(A, B):
-    """Retrieves the diagonal ``numpy.dot(A, B.T)``.
+    r"""Trace of :math::`\mathrm A \mathrm B^\intercal`.
 
     Args:
-        A (array_like): Matrix to have its diagonal elements changed.
-        B (array_like): Add those values to the diagonal of `A`.
+        A (array_like): Left-hand side.
+        B (array_like): Right-hand side.
 
     Returns:
-        ``numpy.dot(A, B.T).diagonal()``.
+        float: Trace of :math::`\mathrm A \mathrm B^\intercal`.
     """
     assert len(A.shape) == 2 and len(B.shape) == 2
     assert A.shape[1] == B.shape[0] and A.shape[0] == B.shape[1]

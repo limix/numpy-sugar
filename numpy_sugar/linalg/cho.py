@@ -8,7 +8,7 @@ def cho_solve(L, b):
 
     Args:
         L (array_like): Lower triangular matrix.
-        b (array_like): Lower triangular matrix.
+        b (array_like): Right-hand side.
 
     Returns:
         array_like: The solution to the system A x = b.
@@ -16,6 +16,6 @@ def cho_solve(L, b):
     See Also
     --------
     numpy.linalg.cholesky : Cholesky decomposition.
-    scipy.linalg.cho_solve : solve the linear equations given Cholesky.
+    scipy.linalg.cho_solve : Solve linear equations given Cholesky.
     """
     return sp_cho_solve((L, True), b, check_finite=False)
