@@ -10,8 +10,8 @@ from . import special
 from .array import (is_all_equal, is_crescent, is_all_finite)
 from . import random
 
-# from ._api import get_include
-# from ._api import get_lib
+from .api import get_include
+from .api import get_lib
 
 try:
     __version__ = _get_distribution('numpy_sugar').version
