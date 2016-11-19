@@ -12,5 +12,10 @@ def cho_solve(L, b):
 
     Returns:
         array_like: The solution to the system A x = b.
+
+    See Also
+    --------
+    numpy.linalg.cholesky : Cholesky decomposition.
+    scipy.linalg.cho_solve : solve the linear equations given Cholesky.
     """
     return sp_cho_solve((L, True), b, check_finite=False)
