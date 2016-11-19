@@ -62,7 +62,7 @@ def fetch_func_decl(filename):
 if __name__ == '__main__':
 
     fdecls = fetch_func_decl(
-        join('limix_math', 'include', 'limix_math', 'special.h'))
+        join('numpy_sugar', 'include', 'numpy_sugar', 'special.h'))
 
     data = """
 from . import _special_ffi
@@ -108,10 +108,10 @@ def {fname}(x):
     return _{fname}(x)
 """.format(fname=f.name.replace('nsugar_', ''))
 
-    with open(join('limix_math', 'special', 'special.py'), 'w') as f:
+    with open(join('numpy_sugar', 'special', 'special.py'), 'w') as f:
         f.write(data)
 
-    with open(join('limix_math', 'special', 'special.py'), 'a') as f:
+    with open(join('numpy_sugar', 'special', 'special.py'), 'a') as f:
         f.write("""
 @vectorize([float64(float64, float64)], nopython=True)
 def logaddexp(x, y):

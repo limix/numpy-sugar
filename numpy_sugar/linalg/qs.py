@@ -33,7 +33,7 @@ def economic_qs_linear(G):
     r"""Economic eigen decomposition for symmetric matrices ``dot(G, G.T)``.
 
     It is theoretically equivalent to ``economic_qs(dot(G, G.T))``.
-    Refer to :func:`limix_math.economic_qs` for further information.
+    Refer to :func:`numpy_sugar.economic_qs` for further information.
 
     Args:
         G (array_like): Matrix.
