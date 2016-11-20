@@ -3,4 +3,4 @@ include README.md
 include setup.cfg
 include special_build.py
 include update_special.py
-recursive-include numpy_sugar *.c *.h *.py
+recursive-include numpy_sugar *.c *.h *.py *.txt
