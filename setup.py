@@ -51,7 +51,7 @@ def setup_package():
         license="MIT",
         description="Missing NumPy functionalities.",
         long_description=long_description,
-        url='http://github.com/Horta/numpy-sugar',
+        url='http://github.com/glimix/numpy-sugar',
         packages=find_packages(),
         zip_safe=False,
         cffi_modules=['special_build.py:special'],
