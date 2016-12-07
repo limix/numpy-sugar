@@ -2,6 +2,8 @@ from numpy_sugar.linalg import economic_qs
 from numpy_sugar.linalg import trace2
 from numpy_sugar.linalg import dotd
 from numpy_sugar.linalg import ddot
+from numpy_sugar.linalg import solve
+from numpy.linalg import solve as npy_solve
 from numpy import empty
 from numpy import diag
 from numpy.random import RandomState
@@ -79,6 +81,22 @@ def test_ddot():
     assert_allclose(AdB, ddot(A, B, left=True))
     assert_allclose(AdB, ddot(A, B, left=True, out=B))
 
+def test_solve():
+    random = RandomState(0)
+    A = random.randn(1, 1)
+    b = random.randn(1)
+
+    assert_allclose(solve(A, b), npy_solve(A, b))
+
+    A = random.randn(2, 2)
+    b = random.randn(2)
+
+    assert_allclose(solve(A, b), npy_solve(A, b))
+
+    A = random.randn(3, 3)
+    b = random.randn(3)
+
+    assert_allclose(solve(A, b), npy_solve(A, b))
 
 if __name__ == '__main__':
     from pytest import main

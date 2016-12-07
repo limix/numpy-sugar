@@ -18,11 +18,11 @@ def solve(A, b):
         return dot(A_, b)
     elif A.shape[0] == 2:
         a = A[0, 0]
-        b = A[0, 1]
+        b_ = A[0, 1]
         c = A[1, 0]
         d = A[1, 1]
-        A_ = array([[d, -b], [-c, a]])
-        A_ /= a * d - b * c
+        A_ = array([[d, -b_], [-c, a]])
+        A_ /= a * d - b_ * c
         return dot(A_, b)
     return _solve(A, b)
 
