@@ -35,7 +35,7 @@ def setup_package():
     pytest_runner = ['pytest-runner'] if needs_pytest else []
 
     setup_requires = [
-        'build_capi>=1.0', 'ncephes>=1.0.14', 'cffi>=1.7', 'numba>=0.28'
+        'build-capi>=1.0', 'ncephes>=1.0.14', 'cffi>=1.7', 'numba>=0.28'
     ] + pytest_runner
     install_requires = [
         'ncephes>=1.0.14', 'scipy>=0.18.1', 'numpy>=1.11', 'numba>=0.28',
@@ -44,8 +44,8 @@ def setup_package():
     tests_require = ['pytest']
 
     metadata = dict(
-        name='numpy_sugar',
-        version='1.0.8',
+        name='numpy-sugar',
+        version='1.0.9',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
