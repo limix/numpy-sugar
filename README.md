@@ -1,9 +1,9 @@
 # numpy-sugar
 
-[![PyPIl](https://img.shields.io/pypi/l/numpy_sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy_sugar/)
-[![PyPIv](https://img.shields.io/pypi/v/numpy_sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy_sugar/)
-[![Anaconda-Server Badge](https://anaconda.org/conda-forge/numpy_sugar/badges/version.svg)](https://anaconda.org/conda-forge/numpy_sugar)
-[![Documentation Status](https://readthedocs.org/projects/numpy_sugar/badge/?style=flat-square&version=latest)](http://numpy_sugar.readthedocs.io/en/latest/?badge=latest)
+[![PyPIl](https://img.shields.io/pypi/l/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/)
+[![PyPIv](https://img.shields.io/pypi/v/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/numpy-sugar/badges/version.svg)](https://anaconda.org/conda-forge/numpy-sugar)
+[![Documentation Status](https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=latest)](http://numpy-sugar.readthedocs.io/en/latest/?badge=latest)
 
 Missing NumPy functionalities.
 
@@ -12,12 +12,12 @@ Missing NumPy functionalities.
 The recommended way of installing it is via
 [conda](http://conda.pydata.org/docs/index.html)
 ```bash
-conda install -c conda-forge numpy_sugar
+conda install -c conda-forge numpy-sugar
 ```
 
 An alternative way would be via pip
 ```bash
-pip install numpy_sugar
+pip install numpy-sugar
 ```
 
 ## Running the tests
