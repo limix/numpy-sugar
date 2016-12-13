@@ -1,14 +1,15 @@
 import os
-from os.path import join
 import sys
-from setuptools import setup
-from setuptools import find_packages
+from os.path import join
+
+from setuptools import find_packages, setup
 
 try:
     import pypandoc
     long_description = pypandoc.convert('README.md', 'rst')
-except(IOError, ImportError):
+except (IOError, ImportError):
     long_description = open('README.md').read()
+
 
 def get_capi_lib():
     from build_capi import CApiLib
@@ -45,7 +46,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.10',
+        version='1.0.11dev0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
@@ -60,17 +61,7 @@ def setup_package():
         setup_requires=setup_requires,
         include_package_data=True,
         capi_libs=[get_capi_lib],
-        package_data={'': [join('numpy_sugar', 'lib', '*.*')]}
-    )
-
-    try:
-        from distutils.command.bdist_conda import CondaDistribution
-    except ImportError:
-        pass
-    else:
-        metadata['distclass'] = CondaDistribution
-        metadata['conda_buildnum'] = 0
-        metadata['conda_features'] = ['mkl']
+        package_data={'': [join('numpy_sugar', 'lib', '*.*')]})
 
     try:
         setup(**metadata)
