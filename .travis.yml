@@ -1,4 +1,4 @@
-language: pythonz
+language: python
 matrix:
   include:
   - os: linux
