@@ -22,6 +22,7 @@ matrix:
     language: generic
     env: TRAVIS_PYTHON_VERSION=3.5
 script:
+- python setup.py sdist
 - pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`
 - pushd /
 - python -c "import numpy_sugar; numpy_sugar.test()"
