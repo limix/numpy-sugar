@@ -20,6 +20,7 @@ matrix:
     compiler: clang-3.8
     env: LLVM_VERSION="3.8" CXX="clang++-3.8" LLVM_CONFIG="llvm-config-3.8"
 script:
+- if [ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]; then pip install enum34; fi
 - pip install pypandoc
 - git clone https://github.com/numba/llvmlite.git --depth 1
 - pushd llvmlite
@@ -27,7 +28,7 @@ script:
 - popd
 - python -c "from pypandoc import download_pandoc as dp; dp(targetfolder='~/bin/');"
 - export PATH=~/bin:$PATH
-- ~/bin/pandoc -v
+- "~/bin/pandoc -v"
 - python setup.py sdist
 - pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`
 - pushd /
@@ -37,8 +38,9 @@ notifications:
   email: false
 deploy:
   provider: pypi
-  skip_upload_docs: true
   user: dhorta
+  password:
+    secure: UJAvFuRc8RRB5PBdGw1dzWLhpF2XV54DEIQ8bTvdCBX1icYY4WVkplaI6VhEaxn6jCfk7gMxXI1bFOMpJh4iVkUtnpEbhgZbMsxwcPFL5BuPbaeOSpxNBD/QAQQQFPZSz+zeEThZmf+InrXxxMoi7dVQXIC60dMMr05/tm87lOYjALdsUKc+0XdQ0mmEAcgueD1cuHaXgD6eECdb+taXMaw1Or/r+8Oq9fXntMfb+ZbsYrMZCarP4UwW4tJr81IEJOltH6caleI6YX6bcnqpnm1HraqN74Atw0zNMNqPKkbTZv2hdIWRWyGkEjOcwXDAiOMK/vwB8K5Hqf24hAIZAwgDHcKfy1n7FKeiO9xk2XVnwswUvmJSCgWENcZ++5unfDLjC+pMEpzvw0NkfTzGiiDiOx91RALvslAosYy8xKHc22YO7gvggcQfXyMh5AlCLZWdlcgJlUBFNHmKMGRbTom1lB3Eol0XisDBfoO0/1QQ5GTuD9J1JY7CBYzFP033RI/GjD+fedZYKnuHwQdDpvFmcXK7wc+NDNlTNWYTZ3U4s1BvQh/XFMUAYwxVnOUF7Tu+DOiGjiOTGDuH7CzkvD8WMgNtGxtDcbMfIXZoKG6ylY3ilfpCIlvPRX51ctTHhQyB6roMIV8uSt1+RhbFZudKw4KS5Hyqkm9niWPfKFo=
   on:
     distributions: sdist bdist_wheel
     repo: glimix/numpy-sugar
