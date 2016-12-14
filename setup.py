@@ -46,7 +46,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.11',
+        version='1.0.12dev0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
@@ -61,6 +61,14 @@ def setup_package():
         setup_requires=setup_requires,
         include_package_data=True,
         capi_libs=[get_capi_lib],
+        classifiers=[
+            "Development Status :: 5 - Production/Stable",
+            "Intended Audience :: Developers",
+            "License :: OSI Approved :: MIT License",
+            "Programming Language :: Python :: 2.7",
+            "Programming Language :: Python :: 3.5",
+            "Operating System :: OS Independent",
+        ],
         package_data={'': [join('numpy_sugar', 'lib', '*.*')]})
 
     try:
