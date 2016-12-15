@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
+    long_description = pypandoc.convert_convert('README.md', 'rst')
 except (OSError, IOError, ImportError):
     long_description = open('README.md').read()
 
@@ -35,18 +35,16 @@ def setup_package():
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner'] if needs_pytest else []
 
-    setup_requires = [
-        'build-capi', 'ncephes', 'cffi>=1.7', 'numba>=0.28'
-    ] + pytest_runner
+    setup_requires = ['build-capi', 'ncephes', 'cffi>=1.7', 'numba>=0.28'
+                      ] + pytest_runner
     install_requires = [
-        'ncephes', 'scipy', 'numpy', 'numba>=0.28',
-        'cffi>=1.7'
+        'ncephes', 'scipy', 'numpy', 'numba>=0.28', 'cffi>=1.7'
     ]
     tests_require = ['pytest']
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.12',
+        version='1.0.13dev0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
