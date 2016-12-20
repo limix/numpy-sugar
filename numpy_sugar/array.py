@@ -1,7 +1,12 @@
 from numpy import asarray
 from numpy import isfinite
 from numpy import sum
-from numba import jit
+
+try:
+    from numba import jit
+    _NUMBA = True
+except ImportError:
+    _NUMBA = False
 
 
 
@@ -24,7 +29,6 @@ def is_all_finite(arr):
     return isfinite(sum(arr))
 
 
-@jit
 def _is_crescent(arr):
     i = 0
     while i < arr.shape[0] - 1:
@@ -33,8 +37,9 @@ def _is_crescent(arr):
         i += 1
     return True
 
+if _NUMBA:
+    _is_crescent = jit(_is_crescent, nogil=True, nopython=True)
 
-@jit(nogil=True, nopython=True)
 def _is_all_equal(arr):
     arr = arr.ravel()
     v = arr[0]
@@ -44,3 +49,6 @@ def _is_all_equal(arr):
             return False
         i += 1
     return True
+
+if _NUMBA:
+    _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True)

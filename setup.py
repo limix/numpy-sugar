@@ -35,16 +35,19 @@ def setup_package():
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
     pytest_runner = ['pytest-runner'] if needs_pytest else []
 
-    setup_requires = ['build-capi', 'ncephes', 'cffi>=1.7', 'numba>=0.28'
-                      ] + pytest_runner
-    install_requires = [
-        'ncephes', 'scipy', 'numpy', 'numba>=0.28', 'cffi>=1.7'
-    ]
+    setup_requires = [
+        'build-capi',
+        'ncephes',
+        'cffi>=1.7',
+    ] + pytest_runner
+    install_requires = ['ncephes', 'scipy', 'numpy', 'cffi>=1.7']
     tests_require = ['pytest']
+
+    recommended = {"numba": ["numba>=0.28"]}
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.13',
+        version='1.0.14.dev0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
@@ -57,6 +60,7 @@ def setup_package():
         install_requires=install_requires,
         tests_require=tests_require,
         setup_requires=setup_requires,
+        extras_require=recommended,
         include_package_data=True,
         capi_libs=[get_capi_lib],
         classifiers=[
