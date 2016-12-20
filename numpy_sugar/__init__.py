@@ -6,8 +6,8 @@ from pkg_resources import get_distribution as _get_distribution
 
 from . import _epsilon as epsilon
 from . import linalg, random, special
-from .api import get_include, get_lib
-from .array import is_all_equal, is_all_finite, is_crescent
+from ._api import get_include, get_lib
+from ._array import is_all_equal, is_all_finite, is_crescent
 
 try:
     __version__ = _get_distribution('numpy_sugar').version

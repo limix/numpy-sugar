@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import os
 import sys
 from os.path import join
@@ -47,7 +49,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.14.rc1',
+        version='1.0.14.rc2',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
