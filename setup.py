@@ -41,13 +41,13 @@ def setup_package():
         'cffi>=1.7',
     ] + pytest_runner
     install_requires = ['ncephes', 'scipy', 'numpy', 'cffi>=1.7']
-    tests_require = ['pytest']
+    tests_require = ['pytest>=3.0.0']
 
     recommended = {"numba": ["numba>=0.28"]}
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.14.dev1',
+        version='1.0.14.rc0',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",

@@ -1,17 +1,14 @@
 from __future__ import absolute_import as _
 from __future__ import unicode_literals as _
 
-from pkg_resources import get_distribution as _get_distribution
+import _cffi_backend
 from pkg_resources import DistributionNotFound as _DistributionNotFound
+from pkg_resources import get_distribution as _get_distribution
 
-from . import linalg
 from . import _epsilon as epsilon
-from . import special
-from .array import (is_all_equal, is_crescent, is_all_finite)
-from . import random
-
-from .api import get_include
-from .api import get_lib
+from . import linalg, random, special
+from .api import get_include, get_lib
+from .array import is_all_equal, is_all_finite, is_crescent
 
 try:
     __version__ = _get_distribution('numpy_sugar').version
