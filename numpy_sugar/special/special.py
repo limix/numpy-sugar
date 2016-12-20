@@ -46,7 +46,7 @@ def chi2_sf(k, x):
     """
     return _chi2_sf(k, x)
 if _NUMBA:
-    chi2_sf = vectorize(chi2_sf, [float64(int64, float64)], nopython=True)
+    chi2_sf = vectorize([float64(int64, float64)], nopython=True)(chi2_sf)
 
 def lgamma(x):
     r"""Natural logarithm of the Gamma function [1].
@@ -63,7 +63,7 @@ def lgamma(x):
     """
     return _lgamma(x)
 if _NUMBA:
-    lgamma = vectorize(lgamma, [float64(float64)], nopython=True)
+    lgamma = vectorize([float64(float64)], nopython=True)(lgamma)
 
 def normal_pdf(x):
     """P.d.f. of the Normal distribution.
@@ -73,7 +73,7 @@ def normal_pdf(x):
     """
     return _normal_pdf(x)
 if _NUMBA:
-    normal_pdf = vectorize(normal_pdf, [float64(float64)], nopython=True)
+    normal_pdf = vectorize([float64(float64)], nopython=True)(normal_pdf)
 
 def normal_cdf(x):
     """C.d.f. of the Normal distribution.
@@ -83,7 +83,7 @@ def normal_cdf(x):
     """
     return _normal_cdf(x)
 if _NUMBA:
-    normal_cdf = vectorize(normal_cdf, [float64(float64)], nopython=True)
+    normal_cdf = vectorize([float64(float64)], nopython=True)(normal_cdf)
 
 def normal_icdf(x):
     """Inverse of the c.d.f. of the Normal distribution.
@@ -93,7 +93,7 @@ def normal_icdf(x):
     """
     return _normal_icdf(x)
 if _NUMBA:
-    normal_icdf = vectorize(normal_icdf, [float64(float64)], nopython=True)
+    normal_icdf = vectorize([float64(float64)], nopython=True)(normal_icdf)
 
 def normal_sf(x):
     """Survival function of the Normal distribution.
@@ -103,7 +103,7 @@ def normal_sf(x):
     """
     return _normal_sf(x)
 if _NUMBA:
-    normal_sf = vectorize(normal_sf, [float64(float64)], nopython=True)
+    normal_sf = vectorize([float64(float64)], nopython=True)(normal_sf)
 
 def normal_isf(x):
     """Inverse of the survival function of the Normal distribution.
@@ -113,7 +113,7 @@ def normal_isf(x):
     """
     return _normal_isf(x)
 if _NUMBA:
-    normal_isf = vectorize(_normal_isf, [float64(float64)], nopython=True)
+    normal_isf = vectorize([float64(float64)], nopython=True)(normal_isf)
 
 def normal_logpdf(x):
     """Natural logarithm of the p.d.f. of the Normal distribution.
@@ -123,7 +123,7 @@ def normal_logpdf(x):
     """
     return _normal_logpdf(x)
 if _NUMBA:
-    normal_logpdf = vectorize(normal_logpdf, [float64(float64)], nopython=True)
+    normal_logpdf = vectorize([float64(float64)], nopython=True)(normal_logpdf)
 
 def normal_logcdf(x):
     """Natural logarithm of the c.d.f. of the Normal distribution.
@@ -133,7 +133,7 @@ def normal_logcdf(x):
     """
     return _normal_logcdf(x)
 if _NUMBA:
-    normal_logcdf = vectorize(normal_logcdf, [float64(float64)], nopython=True)
+    normal_logcdf = vectorize([float64(float64)], nopython=True)(normal_logcdf)
 
 def normal_logsf(x):
     """Natural logarithm of the survival function of the Normal distribution.
@@ -143,7 +143,7 @@ def normal_logsf(x):
     """
     return _normal_logsf(x)
 if _NUMBA:
-    normal_logsf = vectorize(normal_logsf, [float64(float64)], nopython=True)
+    normal_logsf = vectorize([float64(float64)], nopython=True)(normal_logsf)
 
 def beta_isf(a, b, x):
     """Inverse of the Beta survival function.
@@ -160,17 +160,17 @@ def beta_isf(a, b, x):
         r[i] = _beta_isf(a, b, x[i])
     return r
 if _NUMBA:
-    beta_isf = jit(beta_isf, [
+    beta_isf = jit([
         float64(float64, float64, float64),
         float64[:](float64, float64, float64[:])
-    ])
+    ])(beta_isf)
 
 def logbinom(a, b):
     r"""Natural logarithm of Binomial coefficient: :math:`\log{a \choose b}`.
     """
     return _logbinom(a, b)
 if _NUMBA:
-    logbinom = vectorize(logbinom, [float64(float64, float64)], nopython=True)
+    logbinom = vectorize([float64(float64, float64)], nopython=True)(logbinom)
 
 def logaddexp(x, y):
     """Numerically-stable ``numpy.log(numpy.exp(x)+numpy.exp(y))``.
@@ -184,15 +184,15 @@ def logaddexp(x, y):
     """
     return _logaddexp(x, y)
 if _NUMBA:
-    logaddexp = vectorize(logaddexp, [float64(float64, float64)],
-                          nopython=True)
+    logaddexp = vectorize([float64(float64, float64)],
+                          nopython=True)(logaddexp)
 
 def logaddexps(x, y, sx, sy):
     """Numerically-stable ``numpy.log(sx*numpy.exp(x)+sy*numpy.exp(y))``."""
     return _logaddexps(x, y, sx, sy)
 if _NUMBA:
-    logaddexps = vectorize(logaddexps, [float64(float64, float64, float64,
-                                                float64)], nopython=True)
+    logaddexps = vectorize([float64(float64, float64, float64,
+                                                float64)], nopython=True)(logaddexps)
 
 def logaddexpss(x, y, sx, sy, r, sign):
     """Numerically-stable ``numpy.log(sx*numpy.exp(x)+sy*numpy.exp(y))``.
@@ -228,7 +228,7 @@ def logsumexp(x):
         c = np.logaddexp(c, x[i])
     return c
 if _NUMBA:
-    logsumexp = jit(logsumexp, (float64[:], ), nogil=True, nopython=True)
+    logsumexp = jit((float64[:], ), nogil=True, nopython=True)(logsumexp)
 
 def r_squared(x, y):
     """ Coefficient of determination between ``x`` and ``y``.
@@ -265,5 +265,5 @@ def r_squared(x, y):
             r = -1.0
     return r * r
 if _NUMBA:
-    r_squared = jit(r_squared, float64(float64[:], float64[:]), nopython=True,
-                    nogil=True)
+    r_squared = jit(float64(float64[:], float64[:]), nopython=True,
+                    nogil=True)(r_squared)
