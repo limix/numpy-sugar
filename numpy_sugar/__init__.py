@@ -1,5 +1,4 @@
 from __future__ import absolute_import as _
-from __future__ import unicode_literals as _
 
 import _cffi_backend
 from pkg_resources import DistributionNotFound as _DistributionNotFound
