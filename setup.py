@@ -38,16 +38,24 @@ def setup_package():
     setup_requires = [
         'build-capi',
         'ncephes',
-        'cffi',
     ] + pytest_runner
-    install_requires = ['ncephes', 'scipy', 'numpy', 'cffi']
+    install_requires = ['ncephes', 'scipy', 'numpy']
     tests_require = ['pytest>=3']
 
     recommended = {"numba": ["numba>=0.28"]}
 
+    if '_cffi_backend' in sys.builtin_module_names:
+        import _cffi_backend
+        requires_cffi = ["cffi==" + _cffi_backend.__version__]
+    else:
+        requires_cffi = ["cffi>=1.1.0"]
+
+    setup_requires += requires_cffi
+    install_requires += requires_cffi
+
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.16',
+        version='1.0.17',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
