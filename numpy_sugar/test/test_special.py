@@ -58,10 +58,10 @@ def test_norm_logcdf():
 def test_beta_isf():
     from numpy_sugar.special import beta_isf
 
-    assert_allclose(beta_isf(0.5, 2.0, x[0]), 0.007348224049952436)
-
     random = RandomState(426)
     x = random.rand(10)
+
+    assert_allclose(beta_isf(0.5, 2.0, x[0]), 0.007348224049952436)
 
     r = array([
         0.00734822, 0.17205478, 0.09223004, 0.15997467, 0.04793589, 0.04370639,
