@@ -1,6 +1,3 @@
-from scipy.linalg import solve_triangular
-
-
 def stl(A, b):
     r"""Shortcut to ``solve_triangular(A, b, lower=True, check_finite=False)``.
 
@@ -18,4 +15,6 @@ def stl(A, b):
     --------
     scipy.linalg.solve_triangular: Solve triangular linear equations.
     """
+    from scipy.linalg import solve_triangular
+    
     return solve_triangular(A, b, lower=True, check_finite=False)

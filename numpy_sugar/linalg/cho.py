@@ -1,6 +1,3 @@
-from scipy.linalg import cho_solve as sp_cho_solve
-
-
 def cho_solve(L, b):
     r"""Solve for Cholesky decomposition.
 
@@ -21,4 +18,6 @@ def cho_solve(L, b):
     scipy.linalg.cho_solve : Solve linear equations given Cholesky
                              factorization.
     """
+    from scipy.linalg import cho_solve as sp_cho_solve
+
     return sp_cho_solve((L, True), b, check_finite=False)

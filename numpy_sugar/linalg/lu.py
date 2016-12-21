@@ -1,5 +1,3 @@
-from scipy.linalg import lu_solve as sp_lu_solve
-
 from numpy import arange
 from numpy import prod
 from numpy import sign
@@ -50,4 +48,5 @@ def lu_solve(LU, b):
     scipy.linalg.lu_factor : LU decomposition.
     scipy.linalg.lu_solve : Solve linear equations given LU factorization.
     """
+    from scipy.linalg import lu_solve as sp_lu_solve
     return sp_lu_solve(LU, b, check_finite=False)
