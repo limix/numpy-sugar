@@ -44,13 +44,9 @@ def setup_package():
 
     recommended = {"numba": ["numba>=0.28"]}
 
-    if '_cffi_backend' not in sys.builtin_module_names:
-        setup_requires += ["cffi>=1.1.0"]
-        install_requires += ["cffi>=1.1.0"]
-
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.18',
+        version='1.0.19',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
