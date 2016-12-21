@@ -38,16 +38,16 @@ def setup_package():
     setup_requires = [
         'build-capi',
         'ncephes',
-        'cffi>=1.7',
+        'cffi',
     ] + pytest_runner
-    install_requires = ['ncephes', 'scipy', 'numpy', 'cffi>=1.7']
+    install_requires = ['ncephes', 'scipy', 'numpy', 'cffi']
     tests_require = ['pytest>=3']
 
     recommended = {"numba": ["numba>=0.28"]}
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.15',
+        version='1.0.16',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
