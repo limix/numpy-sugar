@@ -31,7 +31,7 @@ script:
       pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`;
     fi
   - pushd /
-  - python -c "import numpy_sugar; numpy_sugar.test()"
+  - python -c "import sys; import numpy_sugar; sys.exit(numpy_sugar.test())"
   - popd
 notifications:
   email: false
