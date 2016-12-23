@@ -1,6 +1,6 @@
-from numpy.linalg import eigh
-from numpy.linalg import svd
-from numpy import logical_not
+from numpy import asarray, logical_not
+from numpy.linalg import eigh, svd
+
 from .. import _epsilon as epsilon
 
 
