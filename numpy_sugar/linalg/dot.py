@@ -4,7 +4,7 @@ from numpy import einsum
 from numpy import copy
 from numpy import multiply
 from numpy import newaxis
-
+from numpy import asarray
 
 def dotd(A, B, out=None):
     r"""Diagonal of :math:`\mathrm A\mathrm B^\intercal`.
@@ -20,6 +20,8 @@ def dotd(A, B, out=None):
     Returns:
         :class:`numpy.ndarray`: Resulting diagonal.
     """
+    A = asarray(A, float)
+    B = asarray(B, float)
     if A.ndim == 1 and B.ndim == 1:
         if out is None:
             return dot(A, B)
@@ -42,6 +44,8 @@ def ddot(L, R, left=True, out=None):
     Returns:
         :class:`numpy.ndarray`: Resulting matrix.
     """
+    L = asarray(L, float)
+    R = asarray(R, float)
     if left:
         if out is None:
             out = copy(R)

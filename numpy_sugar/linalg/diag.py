@@ -1,7 +1,4 @@
-from numpy import sum
-from numpy import copy
-from numpy import copyto
-from numpy import einsum
+from numpy import asarray, copy, copyto, einsum, sum
 
 
 def trace2(A, B):
@@ -14,6 +11,8 @@ def trace2(A, B):
     Returns:
         float: Trace of :math:`\mathrm A \mathrm B^\intercal`.
     """
+    A = asarray(A, float)
+    B = asarray(B, float)
     assert len(A.shape) == 2 and len(B.shape) == 2
     assert A.shape[1] == B.shape[0] and A.shape[0] == B.shape[1]
     return sum(A.T * B)
@@ -30,6 +29,8 @@ def sum2diag(A, D, out=None):
     Returns:
         :class:`numpy.ndarray`: Resulting matrix.
     """
+    A = asarray(A, float)
+    D = asarray(D, float)
     if out is None:
         out = copy(A)
     else:

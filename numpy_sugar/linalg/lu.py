@@ -1,9 +1,4 @@
-from numpy import arange
-from numpy import prod
-from numpy import sign
-from numpy import log
-from numpy import sum
-from numpy import abs
+from numpy import abs, arange, asarray, log, prod, sign, sum
 
 
 def lu_slogdet(LU):
@@ -15,6 +10,7 @@ def lu_slogdet(LU):
     Returns:
         tuple: sign and log-determinant.
     """
+    LU = (asarray(LU[0], float), asarray(LU[1], float))
     adet = sum(log(abs(LU[0].diagonal())))
 
     s = prod(sign(LU[0].diagonal()))
@@ -49,4 +45,6 @@ def lu_solve(LU, b):
     scipy.linalg.lu_solve : Solve linear equations given LU factorization.
     """
     from scipy.linalg import lu_solve as sp_lu_solve
+    LU = (asarray(LU[0], float), asarray(LU[1], float))
+    b = asarray(b, float)
     return sp_lu_solve(LU, b, check_finite=False)

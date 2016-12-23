@@ -1,3 +1,4 @@
+from numpy import asarray
 from numpy.linalg import svd
 from .. import _epsilon as epsilon
 
@@ -19,6 +20,7 @@ def economic_svd(G, epsilon=epsilon.small):
     --------
     numpy.linalg.svd : Cholesky decomposition.
     """
+    G = asarray(G, float)
     (U, S, V) = svd(G, full_matrices=False)
     ok = S >= epsilon
     S = S[ok]

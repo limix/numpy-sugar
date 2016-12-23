@@ -1,3 +1,6 @@
+from numpy import asarray
+
+
 def cho_solve(L, b):
     r"""Solve for Cholesky decomposition.
 
@@ -19,5 +22,6 @@ def cho_solve(L, b):
                              factorization.
     """
     from scipy.linalg import cho_solve as sp_cho_solve
-
+    L = asarray(L, float)
+    b = asarray(b, float)
     return sp_cho_solve((L, True), b, check_finite=False)

@@ -1,5 +1,6 @@
 from numpy.linalg import solve as npy_solve
 from numpy import array
+from numpy import asarray
 from numpy import dot
 
 
@@ -13,6 +14,8 @@ def solve(A, b):
     Returns:
         :class:`numpy.ndarray`: Solution ``x``.
     """
+    A = asarray(A, float)
+    b = asarray(b, float)
     if A.shape[0] == 1:
         A_ = array([[1. / A[0, 0]]])
         return dot(A_, b)

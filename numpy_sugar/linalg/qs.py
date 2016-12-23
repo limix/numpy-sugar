@@ -41,6 +41,7 @@ def economic_qs_linear(G):
     Returns:
         tuple: ``((Q0, Q1), S0)``.
     """
+    G = asarray(G, float)
     (Q, Ssq, _) = svd(G, full_matrices=True)
     S0 = Ssq**2
     rank = len(S0)
