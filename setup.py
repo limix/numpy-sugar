@@ -42,9 +42,10 @@ def setup_package():
     install_requires = ['ncephes', 'numpy>=1.9']
     tests_require = ['pytest>=3']
 
-    recommended = {"numba": ["numba>=0.28",
-                             "scipy>=0.17.1"],
-                   "scipy": ["scipy>=0.17.1"]}
+    recommended = {
+        "numba": ["numba>=0.28", "scipy>=0.17.1"],
+        "scipy": ["scipy>=0.17.1"]
+    }
 
     metadata = dict(
         name='numpy-sugar',
@@ -66,10 +67,7 @@ def setup_package():
         capi_libs=[get_capi_lib],
         classifiers=[
             "Development Status :: 5 - Production/Stable",
-            "Intended Audience :: Developers",
             "License :: OSI Approved :: MIT License",
-            "Programming Language :: Python :: 2.7",
-            "Programming Language :: Python :: 3.5",
             "Operating System :: OS Independent",
         ],
         package_data={'': [join('numpy_sugar', 'lib', '*.*')]})
