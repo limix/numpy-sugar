@@ -3,7 +3,7 @@
 [![PyPIl](https://img.shields.io/pypi/l/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/)
 [![PyPIv](https://img.shields.io/pypi/v/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/numpy-sugar/badges/version.svg)](https://anaconda.org/conda-forge/numpy-sugar)
-[![Documentation Status](https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=latest)](http://numpy-sugar.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=latest)](https://numpy-sugar.readthedocs.io/en/latest/)
 
 Missing NumPy functionalities.
 
