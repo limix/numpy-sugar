@@ -12,14 +12,14 @@ matrix:
   - python: 3.6
     env: NUMBA="false" "PATH=~/bin:$PATH"
   - python: 2.7
-    compiler: clang-3.8
-    env: NUMBA="true" LLVM_VERSION="3.8" CXX="clang++-3.8" LLVM_CONFIG="llvm-config-3.8" "PATH=~/bin:$PATH"
+    compiler: clang-3.9
+    env: NUMBA="true" LLVM_VERSION="3.9" CXX="clang++-3.9" LLVM_CONFIG="llvm-config-3.9" "PATH=~/bin:$PATH"
   - python: 3.5
-    compiler: clang-3.8
-    env: NUMBA="true" LLVM_VERSION="3.8" CXX="clang++-3.8" LLVM_CONFIG="llvm-config-3.8" "PATH=~/bin:$PATH"
+    compiler: clang-3.9
+    env: NUMBA="true" LLVM_VERSION="3.9" CXX="clang++-3.9" LLVM_CONFIG="llvm-config-3.9" "PATH=~/bin:$PATH"
   - python: 3.6
-    compiler: clang-3.8
-    env: NUMBA="true" LLVM_VERSION="3.8" CXX="clang++-3.8" LLVM_CONFIG="llvm-config-3.8" "PATH=~/bin:$PATH"
+    compiler: clang-3.9
+    env: NUMBA="true" LLVM_VERSION="3.9" CXX="clang++-3.9" LLVM_CONFIG="llvm-config-3.9" "PATH=~/bin:$PATH"
 before_install:
   - >
     if [ "${NUMBA}" == "true" ]; then
