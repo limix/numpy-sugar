@@ -4,6 +4,7 @@ from numpy_sugar.linalg import dotd
 from numpy_sugar.linalg import ddot
 from numpy_sugar.linalg import solve
 from numpy.linalg import solve as npy_solve
+from numpy.linalg import cholesky
 from numpy import empty
 from numpy import diag
 from numpy.random import RandomState
@@ -97,6 +98,13 @@ def test_solve():
     b = random.randn(3)
 
     assert_allclose(solve(A, b), npy_solve(A, b))
+
+def test_cdot():
+    random = RandomState(0)
+    A = random.randn(3, 3)
+    L = cholesky(A)
+    print(K)
+
 
 if __name__ == '__main__':
     from pytest import main
