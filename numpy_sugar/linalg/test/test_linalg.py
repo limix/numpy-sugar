@@ -99,12 +99,6 @@ def test_solve():
 
     assert_allclose(solve(A, b), npy_solve(A, b))
 
-def test_cdot():
-    random = RandomState(0)
-    A = random.randn(3, 3)
-    L = cholesky(A)
-    print(K)
-
 
 if __name__ == '__main__':
     from pytest import main

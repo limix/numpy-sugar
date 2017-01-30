@@ -54,20 +54,3 @@ def ddot(L, R, left=True, out=None):
         if out is None:
             out = copy(L)
         return multiply(out, R, out=out)
-
-def cdot(L, out=None):
-    r"""Product of a Cholesky matrix with itself transposed.
-
-    Args:
-        L (array_like): Cholesky matrix.
-        out (:class:`numpy.ndarray`, optional): copy result to.
-
-    Returns:
-        :class:`numpy.ndarray`: :math:`\mathrm L\mathrm L^\intercal`.
-    """
-    L = asarray(L, float)
-    assert L.ndim == 2
-    assert L.shape[0] == L.shape[1]
-    if out is None:
-        out = empty((L.shape[0], L.shape[1]), float)
-    return einsum('ij,ji->ij', L, L, out=out)
