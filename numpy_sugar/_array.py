@@ -1,16 +1,10 @@
-from numpy import asarray
-from numpy import isfinite
-from numpy import sum
-from numpy import prod
-from numpy import rollaxis
-from numpy import mgrid
+from numpy import asarray, isfinite, mgrid, prod, rollaxis, sum
 
 try:
     from numba import jit
     _NUMBA = True
 except ImportError:
     _NUMBA = False
-
 
 
 def is_crescent(arr):
@@ -40,8 +34,10 @@ def _is_crescent(arr):
         i += 1
     return True
 
+
 if _NUMBA:
     _is_crescent = jit(_is_crescent, nogil=True, nopython=True)
+
 
 def _is_all_equal(arr):
     arr = arr.ravel()
@@ -52,6 +48,7 @@ def _is_all_equal(arr):
             return False
         i += 1
     return True
+
 
 if _NUMBA:
     _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True)
@@ -84,5 +81,5 @@ def cartesian(shape):
     """
     n = len(shape)
     idx = [slice(0, s) for s in shape]
-    g = rollaxis(mgrid[idx], 0, n+1)
+    g = rollaxis(mgrid[idx], 0, n + 1)
     return g.reshape((prod(shape), n))

@@ -1,11 +1,11 @@
 from __future__ import absolute_import as _absolute_import
 
+from numpy import clip, dot, inf, sqrt
+from numpy.linalg import eigh
+from numpy.random import RandomState
+
 from .. import _epsilon as epsilon
 
-from numpy import clip, inf
-from numpy.random import RandomState
-from numpy.linalg import eigh
-from numpy import (sqrt, dot)
 
 def multivariate_normal(m, K, random_state=None):
     if random_state is None:
