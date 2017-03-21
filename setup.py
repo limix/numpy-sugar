@@ -37,9 +37,9 @@ def setup_package():
 
     setup_requires = [
         'build-capi',
-        'ncephes',
+        'ncephes>=1.0.21',
     ] + pytest_runner
-    install_requires = ['ncephes>=1.0.20', 'numpy>=1.9']
+    install_requires = ['ncephes>=1.0.21', 'numpy>=1.9']
     tests_require = ['pytest>=3']
 
     recommended = {
@@ -49,7 +49,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.26',
+        version='1.0.27',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
