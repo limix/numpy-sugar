@@ -1,14 +1,9 @@
-from numpy_sugar.linalg import economic_qs
-from numpy_sugar.linalg import trace2
-from numpy_sugar.linalg import dotd
-from numpy_sugar.linalg import ddot
-from numpy_sugar.linalg import solve
+from numpy import diag, dot, empty
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky
-from numpy import empty
-from numpy import diag
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
+from numpy_sugar.linalg import ddot, dotd, economic_qs, solve, trace2
 
 
 def test_economic_qs():
@@ -82,6 +77,7 @@ def test_ddot():
     assert_allclose(AdB, ddot(A, B, left=True))
     assert_allclose(AdB, ddot(A, B, left=True, out=B))
 
+
 def test_solve():
     random = RandomState(0)
     A = random.randn(1, 1)
@@ -99,13 +95,11 @@ def test_solve():
 
     assert_allclose(solve(A, b), npy_solve(A, b))
 
+
 def test_cdot():
     random = RandomState(0)
     A = random.randn(3, 3)
+    A = dot(A, A.T)
     L = cholesky(A)
-    print(K)
-
-
-if __name__ == '__main__':
-    from pytest import main
-    main(['-s'])
+    assert_allclose(L, [[2.05668046, 0., 0.], [1.82034632, 2.48007792, 0.],
+                        [0.73633938, 0.24469357, 0.57806618]])

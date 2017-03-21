@@ -1,4 +1,6 @@
-from numpy import abs, arange, asarray, log, prod, sign, sum
+from numpy import abs as _abs
+from numpy import sum as _sum
+from numpy import arange, asarray, log, prod, sign
 
 
 def lu_slogdet(LU):
@@ -11,12 +13,12 @@ def lu_slogdet(LU):
         tuple: sign and log-determinant.
     """
     LU = (asarray(LU[0], float), asarray(LU[1], float))
-    adet = sum(log(abs(LU[0].diagonal())))
+    adet = _sum(log(_abs(LU[0].diagonal())))
 
     s = prod(sign(LU[0].diagonal()))
 
     nrows_exchange = LU[1].size - \
-        sum(LU[1] == arange(LU[1].size, dtype='int32'))
+        _sum(LU[1] == arange(LU[1].size, dtype='int32'))
 
     odd = nrows_exchange % 2 == 1
     if odd:

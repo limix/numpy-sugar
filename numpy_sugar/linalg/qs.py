@@ -1,10 +1,8 @@
-from numpy import asarray, logical_not
+from numpy import asarray, finfo, logical_not, sqrt
 from numpy.linalg import eigh, svd
 
-from .. import _epsilon as epsilon
 
-
-def economic_qs(K, epsilon=epsilon.small):
+def economic_qs(K, epsilon=sqrt(finfo(float).eps)):
     r"""Economic eigen decomposition for symmetric matrices.
 
     A symmetric matrix ``K`` can be decomposed in
@@ -15,7 +13,7 @@ def economic_qs(K, epsilon=epsilon.small):
     Args:
         K (array_like): Symmetric matrix.
         epsilon (float): Eigen value threshold. Default is
-                         :obj:`numpy_sugar.epsilon.small`.
+                         ``sqrt(finfo(float).eps)``.
 
     Returns:
         tuple: ``((Q0, Q1), S0)``.

@@ -1,6 +1,6 @@
-import os
 import sys
-from os.path import join
+from os import chdir, getcwd
+from os.path import abspath, dirname, join
 
 from setuptools import find_packages, setup
 
@@ -12,7 +12,7 @@ except (OSError, IOError, ImportError):
 
 
 def get_capi_lib():
-    from build_capi import CApiLib
+    from build_capi import CApiLib # pylint: disable=E0401
     from ncephes import get_include
 
     sources = [join('numpy_sugar', 'special', 'special.c')]
@@ -27,9 +27,9 @@ def get_capi_lib():
 
 
 def setup_package():
-    src_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-    old_path = os.getcwd()
-    os.chdir(src_path)
+    src_path = dirname(abspath(sys.argv[0]))
+    old_path = getcwd()
+    chdir(src_path)
     sys.path.insert(0, src_path)
 
     needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
@@ -39,7 +39,7 @@ def setup_package():
         'build-capi',
         'ncephes',
     ] + pytest_runner
-    install_requires = ['ncephes', 'numpy>=1.9']
+    install_requires = ['ncephes>=1.0.20', 'numpy>=1.9']
     tests_require = ['pytest>=3']
 
     recommended = {
@@ -49,7 +49,7 @@ def setup_package():
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.24',
+        version='1.0.26',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
@@ -76,7 +76,7 @@ def setup_package():
         setup(**metadata)
     finally:
         del sys.path[0]
-        os.chdir(old_path)
+        chdir(old_path)
 
 
 if __name__ == '__main__':

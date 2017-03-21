@@ -1,10 +1,5 @@
-from numpy import dot
-from numpy import empty
-from numpy import einsum
-from numpy import copy
-from numpy import multiply
-from numpy import newaxis
-from numpy import asarray
+from numpy import asarray, copy, dot, einsum, empty, multiply, newaxis
+
 
 def dotd(A, B, out=None):
     r"""Diagonal of :math:`\mathrm A\mathrm B^\intercal`.
@@ -54,6 +49,7 @@ def ddot(L, R, left=True, out=None):
         if out is None:
             out = copy(L)
         return multiply(out, R, out=out)
+
 
 def cdot(L, out=None):
     r"""Product of a Cholesky matrix with itself transposed.

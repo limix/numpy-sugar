@@ -1,7 +1,5 @@
+from numpy import array, asarray, dot
 from numpy.linalg import solve as npy_solve
-from numpy import array
-from numpy import asarray
-from numpy import dot
 
 
 def solve(A, b):
@@ -28,6 +26,7 @@ def solve(A, b):
         A_ /= a * d - b_ * c
         return dot(A_, b)
     return _solve(A, b)
+
 
 def _solve(A, b):
     return npy_solve(A, b)

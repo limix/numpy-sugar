@@ -1,3 +1,5 @@
+# pylint: disable=W0105
+
 from numpy import finfo as _finfo
 from numpy import sqrt as _sqrt
 

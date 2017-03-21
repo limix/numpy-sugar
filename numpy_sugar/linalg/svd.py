@@ -1,15 +1,14 @@
-from numpy import asarray
+from numpy import asarray, finfo, sqrt
 from numpy.linalg import svd
-from .. import _epsilon as epsilon
 
 
-def economic_svd(G, epsilon=epsilon.small):
+def economic_svd(G, epsilon=sqrt(finfo(float).eps)):
     r"""Economic Singular Value Decomposition.
 
     Args:
         G (array_like): Matrix to be factorized.
         epsilon (float): Threshold on the square root of the eigen values.
-                         Default is :obj:`numpy_sugar.epsilon.small`.
+                         Default is ``sqrt(finfo(float).eps)``.
 
     Returns:
         :class:`numpy.ndarray`: Unitary matrix.

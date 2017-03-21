@@ -1,13 +1,11 @@
-from numpy import asarray
-from numpy import isfinite
-from numpy import sum
+from numpy import sum as _sum
+from numpy import asarray, isfinite
 
 try:
     from numba import jit
     _NUMBA = True
 except ImportError:
     _NUMBA = False
-
 
 
 def is_crescent(arr):
@@ -26,7 +24,7 @@ def is_all_finite(arr):
     """Verify if the array values are all finite.
 
     NaN is not finite, as well as Inf."""
-    return isfinite(sum(arr))
+    return isfinite(_sum(arr))
 
 
 def _is_crescent(arr):
@@ -37,8 +35,10 @@ def _is_crescent(arr):
         i += 1
     return True
 
+
 if _NUMBA:
     _is_crescent = jit(_is_crescent, nogil=True, nopython=True)
+
 
 def _is_all_equal(arr):
     arr = arr.ravel()
@@ -49,6 +49,7 @@ def _is_all_equal(arr):
             return False
         i += 1
     return True
+
 
 if _NUMBA:
     _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True)

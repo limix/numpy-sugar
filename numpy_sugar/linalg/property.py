@@ -1,8 +1,5 @@
-from numpy import empty_like
-from numpy import diag_indices_from
-from numpy.linalg import cholesky
-from numpy.linalg import LinAlgError
-from .. import _epsilon as epsilon
+from numpy import diag_indices_from, empty_like, finfo, sqrt
+from numpy.linalg import LinAlgError, cholesky
 
 
 def check_definite_positiveness(A):
@@ -16,7 +13,7 @@ def check_definite_positiveness(A):
     """
     B = empty_like(A)
     B[:] = A
-    B[diag_indices_from(B)] += epsilon.small
+    B[diag_indices_from(B)] += sqrt(finfo(float).eps)
     try:
         cholesky(B)
     except LinAlgError:
@@ -33,4 +30,4 @@ def check_symmetry(A):
     Returns:
         bool: ``True`` if ``A`` is symmetric; ``False`` otherwise.
     """
-    return abs(A - A.T).max() < epsilon.small
+    return abs(A - A.T).max() < sqrt(finfo(float).eps)
