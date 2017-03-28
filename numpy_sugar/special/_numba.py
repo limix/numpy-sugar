@@ -21,14 +21,14 @@ except ImportError:
 
         return decorator
 
-    class float64(object):
+    class Float64(object):
         def __call__(self, *_):
             pass
 
         def __getitem__(self, _):
             pass
 
-    class int64(object):
+    class Int64(object):
         def __call__(self, *_):
             pass
 
@@ -36,3 +36,6 @@ except ImportError:
             pass
 
     HAS_NUMBA = False
+
+    float64 = Float64()
+    int64 = Int64()
