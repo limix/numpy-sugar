@@ -1,3 +1,16 @@
+"""
+*****
+Array
+*****
+
+.. automodule:: numpy_sugar.array
+
+  .. autofunction:: is_all_equal
+  .. autofunction:: is_all_finite
+  .. autofunction:: is_crescent
+
+"""
+
 from numpy import sum as _sum
 from numpy import asarray, isfinite, mgrid, prod, rollaxis
 

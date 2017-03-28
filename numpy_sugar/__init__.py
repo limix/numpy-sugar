@@ -1,3 +1,11 @@
+"""
+*******************
+NumPy Sugar package
+*******************
+
+Missing NumPy functionalities.
+
+"""
 from __future__ import absolute_import as _
 
 import _cffi_backend

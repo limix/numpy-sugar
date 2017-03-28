@@ -1,3 +1,53 @@
+"""
+**************
+Linear algebra
+**************
+
+Decomposition
+^^^^^^^^^^^^^
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: economic_qs
+  .. autofunction:: economic_qs_linear
+  .. autofunction:: economic_svd
+
+Dot and sum
+^^^^^^^^^^^
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: sum2diag
+  .. autofunction:: ddot
+
+Properties
+^^^^^^^^^^
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: check_definite_positiveness
+  .. autofunction:: check_symmetry
+
+Reducers
+^^^^^^^^
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: lu_slogdet
+  .. autofunction:: trace2
+  .. autofunction:: dotd
+
+Solvers
+^^^^^^^
+
+.. automodule:: numpy_sugar.linalg
+
+  .. autofunction:: cho_solve
+  .. autofunction:: lu_solve
+  .. autofunction:: stl
+
+"""
+
 from .cho import cho_solve
 from .diag import sum2diag, trace2
 from .dot import ddot, dotd
