@@ -1,13 +1,11 @@
-"""
+r"""
 *****
 Array
 *****
 
-.. automodule:: numpy_sugar.array
-
-  .. autofunction:: is_all_equal
-  .. autofunction:: is_all_finite
-  .. autofunction:: is_crescent
+.. autofunction:: is_all_equal
+.. autofunction:: is_all_finite
+.. autofunction:: is_crescent
 
 """
 
