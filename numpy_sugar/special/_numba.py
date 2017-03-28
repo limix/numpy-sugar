@@ -26,14 +26,14 @@ except ImportError:
             pass
 
         def __getitem__(self, _):
-            pass
+            return Float64()
 
     class Int64(object):
         def __call__(self, *_):
             pass
 
         def __getitem__(self, _):
-            pass
+            return Int64()
 
     HAS_NUMBA = False
 
