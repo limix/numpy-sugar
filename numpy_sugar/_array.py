@@ -20,21 +20,40 @@ except ImportError:
 
 
 def is_crescent(arr):
-    """Verify if the array values are in non-decreasing order."""
+    r"""Check if the array values are in non-decreasing order.
+
+    Args:
+        arr (array_like): sequence of values.
+
+    Returns:
+        bool: ``True`` for non-decreasing order.
+    """
     arr = asarray(arr)
     return _is_crescent(arr)
 
 
 def is_all_equal(arr):
-    """Verify if the array values are all equal."""
+    r"""Check if the array values are all equal.
+
+    Args:
+        arr (array_like): sequence of values.
+
+    Returns:
+        bool: ``True`` if values are all equal.
+    """
     arr = asarray(arr)
     return _is_all_equal(arr)
 
 
 def is_all_finite(arr):
-    """Verify if the array values are all finite.
+    r"""Check if the array values are all finite.
 
-    NaN is not finite, as well as Inf."""
+    Args:
+        arr (array_like): sequence of values.
+
+    Returns:
+        bool: ``True`` if values are all finite.
+    """
     return isfinite(_sum(arr))
 
 
@@ -67,20 +86,24 @@ if _NUMBA:
 
 
 def cartesian(shape):
-    """Cartesian indexing.
+    r"""Cartesian indexing.
 
     Returns a sequence of n-tuples indexing each element of a hypothetical
     matrix of the given shape.
 
-    Example:
+    Args:
+        shape (tuple): tuple of dimensions.
 
-    .. testcode::
+    Returns:
+        array_like: indices.
 
-        from numpy_sugar import cartesian
-        print(cartesian((2, 3)))
+    Example
+    -------
 
-    .. testoutput::
+    .. doctest::
 
+        >>> from numpy_sugar import cartesian
+        >>> print(cartesian((2, 3)))
         [[0 0]
          [0 1]
          [0 2]
@@ -88,8 +111,9 @@ def cartesian(shape):
          [1 1]
          [1 2]]
 
-
-    Reference: http://stackoverflow.com/a/27286794
+    Reference
+    ---------
+    [1] http://stackoverflow.com/a/27286794
     """
     n = len(shape)
     idx = [slice(0, s) for s in shape]
