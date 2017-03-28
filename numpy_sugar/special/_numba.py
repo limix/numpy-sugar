@@ -28,7 +28,7 @@ except ImportError:
         def __getitem__(self, _):
             pass
 
-    class float64(object):
+    class int64(object):
         def __call__(self, *_):
             pass
 
