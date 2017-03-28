@@ -2,15 +2,27 @@ import numpy as np
 
 from . import _special_ffi
 
-try:
-    from numba import cffi_support as _cffi_support
-    from numba import (float64, int64)
-    from numba import vectorize
-    from numba import jit
-    _cffi_support.register_module(_special_ffi)
-    _NUMBA = True
-except ImportError:
-    _NUMBA = False
+from ._numba import (float64, int64)
+from ._numba import vectorize
+from ._numba import jit
+from ._numba import HAS_NUMBA
+
+# try:
+#     from numba import cffi_support as _cffi_support
+#     from numba import (float64, int64)
+#     from numba import vectorize
+#     from numba import jit
+#     _cffi_support.register_module(_special_ffi)
+#     _NUMBA = True
+# except ImportError:
+#     def vectorize(*args, **kwargs):
+#         return decorator(func):
+#             return func
+#
+#     def jit(*args, **kwargs):
+#         return decorator(func):
+#             return func
+#     _NUMBA = False
 
 _chi2_sf = _special_ffi.lib.nsugar_chi2_sf
 _lgamma = _special_ffi.lib.nsugar_lgamma
@@ -30,7 +42,7 @@ _logbinom = _special_ffi.lib.nsugar_logbinom
 
 
 def _if_numba(deco):
-    if _NUMBA:
+    if HAS_NUMBA:
 
         def decorator(func):
             return deco(func)
