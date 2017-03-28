@@ -68,7 +68,7 @@ def chi2_sf(k, x):
 
     References
     ----------
-    .. [1] https://en.wikipedia.org/wiki/Chi-squared_distribution
+    [1] https://en.wikipedia.org/wiki/Chi-squared_distribution
     """
     return _chi2_sf(k, x)
 
@@ -85,7 +85,7 @@ def lgamma(x):
 
     References
     ----------
-    .. [1] https://en.wikipedia.org/wiki/Gamma_function
+    [1] https://en.wikipedia.org/wiki/Gamma_function
     """
     return _lgamma(x)
 
