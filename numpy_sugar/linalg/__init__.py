@@ -1,3 +1,43 @@
+r"""
+**************
+Linear algebra
+**************
+
+Decomposition
+^^^^^^^^^^^^^
+
+.. autofunction:: economic_qs
+.. autofunction:: economic_qs_linear
+.. autofunction:: economic_svd
+
+Dot and sum
+^^^^^^^^^^^
+
+.. autofunction:: sum2diag
+.. autofunction:: ddot
+
+Properties
+^^^^^^^^^^
+
+.. autofunction:: check_definite_positiveness
+.. autofunction:: check_symmetry
+
+Reducers
+^^^^^^^^
+
+.. autofunction:: lu_slogdet
+.. autofunction:: trace2
+.. autofunction:: dotd
+
+Solvers
+^^^^^^^
+
+.. autofunction:: cho_solve
+.. autofunction:: lu_solve
+.. autofunction:: stl
+
+"""
+
 from .cho import cho_solve
 from .diag import sum2diag, trace2
 from .dot import ddot, dotd
