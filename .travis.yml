@@ -49,5 +49,5 @@ deploy:
   password:
     secure: loCzJnSiontxdk7PyC2UBLGQdxynsBNHJtsPJ450JiFKNKWkaN6CZqQNIWBgS7pmAElhM9fDi3JjXddjacGN7152AwgkUY5yl8ari+z/qBEeN6KGtLaTwF4fqH8ZvIXbeaOLNxk+Pc+GdxPavMXaQSj8NuwfXe+6ae4KwEfeetYS481LxgL12+b7hc8SO0aRJIDT7fRNVRV7xXrJuCOo7hiLfPSFz8dWhUNyl1snsH19DovtQu1mvZyn7ACA/uGTTyNj9XFm70u//Fp35vzE97xioyC+4stFNS6YV1f+pM4N3TsK57mmFreGPtTdvqP95fMczrQTWLzfiyWTI5U++K8/YwZB4eUWWPKICF4GIHNp2heJQObaZtFWfKJuPOM30rhTVcdanKxssCYxVTnx5GnaQdMu3gdNAVOHtEkg/KU8mUnN1IfD//jAk26xFseWdhY5dEtsiKJSbeAwvWiXXVqoOqqqNycCJvfNx2ExvBh3Zm1ZafYyeWebGsQDazn9PPmHl8Ce/BPWETHwEMv/d6oZNsndE+qZ2Khsur8jzuDJJ8wHuxM6FhDOyj3gVWXDqHWIgbdUnjJsXh653960osPa07x1wlxeo31fD7iP9MUrQuFn3pV/eB18Sug1/c6sguXwCuyFPcmJ7Ywfl52Gc6sm4eK/9mlDcY4ST78gcKU=
   on:
-    repo: glimix/numpy-sugar
+    repo: limix/numpy-sugar
     branch: 1.0.x
