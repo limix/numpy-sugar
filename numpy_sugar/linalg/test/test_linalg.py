@@ -1,9 +1,10 @@
 from numpy import diag, dot, empty
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky
+from numpy.linalg import lstsq as npy_lstsq
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
-from numpy_sugar.linalg import ddot, dotd, economic_qs, solve, trace2
+from numpy_sugar.linalg import ddot, dotd, economic_qs, solve, trace2, lstsq
 
 
 def test_economic_qs():
@@ -102,3 +103,13 @@ def test_cdot():
     L = cholesky(A)
     assert_allclose(L, [[2.05668046, 0., 0.], [1.82034632, 2.48007792, 0.],
                         [0.73633938, 0.24469357, 0.57806618]])
+
+def test_lstsq():
+    random = RandomState(0)
+    A = random.randn(4, 2)
+    b = random.randn(4)
+    assert_allclose(lstsq(A, b), npy_lstsq(A, b)[0])
+
+    A = random.randn(4, 1)
+    b = random.randn(4)
+    assert_allclose(lstsq(A, b), npy_lstsq(A, b)[0])

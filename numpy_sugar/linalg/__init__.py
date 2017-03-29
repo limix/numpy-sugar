@@ -35,6 +35,7 @@ Solvers
 .. autofunction:: cho_solve
 .. autofunction:: lu_solve
 .. autofunction:: stl
+.. autofunction:: lstsq
 
 """
 
@@ -47,3 +48,9 @@ from .qs import economic_qs, economic_qs_linear
 from .solve import solve
 from .svd import economic_svd
 from .tri import stl
+from .lstsq import lstsq
+
+__all__ = ['cho_solve', 'sum2diag', 'trace2', 'ddot', 'dotd', 'lu_slogdet',
+           'lu_solve', 'check_definite_positiveness', 'check_symmetry',
+           'economic_qs', 'economic_qs_linear', 'solve', 'economic_svd', 'stl',
+           'lstsq']
