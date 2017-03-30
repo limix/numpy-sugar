@@ -1,4 +1,5 @@
 from numpy import diag, dot, empty
+from numpy.ma import masked_array
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky
 from numpy.linalg import lstsq as npy_lstsq
@@ -59,8 +60,7 @@ def test_dotd():
     r = A.dot(B).diagonal()
     assert_allclose(r, dotd(A, B))
     r1 = empty(len(r))
-    assert_allclose(r, dotd(A, B, out=r1))
-
+    assert_allclose(dotd(A, B, out=r1), r)
 
 def test_ddot():
     random = RandomState(633)

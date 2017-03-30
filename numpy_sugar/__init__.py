@@ -13,7 +13,7 @@ import _cffi_backend
 from pkg_resources import DistributionNotFound as _DistributionNotFound
 from pkg_resources import get_distribution as _get_distribution
 
-from . import epsilon, linalg, random, special
+from . import epsilon, linalg, random, special, ma
 from .api import get_include, get_lib
 from ._array import cartesian, is_all_equal, is_all_finite, is_crescent
 
