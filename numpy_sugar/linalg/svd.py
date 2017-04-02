@@ -24,5 +24,5 @@ def economic_svd(G, epsilon=sqrt(finfo(float).eps)):
     ok = S >= epsilon
     S = S[ok]
     U = U[:, ok]
-    V = V[:, ok]
+    V = V[ok, :]
     return (U, S, V)
