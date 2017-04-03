@@ -10,6 +10,11 @@ Decomposition
 .. autofunction:: economic_qs_linear
 .. autofunction:: economic_svd
 
+Determinant
+^^^^^^^^^^^
+
+.. autofunction:: plogdet
+
 Dot and sum
 ^^^^^^^^^^^
 
@@ -40,6 +45,7 @@ Solvers
 """
 
 from .cho import cho_solve
+from .det import plogdet
 from .diag import sum2diag, trace2
 from .dot import ddot, dotd
 from .lu import lu_slogdet, lu_solve
@@ -53,4 +59,4 @@ from .lstsq import lstsq
 __all__ = ['cho_solve', 'sum2diag', 'trace2', 'ddot', 'dotd', 'lu_slogdet',
            'lu_solve', 'check_definite_positiveness', 'check_symmetry',
            'economic_qs', 'economic_qs_linear', 'solve', 'economic_svd', 'stl',
-           'lstsq']
+           'lstsq', 'plogdet']
