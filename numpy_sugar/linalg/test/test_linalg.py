@@ -1,4 +1,4 @@
-from numpy import diag, dot, empty
+from numpy import diag, dot, empty, zeros
 from numpy.ma import masked_array
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky
@@ -6,6 +6,7 @@ from numpy.linalg import lstsq as npy_lstsq
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 from numpy_sugar.linalg import ddot, dotd, economic_qs, solve, trace2, lstsq
+from numpy_sugar.linalg import rsolve
 
 
 def test_economic_qs():
@@ -95,6 +96,26 @@ def test_solve():
     b = random.randn(3)
 
     assert_allclose(solve(A, b), npy_solve(A, b))
+
+def test_rsolve():
+    random = RandomState(0)
+    A = random.randn(1, 1)
+    b = random.randn(1)
+
+    assert_allclose(solve(A, b), npy_solve(A, b))
+
+    A = random.randn(2, 2)
+    b = random.randn(2)
+
+    assert_allclose(solve(A, b), npy_solve(A, b))
+
+    A = random.randn(3, 3)
+    b = random.randn(3)
+
+    assert_allclose(rsolve(A, b), npy_solve(A, b))
+
+    A[:] = 1e-10
+    assert_allclose(rsolve(A, b), zeros(A.shape[1]))
 
 def test_cdot():
     random = RandomState(0)
