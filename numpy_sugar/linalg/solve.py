@@ -39,7 +39,7 @@ def rsolve(A, b, epsilon=_epsilon):
     Returns:
         :class:`numpy.ndarray`: Solution ``x``.
     """
-    x = lstsq(A, b)
+    x = lstsq(A, b, rcond=epsilon)
     r = sum(x[3] > epsilon)
     if r == 0:
         return zeros(A.shape[1])
