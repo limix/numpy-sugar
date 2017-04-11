@@ -37,25 +37,29 @@ def setup_package():
 
     setup_requires = [
         'build-capi',
-        'ncephes>=1.0.21',
+        'ncephes>=1.0.22',
     ] + pytest_runner
-    install_requires = ['ncephes>=1.0.21', 'numpy>=1.9']
+    install_requires = ['ncephes>=1.0.22', 'numpy>=1.10']
     tests_require = ['pytest>=3']
 
     recommended = {
-        "numba": ["numba>=0.28", "scipy>=0.17.1"],
-        "scipy": ["scipy>=0.17.1"]
+        "numba": ["numba>=0.28", "scipy>=0.18.1"],
+        "scipy": ["scipy>=0.18.1"]
     }
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.34',
+        version='1.0.35',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
         description="Missing NumPy functionalities.",
         long_description=long_description,
+<<<<<<< HEAD
         url='http://github.com/limix/numpy-sugar',
+=======
+        url='https://github.com/limix/numpy-sugar',
+>>>>>>> master
         packages=find_packages(),
         zip_safe=False,
         cffi_modules=['special_build.py:special'],
