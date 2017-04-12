@@ -3,6 +3,7 @@ sudo: required
 dist: trusty
 git:
   depth: 5
+cache: pip
 matrix:
   include:
   - python: 2.7
@@ -23,24 +24,18 @@ matrix:
     compiler: clang-3.8
     env: NUMBA="true" LLVM_VERSION="3.8" CXX="clang++-3.8" LLVM_CONFIG="llvm-config-3.8"
       "PATH=~/bin:$PATH"
+  - sudo: required
+    services:
+    - docker
+    env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64 NUMBA="true"
 before_install:
-- |
-  if [ "${NUMBA}" == "true" ]; then
-    travis/install_clang38.sh;
-    travis/install_llvmlite.sh;
-  fi
-- travis/install_pandoc.sh
+- travis_retry travis/before_install_stage.sh
+install:
+- travis_retry travis/install_stage.sh
 script:
-- python setup.py sdist
-- |
-  if [ "${NUMBA}" == "true" ]; then
-    pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`[numba];
-  else
-    pip install dist/`ls dist | grep -i -E '\.(gz)$' | head -1`;
-  fi
-- pushd /
-- python -c "import sys; import numpy_sugar; sys.exit(numpy_sugar.test())"
-- popd
+- travis_retry travis/script_stage.sh
+after_success:
+- travis_retry travis/deploy_wheels.sh
 notifications:
   email: false
 deploy:
@@ -51,3 +46,6 @@ deploy:
   on:
     repo: limix/numpy-sugar
     branch: 1.0.x
+env:
+  global:
+    secure: enuW0ZSAo3Wpw58yk6lcSrLP6wgA9zT3/us5nosY/g6UF3//WjdslIB2qfuLv2gCZ5cH4Q2WDXRcXVijnqrruMHHjCpaXWWC5GGVjYWqtdc1OkIIFSKsxqKIVc8ykK7unONgH//vYmQc17M50li/bUveBz1tfnR8empQGtDttNuul313R5o6YLPtWzjJvd/FL1kX1ELa0DMha+pOCBhPLYZZMnxnYtaNqZQYUHnQKA+pnFYQ0icuSfCIbe0LsQShdz8zAuv6F0MXh+f0/kP1Hq74BZORA44zqlpJRARM98ov/jdj65TNA6+D8tVA3ksJlYzxlmA9dJ6LsIU6Y9cncfGis1UsEyP/j/MfJxw3O1KPoVDC+7QLWbbe7zLVK3HLRmhGZk6yWB+X+S01IiJdRqY++A1iJO7Jrkb3eFp/d9i8iDYiFgCHbItbHeKCY0f2RuR4TEwiaInBfpVsgINWJrOsw3W9Y/HFeF1RzvHVjqHFToruoz1i7ZPTZsUWJdVYG4qyEOs8BNdmPlQTzLp3lOtcULP91Bze+s8IlV4m3GPC4I6CXrIiI7+hbEsWhjpNJ1fsJIQVlGFnQzHT2F52jXWOrEKB7JeZx6emtZgOeQq8+dcXsMHU7x7SySalW7Tf+Qq4GjF1tYcH1q4KNuYUSuV7D7hI3yl8S0GKvLha5k0=
