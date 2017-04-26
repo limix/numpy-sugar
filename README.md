@@ -1,7 +1,7 @@
 # numpy-sugar
 
 [![PyPI-License](https://img.shields.io/pypi/l/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/)
-[![PyPI-Version](https://img.shields.io/pypi/v/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/) [![Anaconda-Version](https://anaconda.org/conda-forge/numpy-sugar/badges/version.svg)](https://anaconda.org/conda-forge/numpy-sugar) [![Anaconda-Downloads](https://anaconda.org/conda-forge/numpy-sugar/badges/downloads.svg)](https://anaconda.org/conda-forge/numpy-sugar) [![Documentation Status](https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=latest)](https://numpy-sugar.readthedocs.io/en/latest/)
+[![PyPI-Version](https://img.shields.io/pypi/v/numpy-sugar.svg?style=flat-square)](https://pypi.python.org/pypi/numpy-sugar/) [![Anaconda-Version](https://anaconda.org/conda-forge/numpy-sugar/badges/version.svg)](https://anaconda.org/conda-forge/numpy-sugar) [![Anaconda-Downloads](https://anaconda.org/conda-forge/numpy-sugar/badges/downloads.svg)](https://anaconda.org/conda-forge/numpy-sugar) [![Documentation Status](https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=latest)](https://numpy-sugar.readthedocs.io/)
 
 Missing NumPy functionalities.
 
