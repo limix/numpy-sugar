@@ -7,7 +7,6 @@ git:
 cache:
   pip: true
   directories:
-  - $HOME/Library/Caches/Homebrew
   - $HOME/bin
   - $HOME/.download
 matrix:
