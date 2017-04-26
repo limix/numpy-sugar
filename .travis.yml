@@ -2,6 +2,11 @@ language: python
 sudo: required
 dist: trusty
 services: docker
+addons:
+  apt:
+    packages:
+    - python-scipy
+    - python3-scipy
 git:
   depth: 5
 cache:
