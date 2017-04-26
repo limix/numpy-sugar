@@ -2,11 +2,6 @@ language: python
 sudo: required
 dist: trusty
 services: docker
-addons:
-  apt:
-    packages:
-    - python-scipy
-    - python3-scipy
 git:
   depth: 5
 cache:
@@ -30,7 +25,7 @@ matrix:
     env: PYENV=py36
 before_install:
 - travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)
-- travis_retry travis/before-install.sh
+- travis_retry travis/before-install.sh "scipy"
 script:
 - travis_retry travis/script.sh
 after_success:
