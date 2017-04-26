@@ -12,7 +12,7 @@ except (OSError, IOError, ImportError):
 
 
 def get_capi_lib():
-    from build_capi import CApiLib # pylint: disable=E0401
+    from build_capi import CApiLib  # pylint: disable=E0401
     from ncephes import get_include
 
     sources = [join('numpy_sugar', 'special', 'special.c')]
@@ -36,20 +36,19 @@ def setup_package():
     pytest_runner = ['pytest-runner'] if needs_pytest else []
 
     setup_requires = [
-        'build-capi',
+        'build-capi>=1.1.10',
         'ncephes>=1.0.22',
     ] + pytest_runner
-    install_requires = ['ncephes>=1.0.22', 'numpy>=1.10']
+    install_requires = ['ncephes>=1.0.26', 'numpy>=1.10', "scipy>=0.18.1"]
     tests_require = ['pytest>=3']
 
     recommended = {
-        "numba": ["numba>=0.28", "scipy>=0.18.1"],
-        "scipy": ["scipy>=0.18.1"]
+        "numba": ["numba>=0.30"],
     }
 
     metadata = dict(
         name='numpy-sugar',
-        version='1.0.35',
+        version='1.0.36',
         maintainer="Danilo Horta",
         maintainer_email="horta@ebi.ac.uk",
         license="MIT",
