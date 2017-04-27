@@ -7,18 +7,10 @@ from numpy import sign as get_sign
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 
-try:
-    import numba
-    _NUMBA = True
-except ImportError:
-    _NUMBA = False
-
-
 def test_chi2_sf():
     from numpy_sugar.special import chi2_sf
     assert_allclose(chi2_sf(1, 1), 0.317310507863)
-    if _NUMBA:
-        assert_allclose(chi2_sf(1, [1, 3]), [0.317310507863, 0.0832645166636])
+    assert_allclose(chi2_sf(1, [1, 3]), [0.317310507863, 0.0832645166636])
 
 
 def test_norm_logpdf():
@@ -26,33 +18,31 @@ def test_norm_logpdf():
 
     assert_allclose(normal_logpdf(1.3), -1.7639385332)
 
-    if _NUMBA:
-        random = RandomState(426)
+    random = RandomState(426)
 
-        x = random.randn(10)
+    x = random.randn(10)
 
-        r = array([
-            -0.94668757, -1.4313161, -2.89441909, -2.38091302, -1.62194931,
-            -1.52167417, -1.37205765, -1.19692429, -0.96231757, -0.9599998
-        ])
+    r = array([
+        -0.94668757, -1.4313161, -2.89441909, -2.38091302, -1.62194931,
+        -1.52167417, -1.37205765, -1.19692429, -0.96231757, -0.9599998
+    ])
 
-        assert_allclose(normal_logpdf(x), r)
+    assert_allclose(normal_logpdf(x), r)
 
 def test_norm_logcdf():
     from numpy_sugar.special import normal_logcdf
 
     assert_allclose(normal_logcdf(1.3), -0.101811802668)
 
-    if _NUMBA:
-        random = RandomState(426)
-        x = random.randn(10)
+    random = RandomState(426)
+    x = random.randn(10)
 
-        r = array([
-            -0.89923898, -0.16924368, -3.7540666, -0.04461775, -0.12540335,
-            -0.14631613, -1.76868427, -1.4786554, -0.95667042, -0.48975041
-        ])
+    r = array([
+        -0.89923898, -0.16924368, -3.7540666, -0.04461775, -0.12540335,
+        -0.14631613, -1.76868427, -1.4786554, -0.95667042, -0.48975041
+    ])
 
-        assert_allclose(normal_logcdf(x), r)
+    assert_allclose(normal_logcdf(x), r)
 
 
 def test_beta_isf():
