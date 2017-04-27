@@ -1,13 +1,8 @@
 import numpy as np
+from numpy import vectorize as npy_vectorize
 
 from . import _special_ffi
-
-from ._numba import (float64, int64)
-from ._numba import vectorize
-from ._numba import jit
-from ._numba import HAS_NUMBA
-
-from numpy import vectorize as npy_vectorize
+from ._numba import HAS_NUMBA, float64, int64, jit, vectorize
 
 _chi2_sf = _special_ffi.lib.nsugar_chi2_sf
 _lgamma = _special_ffi.lib.nsugar_lgamma
@@ -26,7 +21,7 @@ _logaddexpss = _special_ffi.lib.nsugar_logaddexpss
 _logbinom = _special_ffi.lib.nsugar_logbinom
 
 
-def _if_numba(deco):
+def _if_numba(deco, else_func):
     if HAS_NUMBA:
 
         def decorator(func):
@@ -34,12 +29,12 @@ def _if_numba(deco):
     else:
 
         def decorator(func):
-            return npy_vectorize(func)
+            return else_func(func)
 
     return decorator
 
 
-@_if_numba(vectorize([float64(int64, float64)], nopython=True))
+@_if_numba(vectorize([float64(int64, float64)], nopython=True), npy_vectorize)
 def chi2_sf(k, x):
     r"""Chi-squared distribution [1] survival function.
 
@@ -58,7 +53,7 @@ def chi2_sf(k, x):
     return _chi2_sf(k, x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def lgamma(x):
     r"""Natural logarithm of the Gamma function [1].
 
@@ -75,7 +70,7 @@ def lgamma(x):
     return _lgamma(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_pdf(x):
     """P.d.f. of the Normal distribution.
 
@@ -85,7 +80,7 @@ def normal_pdf(x):
     return _normal_pdf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_cdf(x):
     """C.d.f. of the Normal distribution.
 
@@ -95,7 +90,7 @@ def normal_cdf(x):
     return _normal_cdf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_icdf(x):
     """Inverse of the c.d.f. of the Normal distribution.
 
@@ -105,7 +100,7 @@ def normal_icdf(x):
     return _normal_icdf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_sf(x):
     """Survival function of the Normal distribution.
 
@@ -115,7 +110,7 @@ def normal_sf(x):
     return _normal_sf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_isf(x):
     """Inverse of the survival function of the Normal distribution.
 
@@ -125,7 +120,7 @@ def normal_isf(x):
     return _normal_isf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_logpdf(x):
     """Natural logarithm of the p.d.f. of the Normal distribution.
 
@@ -135,7 +130,7 @@ def normal_logpdf(x):
     return _normal_logpdf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_logcdf(x):
     """Natural logarithm of the c.d.f. of the Normal distribution.
 
@@ -145,7 +140,7 @@ def normal_logcdf(x):
     return _normal_logcdf(x)
 
 
-@_if_numba(vectorize([float64(float64)], nopython=True))
+@_if_numba(vectorize([float64(float64)], nopython=True), npy_vectorize)
 def normal_logsf(x):
     """Natural logarithm of the survival function of the Normal distribution.
 
@@ -159,7 +154,7 @@ def normal_logsf(x):
     jit([
         float64(float64, float64, float64),
         float64[:](float64, float64, float64[:])
-    ]))
+    ]), lambda x: x)
 def beta_isf(a, b, x):
     """Inverse of the Beta survival function.
 
@@ -176,14 +171,16 @@ def beta_isf(a, b, x):
     return r
 
 
-@_if_numba(vectorize([float64(float64, float64)], nopython=True))
+@_if_numba(
+    vectorize([float64(float64, float64)], nopython=True), npy_vectorize)
 def logbinom(a, b):
     r"""Natural logarithm of Binomial coefficient: :math:`\log{a \choose b}`.
     """
     return _logbinom(a, b)
 
 
-@_if_numba(vectorize([float64(float64, float64)], nopython=True))
+@_if_numba(
+    vectorize([float64(float64, float64)], nopython=True), npy_vectorize)
 def logaddexp(x, y):
     """Numerically-stable ``numpy.log(numpy.exp(x)+numpy.exp(y))``.
 
@@ -198,7 +195,8 @@ def logaddexp(x, y):
 
 
 @_if_numba(
-    vectorize([float64(float64, float64, float64, float64)], nopython=True))
+    vectorize([float64(float64, float64, float64, float64)], nopython=True),
+    npy_vectorize)
 def logaddexps(x, y, sx, sy):
     """Numerically-stable ``numpy.log(sx*numpy.exp(x)+sy*numpy.exp(y))``."""
     return _logaddexps(x, y, sx, sy)
@@ -224,7 +222,7 @@ def logaddexpss(x, y, sx, sy, r, sign):
         r[i] = _logaddexpss(x[i], y[i], sx[i], sy[i], ptr + i)
 
 
-@_if_numba(jit((float64[:], ), nogil=True, nopython=True))
+@_if_numba(jit((float64[:], ), nogil=True, nopython=True), lambda x: x)
 def logsumexp(x):
     """Numerically-stable ``numpy.log(sum(numpy.exp(x)))``.
 
@@ -242,7 +240,8 @@ def logsumexp(x):
 
 
 @_if_numba(
-    jit(float64(float64[:], float64[:]), nopython=True, nogil=True))
+    jit(float64(float64[:], float64[:]), nopython=True, nogil=True),
+    lambda x: x)
 def r_squared(x, y):
     """ Coefficient of determination between ``x`` and ``y``.
 
