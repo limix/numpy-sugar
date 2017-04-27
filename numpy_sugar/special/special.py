@@ -7,6 +7,8 @@ from ._numba import vectorize
 from ._numba import jit
 from ._numba import HAS_NUMBA
 
+from numpy import vectorize as npy_vectorize
+
 _chi2_sf = _special_ffi.lib.nsugar_chi2_sf
 _lgamma = _special_ffi.lib.nsugar_lgamma
 _normal_pdf = _special_ffi.lib.nsugar_normal_pdf
@@ -32,7 +34,7 @@ def _if_numba(deco):
     else:
 
         def decorator(func):
-            return func
+            return npy_vectorize(func)
 
     return decorator
 
