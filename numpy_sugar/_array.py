@@ -9,8 +9,9 @@ Array
 
 """
 
+import dask.array as da
 from numpy import sum as _sum
-from numpy import asarray, isfinite, mgrid, prod, rollaxis
+from numpy import asarray, isfinite, mgrid, prod, rollaxis, unique
 
 try:
     from numba import jit
@@ -111,11 +112,29 @@ def cartesian(shape):
          [1 1]
          [1 2]]
 
-    Reference
-    ---------
+    Reference:
+
     [1] http://stackoverflow.com/a/27286794
     """
     n = len(shape)
     idx = [slice(0, s) for s in shape]
     g = rollaxis(mgrid[idx], 0, n + 1)
     return g.reshape((prod(shape), n))
+
+
+def unique(ar):
+    r"""Find the unique elements of an array.
+
+    It uses ``dask.array.unique`` if necessary.
+
+    Args:
+        ar (array_like): Input array.
+
+    Returns:
+        array_like: the sorted unique elements.
+    """
+
+    if isinstance(ar, da.core.Array):
+        return da.unique(ar)
+
+    return unique(ar)
