@@ -11,7 +11,8 @@ Array
 
 import dask.array as da
 from numpy import sum as _sum
-from numpy import asarray, isfinite, mgrid, prod, rollaxis, unique
+from numpy import unique as _unique
+from numpy import asarray, isfinite, mgrid, prod, rollaxis
 
 try:
     from numba import jit
@@ -137,4 +138,4 @@ def unique(ar):
     if isinstance(ar, da.core.Array):
         return da.unique(ar)
 
-    return unique(ar)
+    return _unique(ar)
