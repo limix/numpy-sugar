@@ -112,8 +112,8 @@ def cartesian(shape):
          [1 1]
          [1 2]]
 
-    Reference
-    ---------
+    Reference:
+
     [1] http://stackoverflow.com/a/27286794
     """
     n = len(shape)
