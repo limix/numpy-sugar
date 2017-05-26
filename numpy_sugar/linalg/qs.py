@@ -39,7 +39,7 @@ def economic_qs_linear(G):
     Returns:
         tuple: ``((Q0, Q1), S0)``.
     """
-    import dask as da
+    import dask.array as da
 
     if not isinstance(G, da.Array):
         G = asarray(G, float)
