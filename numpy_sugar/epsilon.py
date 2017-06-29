@@ -3,6 +3,8 @@
 from numpy import finfo as _finfo
 from numpy import sqrt as _sqrt
 
+"""Same as ``numpy.finfo(float).tiny``."""
+super_tiny = _finfo(float).tiny
 """Same as ``numpy.finfo(float).eps``."""
 tiny = _finfo(float).eps
 """Same as ``numpy.sqrt(numpy.finfo(float).eps)``."""
