@@ -31,11 +31,13 @@ script:
 - travis_retry travis/script.sh
 after_success:
 - travis_retry travis/after-success.sh
+before_deploy:
+- twine --version
+- cat $HOME/.pypirc
 notifications:
   email: false
 deploy:
   provider: pypi
-  server: https://pypi.org
   user: dhorta
   password:
     secure: dKPhQxlgHMxwNZmDt8gbDxLOc2plbwhYBxlY5PXS+fGtIm+v8aMbWkwhiIRCyeUjo0AnYm/+L2RXWL++zetfaPJ5pq3L1wWL8YmjA7UnC4+tsySqdHRRudbDyKBvrhfx2ON8d7JQlw8jJFHWNZJnFA1Vlx6u6PUNp+R0r+LrrawrFlYTPsRBz7GOcy2sj0/sD70GNUP3k3aca58nRDnXb1v5IkUlTM9l4Tx7oYLzK9JjPxMQkLAG+ONikkIpC4xu3TkXyAdUAGyNTFSbhINW4ehILutz/oNNhZeCuVA9qHeAw00BXzjrYBRdHt44WZW1oS+9uV2MU+A/3XeMAjIAc5w8SZ/o+XAhdY5PrWEcI3IE0Nm3aazvMHH6xVBVoWG549GGIY83sQk80Rha4ihSKKOowib0tIa32ownIzCgmQ6xojDV6WD7anNioyAtikVOo+hYmcnU6CoBmPQTVAE19u/W0LtwIihMWGuKQtmVdbU24prWrZA8dGJ3uBrDVfiuqCC3ozS5ZR9a4jn6JCMjH/hGUibB0yqMY/B8HgZtOP70g8dMku+2Z6EYbugKet6C8gOIsm79TV3nYcpChAl/fhWFhx52/ZcnVVup1OdDQO+uEawm8UG3ESjAVCxZURGWnUl0QIosWd150eqLR8SwQ+GbVqqD3YKGxP3livMnRvw=
