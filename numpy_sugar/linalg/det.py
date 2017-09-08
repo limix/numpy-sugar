@@ -1,8 +1,9 @@
-from numpy.linalg import eigvalsh
-from numpy import log, sqrt, finfo
 from numpy import sum as npsum
+from numpy import finfo, log, sqrt
+from numpy.linalg import eigvalsh
 
 epsilon = sqrt(finfo(float).eps)
+
 
 def plogdet(K):
     r"""Log of the pseudo-determinant.

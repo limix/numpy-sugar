@@ -32,8 +32,6 @@ def ddot(L, R, left=True, out=None):
     Args:
         L (array_like): Left matrix.
         R (array_like): Right matrix.
-        left (bool): ``True`` if ``L`` is the diagonal matrix;
-                     ``False`` otherwise.
         out (:class:`numpy.ndarray`, optional): copy result to.
 
     Returns:
@@ -41,7 +39,11 @@ def ddot(L, R, left=True, out=None):
     """
     L = asarray(L, float)
     R = asarray(R, float)
-    if left:
+    ok = min(L.ndim, R.ndim) == 1 and max(L.ndim, R.ndim) == 2
+    if not ok:
+        raise ValueError("Wrong array layout. One array should have" +
+                         " ndim=1 and the other one ndim=2.")
+    if L.ndim == 1:
         if out is None:
             out = copy(R)
         return multiply(L[:, newaxis], R, out=out)

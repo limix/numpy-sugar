@@ -1,8 +1,9 @@
-from numpy import array, asarray, dot, sqrt, finfo, zeros
+from numpy import array, asarray, dot, finfo, sqrt, zeros
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import lstsq
 
 _epsilon = sqrt(finfo(float).eps)
+
 
 def solve(A, b):
     r"""Solve for the linear equations :math:`\mathrm A \mathbf x = \mathbf b`.
@@ -29,6 +30,7 @@ def solve(A, b):
         return dot(A_, b)
     return _solve(A, b)
 
+
 def rsolve(A, b, epsilon=_epsilon):
     r"""Robust solve for the linear equations.
 
@@ -44,6 +46,7 @@ def rsolve(A, b, epsilon=_epsilon):
     if r == 0:
         return zeros(A.shape[1])
     return x[0]
+
 
 def _solve(A, b):
     return npy_solve(A, b)
