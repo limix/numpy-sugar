@@ -10,9 +10,9 @@
 
 double nsugar_normal_pdf(double x) { return exp(nsugar_normal_logpdf(x)); }
 
-double nsugar_normal_cdf(double x) { return ncephes_ndtr(x); }
+double nsugar_normal_cdf(double x) { return hcephes_ndtr(x); }
 
-double nsugar_normal_icdf(double x) { return ncephes_ndtri(x); }
+double nsugar_normal_icdf(double x) { return hcephes_ndtri(x); }
 
 double nsugar_normal_sf(double x) { return nsugar_normal_cdf(-x); }
 
@@ -57,10 +57,10 @@ double nsugar_normal_logcdf(double x) {
   long sign = 1, i = 0;
 
   if (x > 6) {
-    return -ncephes_ndtr(-x); /* log(1+x) \approx x */
+    return -hcephes_ndtr(-x); /* log(1+x) \approx x */
   }
   if (x > -20) {
-    return log(ncephes_ndtr(x));
+    return log(hcephes_ndtr(x));
   }
   log_LHS = -0.5 * x * x - log(-x) - 0.5 * log(2 * M_PI);
 
@@ -79,10 +79,10 @@ double nsugar_normal_logsf(double x) { return nsugar_normal_logcdf(-x); }
 
 double nsugar_lgamma(double x) { return lgamma(x); }
 
-double nsugar_chi2_sf(int k, double x) { return ncephes_chdtrc(k, x); }
+double nsugar_chi2_sf(int k, double x) { return hcephes_chdtrc(k, x); }
 
 double nsugar_beta_isf(double a, double b, double x) {
-  return ncephes_incbi(a, b, 1.0 - x);
+  return hcephes_incbi(a, b, 1.0 - x);
 }
 
 double nsugar_logaddexp(double x, double y) {
@@ -165,5 +165,5 @@ double nsugar_logaddexpss(double x, double y, double sx, double sy,
 }
 
 double nsugar_logbinom(double N, double K) {
-  return -ncephes_lbeta(1 + N - K, 1 + K) - log1p(N);
+  return -hcephes_lbeta(1 + N - K, 1 + K) - log1p(N);
 }

@@ -6,8 +6,6 @@ def _make():
 
     ffi = FFI()
 
-    from ncephes import get_include
-
     sources = [join('numpy_sugar', 'special', 'special.c')]
     hdr = join('numpy_sugar', 'include', 'numpy_sugar', 'special.h')
     incls = [join('numpy_sugar', 'include')]
