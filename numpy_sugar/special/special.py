@@ -1,3 +1,5 @@
+import pdb
+
 import numpy as np
 from numpy import vectorize as npy_vectorize
 
@@ -152,8 +154,8 @@ def normal_logsf(x):
 
 @_if_numba(
     jit([
-        float64(float64, float64, float64),
-        float64[:](float64, float64, float64[:])
+        float64(float64, float64, float64), float64[:](float64, float64,
+                                                       float64[:])
     ]), lambda x: x)
 def beta_isf(a, b, x):
     """Inverse of the Beta survival function.

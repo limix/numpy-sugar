@@ -9,7 +9,6 @@ Array
 
 """
 
-import dask.array as da
 from numpy import sum as _sum
 from numpy import unique as _unique
 from numpy import asarray, isfinite, mgrid, prod, rollaxis
@@ -134,6 +133,8 @@ def unique(ar):
     Returns:
         array_like: the sorted unique elements.
     """
+
+    import dask.array as da
 
     if isinstance(ar, da.core.Array):
         return da.unique(ar)
