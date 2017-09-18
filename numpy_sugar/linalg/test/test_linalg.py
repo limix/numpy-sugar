@@ -2,7 +2,6 @@ from numpy import diag, dot, empty, zeros
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky
-from numpy.ma import masked_array
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 

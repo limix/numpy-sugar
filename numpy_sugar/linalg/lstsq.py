@@ -1,4 +1,4 @@
-from numpy import array, asarray, dot, newaxis, squeeze
+from numpy import asarray, dot, newaxis, squeeze
 from numpy.linalg import lstsq as npy_lstsq
 
 
