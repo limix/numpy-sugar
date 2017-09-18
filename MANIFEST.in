@@ -3,3 +3,5 @@ include README.rst
 include requirements.txt
 include test-requirements.txt
 include special_build.py
+include numpy_sugar/include/numpy_sugar/special.h
+include numpy_sugar/special/special.c
