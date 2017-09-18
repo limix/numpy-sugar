@@ -8,34 +8,21 @@ Missing NumPy functionalities.
 """
 from __future__ import absolute_import as _
 
-import _cffi_backend
+import _cffi_backend as _
 
-from pkg_resources import DistributionNotFound as _DistributionNotFound
-from pkg_resources import get_distribution as _get_distribution
-
-from . import epsilon, linalg, random, special, ma
-from .api import get_include, get_lib
+from . import epsilon, linalg, ma, random, special
 from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
+from ._test import test
+from .api import get_include, get_lib
 
-try:
-    __version__ = _get_distribution('numpy_sugar').version
-except _DistributionNotFound:
-    __version__ = 'unknown'
+__name__ = "numpy-sugar"
+__version__ = "1.3.0"
+__author__ = "Danilo Horta"
+__author_email__ = "horta@ebi.ac.uk"
 
-
-def test():
-    import os
-    p = __import__('numpy_sugar').__path__[0]
-    src_path = os.path.abspath(p)
-    old_path = os.getcwd()
-    os.chdir(src_path)
-
-    try:
-        return_code = __import__('pytest').main(['-q'])
-    finally:
-        os.chdir(old_path)
-
-    if return_code == 0:
-        print("Congratulations. All tests have passed!")
-
-    return return_code
+__all__ = [
+    "__name__", "__version__", "__author__", "__author_email__", "test",
+    "epsilon", "linalg", "ma", "random", "special", "cartesian",
+    "is_all_equal", "is_all_finite", "is_crescent", "unique", "get_include",
+    "get_lib"
+]

@@ -1,11 +1,8 @@
-from numpy import exp
-from numpy import log
-from numpy import ones
-from numpy import array
-from numpy import empty
 from numpy import sign as get_sign
+from numpy import array, empty, exp, log, ones
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
+
 
 def test_chi2_sf():
     from numpy_sugar.special import chi2_sf
@@ -28,6 +25,7 @@ def test_norm_logpdf():
     ])
 
     assert_allclose(normal_logpdf(x), r)
+
 
 def test_norm_logcdf():
     from numpy_sugar.special import normal_logcdf
@@ -94,7 +92,3 @@ def test_logaddexpss():
 
     assert_allclose(r, log(abs(v)))
     assert_allclose(sign * get_sign(v), ones(10))
-
-
-if __name__ == '__main__':
-    __import__('pytest').main([__file__, '-s'])

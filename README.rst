@@ -1,4 +1,3 @@
-
 numpy-sugar
 ===========
 
@@ -6,7 +5,10 @@ numpy-sugar
 
 |Build-Status| |Codacy-Grade| |License-Badge| |Doc-Status|
 
-Abstract function optimisation.
+PLINK reader for Python.
+It reads binary PLINK files into Pandas_ data frame and Dask_ array.
+This package handles larger-than-memory data sets by reading the SNP matrix
+on-demand.
 
 Install
 -------
@@ -21,7 +23,7 @@ An alternative way would be via pip_
 
 .. code:: bash
 
-    pip install numpy_sugar
+    pip install numpy-sugar
 
 Running the tests
 -----------------
@@ -30,7 +32,7 @@ After installation, you can test it
 
 .. code:: bash
 
-    python -c "import numpy-sugar; numpy_sugar.test()"
+    python -c "import numpy_sugar; numpy_sugar.test()"
 
 as long as you have pytest_.
 
@@ -48,7 +50,7 @@ for details.
 .. |Build-Status| image:: https://travis-ci.org/limix/numpy-sugar.svg?branch=master
     :target: https://travis-ci.org/limix/numpy-sugar
 
-.. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/259a10b874124d91bccf61e516522607
+.. |Codacy-Grade| image:: https://api.codacy.com/project/badge/Grade/279d016293724b79ad8e667c1440d3d0
     :target: https://www.codacy.com/app/danilo.horta/numpy-sugar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=limix/numpy-sugar&amp;utm_campaign=Badge_Grade
 
 .. |PyPI-Status| image:: https://img.shields.io/pypi/v/numpy-sugar.svg
@@ -64,7 +66,7 @@ for details.
     :target: https://anaconda.org/conda-forge/numpy-sugar
 
 .. |License-Badge| image:: https://img.shields.io/pypi/l/numpy-sugar.svg
-    :target: https://raw.githubusercontent.com/numpy-sugar/numpy-sugar/master/LICENSE.txt
+    :target: https://raw.githubusercontent.com/limix/numpy-sugar/master/LICENSE.txt
 
 .. |Doc-Status| image:: https://readthedocs.org/projects/numpy-sugar/badge/?style=flat-square&version=stable
     :target: https://numpy-sugar.readthedocs.io/
@@ -78,3 +80,9 @@ for details.
 .. _pip: https://pypi.python.org/pypi/pip
 
 .. _pytest: http://docs.pytest.org/en/latest/
+
+.. _Dask: http://dask.pydata.org/en/latest/index.html
+
+.. _Pandas: http://pandas.pydata.org
+
+.. _documentation: http://numpy-sugar.readthedocs.io/
