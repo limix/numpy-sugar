@@ -7,15 +7,14 @@ def _make():
     ffi = FFI()
 
     from ncephes import get_include
-    from ncephes import get_lib
 
     sources = [join('numpy_sugar', 'special', 'special.c')]
     hdr = join('numpy_sugar', 'include', 'numpy_sugar', 'special.h')
-    incls = [join('numpy_sugar', 'include'), get_include()]
+    incls = [join('numpy_sugar', 'include')]
 
     from distutils.ccompiler import new_compiler
     compiler = new_compiler()
-    libraries = ['ncprob', 'nmisc']
+    libraries = ['hcephes']
     if 'msv' not in compiler.__class__.__name__.lower():
         libraries += ['m']
 
@@ -25,8 +24,7 @@ def _make():
         include_dirs=incls,
         sources=sources,
         extra_compile_args=['-Ofast'],
-        libraries=libraries,
-        library_dirs=[get_lib()])
+        libraries=libraries)
 
     with open(hdr, 'r') as f:
         data = f.read()
