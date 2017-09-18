@@ -78,8 +78,6 @@ for details.
 
 .. _pytest: http://docs.pytest.org/en/latest/
 
-.. _Dask: http://dask.pydata.org/en/latest/index.html
-
 .. _Pandas: http://pandas.pydata.org
 
 .. _documentation: http://numpy-sugar.readthedocs.io/
