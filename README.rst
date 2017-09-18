@@ -77,7 +77,3 @@ for details.
 .. _pip: https://pypi.python.org/pypi/pip
 
 .. _pytest: http://docs.pytest.org/en/latest/
-
-.. _Pandas: http://pandas.pydata.org
-
-.. _documentation: http://numpy-sugar.readthedocs.io/
