@@ -5,10 +5,7 @@ numpy-sugar
 
 |Build-Status| |Codacy-Grade| |License-Badge| |Doc-Status|
 
-PLINK reader for Python.
-It reads binary PLINK files into Pandas_ data frame and Dask_ array.
-This package handles larger-than-memory data sets by reading the SNP matrix
-on-demand.
+Missing NumPy functionalities.
 
 Install
 -------
