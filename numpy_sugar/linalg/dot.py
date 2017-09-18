@@ -64,8 +64,15 @@ def cdot(L, out=None):
         :class:`numpy.ndarray`: :math:`\mathrm L\mathrm L^\intercal`.
     """
     L = asarray(L, float)
-    assert L.ndim == 2
-    assert L.shape[0] == L.shape[1]
+
+    layout_error = "Wrong matrix layout."
+
+    if L.ndim != 2:
+        raise ValueError(layout_error)
+
+    if L.shape[0] != L.shape[1]:
+        raise ValueError(layout_error)
+
     if out is None:
         out = empty((L.shape[0], L.shape[1]), float)
     return einsum('ij,ji->ij', L, L, out=out)

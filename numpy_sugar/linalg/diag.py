@@ -14,8 +14,15 @@ def trace2(A, B):
     """
     A = asarray(A, float)
     B = asarray(B, float)
-    assert len(A.shape) == 2 and len(B.shape) == 2
-    assert A.shape[1] == B.shape[0] and A.shape[0] == B.shape[1]
+
+    layout_error = "Wrong matrix layout."
+
+    if not (len(A.shape) == 2 and len(B.shape) == 2):
+        raise ValueError(layout_error)
+
+    if not (A.shape[1] == B.shape[0] and A.shape[0] == B.shape[1]):
+        raise ValueError(layout_error)
+
     return _sum(A.T * B)
 
 
