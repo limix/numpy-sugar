@@ -1,4 +1,5 @@
 from os.path import join
+from sysconfig import get_config_var
 
 
 def _make():
@@ -8,7 +9,10 @@ def _make():
 
     sources = [join('numpy_sugar', 'special', 'special.c')]
     hdr = join('numpy_sugar', 'include', 'numpy_sugar', 'special.h')
-    incls = [join('numpy_sugar', 'include')]
+    incls = [
+        join('numpy_sugar', 'include'),
+        join(get_config_var('prefix'), 'include')
+    ]
 
     from distutils.ccompiler import new_compiler
     compiler = new_compiler()
@@ -20,6 +24,7 @@ def _make():
         'numpy_sugar.special._special_ffi',
         '#include "numpy_sugar/special.h"',
         include_dirs=incls,
+        library_dirs=[join(get_config_var('prefix'), 'lib')],
         sources=sources,
         extra_compile_args=['-Ofast'],
         libraries=libraries)
