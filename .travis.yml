@@ -17,9 +17,6 @@ matrix:
     env: PYENV=py27
   - os: osx
     language: generic
-    env: PYENV=py35
-  - os: osx
-    language: generic
     env: PYENV=py36
 before_install:
 - travis_retry bash <(curl -s https://raw.githubusercontent.com/limix/travis-tools/master/get-travis-tools.sh)
@@ -31,7 +28,11 @@ script:
 after_success:
 - travis_retry travis/after-success.sh
 notifications:
-  email: false
+  email:
+    recipients:
+      - danilo.horta@gmail.com
+    on_success: change
+    on_failure: always
 deploy:
   provider: pypi
   server: https://upload.pypi.org/legacy/
