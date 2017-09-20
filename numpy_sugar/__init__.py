@@ -16,7 +16,7 @@ from ._test import test
 from .api import get_include, get_lib
 
 __name__ = "numpy-sugar"
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 __author__ = "Danilo Horta"
 __author_email__ = "horta@ebi.ac.uk"
 
