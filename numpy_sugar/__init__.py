@@ -8,8 +8,6 @@ Missing NumPy functionalities.
 """
 from __future__ import absolute_import as _
 
-import _cffi_backend as _
-
 from . import epsilon, linalg, ma, random
 from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
 from .api import get_include, get_lib
