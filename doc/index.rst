@@ -12,7 +12,6 @@ Missing NumPy functionalities.
     install
     array
     algebra
-    special
 
 *****************
 Comments and bugs
