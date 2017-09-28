@@ -12,8 +12,8 @@ import _cffi_backend as _
 
 from . import epsilon, linalg, ma, random
 from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
-from ._test import test
 from .api import get_include, get_lib
+from .testit import test
 
 __name__ = "numpy-sugar"
 __version__ = "1.1.1"
