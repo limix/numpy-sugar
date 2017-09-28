@@ -2,6 +2,9 @@
 Numpy-sugar's documentation
 ===========================
 
+:Date: |today|
+:Version: |version|
+
 Missing NumPy functionalities.
 
 .. toctree::
