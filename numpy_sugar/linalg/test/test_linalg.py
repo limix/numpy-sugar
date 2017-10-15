@@ -1,13 +1,14 @@
-from numpy import diag, dot, empty, zeros
+import pytest
+
+from numpy import diag, dot, empty, zeros, array
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
-from numpy.linalg import cholesky
+from numpy.linalg import cholesky, LinAlgError
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 
-from numpy_sugar.linalg import (
-    ddot, dotd, economic_qs, lstsq, rsolve, solve, trace2
-)
+from numpy_sugar.linalg import (ddot, dotd, economic_qs, lstsq, rsolve, solve,
+                                trace2)
 
 
 def test_economic_qs():
@@ -100,6 +101,20 @@ def test_solve():
     b = random.randn(3)
 
     assert_allclose(solve(A, b), npy_solve(A, b))
+
+
+def test_solve_raise():
+    A = array([[2.05036632, 2.05036632], [2.05036632, 2.05036632]])
+
+    b = array([0.11260227, 0.11260227])
+
+    with pytest.raises(LinAlgError):
+        solve(A, b)
+
+    A = array([[0.0]])
+    b = array([1.0])
+    with pytest.raises(LinAlgError):
+        solve(A, b)
 
 
 def test_rsolve():

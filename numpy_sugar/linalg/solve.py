@@ -1,4 +1,6 @@
-from numpy import array, asarray, dot, finfo, sqrt, zeros
+from numpy import array, asarray, dot, finfo, sqrt, zeros, errstate, isfinite
+from numpy import all as npy_all
+from numpy.linalg import LinAlgError
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import lstsq
 
@@ -18,7 +20,13 @@ def solve(A, b):
     A = asarray(A, float)
     b = asarray(b, float)
     if A.shape[0] == 1:
-        A_ = array([[1. / A[0, 0]]])
+
+        with errstate(divide='ignore'):
+            A_ = array([[1. / A[0, 0]]])
+
+        if not isfinite(A_[0, 0]):
+            raise LinAlgError("Division error.")
+
         return dot(A_, b)
     elif A.shape[0] == 2:
         a = A[0, 0]
@@ -26,7 +34,13 @@ def solve(A, b):
         c = A[1, 0]
         d = A[1, 1]
         A_ = array([[d, -b_], [-c, a]])
-        A_ /= a * d - b_ * c
+
+        with errstate(divide='ignore'):
+            A_ /= a * d - b_ * c
+
+        if not npy_all(isfinite(A_)):
+            raise LinAlgError("Division error.")
+
         return dot(A_, b)
     return _solve(A, b)
 
