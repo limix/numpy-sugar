@@ -1,17 +1,19 @@
 import pytest
 
 from scipy.linalg import lu_factor
-from numpy import diag, dot, empty, zeros, array, argsort
+from numpy import diag, dot, empty, zeros, array, argsort, ones
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
 from numpy.linalg import cholesky, LinAlgError, slogdet
 from numpy.random import RandomState
-from numpy.testing import assert_allclose
+from numpy.testing import assert_allclose, assert_
 
 from numpy_sugar.linalg import (ddot, dotd, economic_qs, lstsq, rsolve, solve,
                                 trace2, stl, cho_solve, sum2diag,
                                 economic_qs_linear, plogdet, lu_slogdet,
-                                lu_solve, economic_svd)
+                                lu_solve, economic_svd, check_symmetry,
+                                check_definite_positiveness, cdot,
+                                check_semidefinite_positiveness)
 
 
 def test_economic_qs():
@@ -122,6 +124,9 @@ def test_ddot():
     assert_allclose(AdB, ddot(A, B, left=True))
     assert_allclose(AdB, ddot(A, B, left=True, out=B))
 
+    with pytest.raises(ValueError):
+        ddot(A, A)
+
 
 def test_solve():
     random = RandomState(0)
@@ -174,15 +179,6 @@ def test_rsolve():
 
     A[:] = 1e-10
     assert_allclose(rsolve(A, b), zeros(A.shape[1]))
-
-
-def test_cdot():
-    random = RandomState(0)
-    A = random.randn(3, 3)
-    A = dot(A, A.T)
-    L = cholesky(A)
-    assert_allclose(L, [[2.05668046, 0., 0.], [1.82034632, 2.48007792, 0.],
-                        [0.73633938, 0.24469357, 0.57806618]])
 
 
 def test_lstsq():
@@ -280,3 +276,56 @@ def test_economic_svd():
     assert_allclose(SVD[0], S)
     assert_allclose(SVD[1], V)
     assert_allclose(SVD[2], D)
+
+
+def test_check_definite_positiveness():
+    random = RandomState(6)
+    A = random.randn(3, 2)
+    A = dot(A, A.T)
+    assert_(check_definite_positiveness(A))
+    assert_(not check_definite_positiveness(zeros((4, 4))))
+
+
+def test_check_semidefinite_positiveness():
+    random = RandomState(6)
+    A = random.randn(3, 2)
+    A = dot(A, A.T)
+    assert_(check_semidefinite_positiveness(A))
+    B = -1e-10 * ones((4, 4))
+
+    assert_(check_semidefinite_positiveness(B))
+
+    B = -1e-1 * ones((4, 4))
+    assert_(not check_semidefinite_positiveness(B))
+
+
+def test_check_symmetry():
+    random = RandomState(6)
+    A = random.randn(3)
+    with pytest.raises(ValueError):
+        check_symmetry(A)
+
+    A = random.randn(3, 2)
+    assert_(not check_symmetry(A))
+
+    A = random.randn(3, 3)
+    assert_(not check_symmetry(A))
+
+    A = dot(A, A.T)
+    assert_(check_symmetry(A))
+
+
+def test_cdot():
+    random = RandomState(0)
+    A = random.randn(3, 3)
+    A = dot(A, A.T)
+    L = cholesky(A)
+    assert_allclose(cdot(L), A)
+
+    a = random.randn(3)
+    with pytest.raises(ValueError):
+        cdot(a)
+
+    a = random.randn(3, 2)
+    with pytest.raises(ValueError):
+        cdot(a)

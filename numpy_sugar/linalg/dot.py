@@ -75,4 +75,5 @@ def cdot(L, out=None):
 
     if out is None:
         out = empty((L.shape[0], L.shape[1]), float)
-    return einsum('ij,ji->ij', L, L, out=out)
+
+    return einsum('ij,kj->ik', L, L, out=out)
