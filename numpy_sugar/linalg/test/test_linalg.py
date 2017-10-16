@@ -280,8 +280,9 @@ def test_economic_svd():
 
 def test_check_definite_positiveness():
     random = RandomState(6)
-    A = random.randn(3, 2)
+    A = random.randn(3, 3)
     A = dot(A, A.T)
+    A = sum2diag(A, 1e-4)
     assert_(check_definite_positiveness(A))
     assert_(not check_definite_positiveness(zeros((4, 4))))
 
