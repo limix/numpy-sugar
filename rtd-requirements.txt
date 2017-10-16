@@ -1,5 +1,5 @@
-numpy
-scipy
-dask
+numpy>=1.13.3
+scipy>=0.19.1
+dask>=0.15.4
 setuptools
 sphinx_rtd_theme

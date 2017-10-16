@@ -1,14 +1,17 @@
 import pytest
 
-from numpy import diag, dot, empty, zeros, array
+from scipy.linalg import lu_factor
+from numpy import diag, dot, empty, zeros, array, argsort
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
-from numpy.linalg import cholesky, LinAlgError
+from numpy.linalg import cholesky, LinAlgError, slogdet
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
 
 from numpy_sugar.linalg import (ddot, dotd, economic_qs, lstsq, rsolve, solve,
-                                trace2)
+                                trace2, stl, cho_solve, sum2diag,
+                                economic_qs_linear, plogdet, lu_slogdet,
+                                lu_solve, economic_svd)
 
 
 def test_economic_qs():
@@ -49,12 +52,39 @@ def test_economic_qs():
     assert_allclose(S, e, rtol=1e-5)
 
 
+def test_economic_qs_linear():
+    random = RandomState(2951)
+
+    G = random.randn(3, 5)
+    QS0 = economic_qs_linear(G)
+    QS1 = economic_qs(dot(G, G.T))
+    assert_allclose(QS0[0][0], QS1[0][0])
+    assert_allclose(QS0[0][1], QS1[0][1])
+    assert_allclose(QS0[1], QS1[1])
+
+    G = G.T.copy()
+    QS0 = economic_qs_linear(G)
+
+    QS1 = economic_qs(dot(G, G.T))
+    idx = argsort(-1 * QS1[1])
+    QS1 = ((QS1[0][0][:, idx], QS1[0][1]), QS1[1][idx])
+
+    assert_allclose(QS0[0][0], QS1[0][0])
+    assert_allclose(QS0[1], QS1[1])
+
+
 def test_trace2():
     random = RandomState(38493)
     A = random.randn(10, 2)
     B = random.randn(2, 10)
 
     assert_allclose(A.dot(B).trace(), trace2(A, B))
+
+    with pytest.raises(ValueError):
+        trace2(A[:, 0], B)
+
+    with pytest.raises(ValueError):
+        trace2(A, B.T)
 
 
 def test_dotd():
@@ -66,6 +96,14 @@ def test_dotd():
     assert_allclose(r, dotd(A, B))
     r1 = empty(len(r))
     assert_allclose(dotd(A, B, out=r1), r)
+
+    a = random.randn(2)
+    b = random.randn(2)
+    c = array(0.)
+
+    assert_allclose(dotd(a, b), -1.05959423672)
+    dotd(a, b, out=c)
+    assert_allclose(c, -1.05959423672)
 
 
 def test_ddot():
@@ -156,3 +194,89 @@ def test_lstsq():
     A = random.randn(4, 1)
     b = random.randn(4)
     assert_allclose(lstsq(A, b), npy_lstsq(A, b)[0])
+
+
+def test_stl():
+    random = RandomState(0)
+    A = random.randn(2, 2)
+    b = random.randn(2)
+    assert_allclose(stl(A, b), [1.05867493, -0.89850031])
+
+
+def test_cho_solve():
+    random = RandomState(0)
+    L = random.randn(2, 2)
+    b = random.randn(2)
+    assert_allclose(cho_solve(L, b), [0.82259811, -0.40095633])
+
+
+def test_sum2diag():
+    random = RandomState(0)
+    A = random.randn(2, 2)
+    b = random.randn(2)
+
+    C = A.copy()
+    C[0, 0] = C[0, 0] + b[0]
+    C[1, 1] = C[1, 1] + b[1]
+
+    assert_allclose(sum2diag(A, b), C)
+
+    want = array([[2.76405235, 0.40015721],
+                  [0.97873798, 3.2408932]])
+    assert_allclose(sum2diag(A, 1), want)
+
+    D = empty((2, 2))
+    sum2diag(A, b, out=D)
+    assert_allclose(C, D)
+
+
+def test_plogdet():
+    K = array([[2.76405235, 0.40015721],
+               [0.97873798, 3.2408932]])
+    K = dot(K, K.T)
+
+    assert_allclose(plogdet(K), 4.29568333649)
+
+
+def test_lu_slogdet():
+    K = array([[2.76405235, 0.40015721],
+               [0.97873798, 3.2408932]])
+    K = dot(K, K.T)
+
+    LU = lu_factor(K)
+    assert_allclose(lu_slogdet(LU), slogdet(K))
+
+    random = RandomState(6)
+    K = random.randn(3, 3)
+    K = dot(K, K.T)
+
+    LU = lu_factor(K)
+    assert_allclose(lu_slogdet(LU), slogdet(K))
+
+
+def test_lu_solve():
+    random = RandomState(6)
+    A = random.randn(3, 3)
+    A = dot(A, A.T)
+    y = random.randn(3)
+
+    LU = lu_factor(A)
+    assert_allclose(lu_solve(LU, y), [-0.14503211, 0.43277517, -0.22340499])
+
+
+def test_economic_svd():
+    random = RandomState(6)
+    A = random.randn(3, 2)
+    A = dot(A, A.T)
+
+    S = [[-0.21740668, 0.56064537],
+         [0.21405445, -0.77127452],
+         [-0.95232086, -0.30135094]]
+    V = [7.65340901, 0.84916508]
+    D = [[-0.21740668, 0.21405445, -0.95232086],
+         [0.56064537, -0.77127452, -0.30135094]]
+    SVD = economic_svd(A)
+
+    assert_allclose(SVD[0], S)
+    assert_allclose(SVD[1], V)
+    assert_allclose(SVD[2], D)

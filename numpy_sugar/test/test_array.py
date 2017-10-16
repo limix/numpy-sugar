@@ -1,7 +1,28 @@
 from numpy import inf, nan
-from numpy.testing import assert_allclose, assert_equal
+from numpy.testing import assert_allclose, assert_equal, assert_
+import dask.array as da
 
-from numpy_sugar import cartesian, is_all_finite
+from numpy_sugar import cartesian, is_all_finite, is_crescent, is_all_equal
+from numpy_sugar import unique
+
+
+def test_is_crescent():
+    a = [1, 2, 3]
+    b = [1, 2, 2]
+    c = [3, 2, 1]
+    d = [3, 3, 1]
+    e = [1, 3, 2]
+
+    assert_(is_crescent(a))
+    assert_(is_crescent(b))
+    assert_(not is_crescent(c))
+    assert_(not is_crescent(d))
+    assert_(not is_crescent(e))
+
+
+def test_is_all_equal():
+    assert_(is_all_equal([1, 1, 1]))
+    assert_(not is_all_equal([1, 1, 2]))
 
 
 def test_is_all_finite():
@@ -15,5 +36,9 @@ def test_cartesian():
         cartesian((2, 3)), [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]])
 
 
-if __name__ == '__main__':
-    __import__('pytest').main([__file__, '-s'])
+def test_unique():
+    a = [1, 2, 2]
+    assert_allclose(unique(a), [1, 2])
+
+    a = da.asarray(a)
+    assert_allclose(unique(a), [1, 2])

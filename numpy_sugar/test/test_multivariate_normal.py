@@ -18,3 +18,13 @@ def test_multivariate_normal():
             -1.27151910971, 3.19037731625, 0.90263960298, -1.85267387027,
             -0.735702280982, 0.948785481537
         ])
+
+
+def test_large_multivariate_normal():
+    rs = RandomState(3)
+    m = rs.randn(1001)
+    G = rs.randn(1001, 12)
+    K = dot(G, G.T)
+    got = multivariate_normal(m, K, rs)[:3]
+    want = [7.13272362857, -1.00526564199, 1.24585162331]
+    assert_allclose(got, want, rtol=1e-3)
