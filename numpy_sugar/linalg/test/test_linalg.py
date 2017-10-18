@@ -1,19 +1,19 @@
 import pytest
 
 from scipy.linalg import lu_factor
-from numpy import diag, dot, empty, zeros, array, argsort, ones
+from numpy import diag, dot, empty, zeros, array, argsort, ones, sqrt, isfinite
+from numpy import all as npy_all
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
-from numpy.linalg import cholesky, LinAlgError, slogdet
+from numpy.linalg import cholesky, LinAlgError, slogdet, norm
 from numpy.random import RandomState
 from numpy.testing import assert_allclose, assert_
 
-from numpy_sugar.linalg import (ddot, dotd, economic_qs, lstsq, rsolve, solve,
-                                trace2, stl, cho_solve, sum2diag,
-                                economic_qs_linear, plogdet, lu_slogdet,
-                                lu_solve, economic_svd, check_symmetry,
-                                check_definite_positiveness, cdot,
-                                check_semidefinite_positiveness)
+from numpy_sugar.linalg import (
+    ddot, dotd, economic_qs, lstsq, rsolve, solve, trace2, stl, cho_solve,
+    sum2diag, economic_qs_linear, plogdet, lu_slogdet, lu_solve, economic_svd,
+    check_symmetry, check_definite_positiveness, cdot,
+    check_semidefinite_positiveness, hsolve)
 
 
 def test_economic_qs():
@@ -217,8 +217,7 @@ def test_sum2diag():
 
     assert_allclose(sum2diag(A, b), C)
 
-    want = array([[2.76405235, 0.40015721],
-                  [0.97873798, 3.2408932]])
+    want = array([[2.76405235, 0.40015721], [0.97873798, 3.2408932]])
     assert_allclose(sum2diag(A, 1), want)
 
     D = empty((2, 2))
@@ -227,16 +226,14 @@ def test_sum2diag():
 
 
 def test_plogdet():
-    K = array([[2.76405235, 0.40015721],
-               [0.97873798, 3.2408932]])
+    K = array([[2.76405235, 0.40015721], [0.97873798, 3.2408932]])
     K = dot(K, K.T)
 
     assert_allclose(plogdet(K), 4.29568333649)
 
 
 def test_lu_slogdet():
-    K = array([[2.76405235, 0.40015721],
-               [0.97873798, 3.2408932]])
+    K = array([[2.76405235, 0.40015721], [0.97873798, 3.2408932]])
     K = dot(K, K.T)
 
     LU = lu_factor(K)
@@ -265,8 +262,7 @@ def test_economic_svd():
     A = random.randn(3, 2)
     A = dot(A, A.T)
 
-    S = [[-0.21740668, 0.56064537],
-         [0.21405445, -0.77127452],
+    S = [[-0.21740668, 0.56064537], [0.21405445, -0.77127452],
          [-0.95232086, -0.30135094]]
     V = [7.65340901, 0.84916508]
     D = [[-0.21740668, 0.21405445, -0.95232086],
@@ -330,3 +326,70 @@ def test_cdot():
     a = random.randn(3, 2)
     with pytest.raises(ValueError):
         cdot(a)
+
+
+def test_hsolve():
+
+    y = [-.3, 2.1]
+
+    A = []
+    random = RandomState(0)
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    a = random.randn(2, 2)
+    A.append(a.dot(a.T))
+
+    A += [
+        zeros((2, 2)),
+        array([[1, sqrt(3)], [sqrt(3), 3]]),
+        array([[1.0, 0.5], [0.5, 0.25]]), 1e-7 * ones((2, 2)),
+        array([[0.5, 1.0], [0.25, 0.5]]),
+        array([[1.0, 0.5], [0.5, 2.0]]),
+        array([[0.5, 1.0], [2.0, 0.5]]),
+        array([[0.5, 2.0], [2.0, 1.5]]),
+        array([[0.5, 2.0], [2.0, 0.0]]),
+        array([[0, 2.0], [2.0, 1.5]]),
+        array([[0, 2.0], [2.0, 0.0]]),
+        array([[0, -2.0], [-2.0, 0.0]]), 1e-12 * ones((2, 2)), 1e-15 * ones(
+            (2, 2)), 1e-16 * ones((2, 2)), 1e-17 * ones((2, 2)), 1e-20 * ones(
+                (2, 2)), 1e-23 * ones((2, 2)), 1e-24 * ones((2, 2)),
+        1e-25 * ones((2, 2)), 1e-27 * ones((2, 2)), 1e-30 * ones((2, 2)),
+        1e-50 * ones((2, 2)), 1e-90 * ones((2, 2)), 1e-300 * ones((2, 2)),
+        array([[1e-300, 0.1], [0.1, 1e-10]]),
+        zeros((2, 2)),
+        array([[1.24683824e+00, 1.10215051e-01],
+               [1.10215051e-01, 1.00000000e+04]]),
+        array([[1.24683824e+00, 1.10215051e-01],
+               [1.10215051e-01, -1.00000000e+04]]),
+        array([[1.24683824e+00, -1.10215051e-01],
+               [-1.10215051e-01, -1.00000000e+04]])
+    ]
+
+    A = A + [-a for a in A]
+
+    for a in A:
+        x0 = hsolve(a, y)
+        x1 = npy_lstsq(a, y)[0]
+        e0 = norm(dot(a, x0) - y)
+        e1 = norm(dot(a, x1) - y)
+
+        assert_allclose(e0, e1, atol=1e-7)
+        assert_(npy_all(isfinite(x0)))
+        assert_allclose(x0, x1)
