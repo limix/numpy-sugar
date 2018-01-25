@@ -1,19 +1,19 @@
 import pytest
-
-from scipy.linalg import lu_factor
-from numpy import diag, dot, empty, zeros, array, argsort, ones, sqrt, isfinite
 from numpy import all as npy_all
+from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import solve as npy_solve
-from numpy.linalg import cholesky, LinAlgError, slogdet, norm
+from numpy.linalg import LinAlgError, cholesky, norm, slogdet
 from numpy.random import RandomState
-from numpy.testing import assert_allclose, assert_
+from numpy.testing import assert_, assert_allclose
+from scipy.linalg import lu_factor
 
-from numpy_sugar.linalg import (
-    ddot, dotd, economic_qs, lstsq, rsolve, solve, trace2, stl, cho_solve,
-    sum2diag, economic_qs_linear, plogdet, lu_slogdet, lu_solve, economic_svd,
-    check_symmetry, check_definite_positiveness, cdot,
-    check_semidefinite_positiveness, hsolve)
+from numpy_sugar.linalg import (cdot, check_definite_positiveness,
+                                check_semidefinite_positiveness,
+                                check_symmetry, cho_solve, ddot, dotd,
+                                economic_qs, economic_qs_linear, economic_svd,
+                                hsolve, lstsq, lu_slogdet, lu_solve, plogdet,
+                                rsolve, solve, stl, sum2diag, trace2)
 
 
 def test_economic_qs():
@@ -185,11 +185,11 @@ def test_lstsq():
     random = RandomState(0)
     A = random.randn(4, 2)
     b = random.randn(4)
-    assert_allclose(lstsq(A, b), npy_lstsq(A, b)[0])
+    assert_allclose(lstsq(A, b), npy_lstsq(A, b, rcond=None)[0])
 
     A = random.randn(4, 1)
     b = random.randn(4)
-    assert_allclose(lstsq(A, b), npy_lstsq(A, b)[0])
+    assert_allclose(lstsq(A, b), npy_lstsq(A, b, rcond=None)[0])
 
 
 def test_stl():
@@ -386,7 +386,7 @@ def test_hsolve():
 
     for a in A:
         x0 = hsolve(a, y)
-        x1 = npy_lstsq(a, y)[0]
+        x1 = npy_lstsq(a, y, rcond=None)[0]
         e0 = norm(dot(a, x0) - y)
         e1 = norm(dot(a, x1) - y)
 
