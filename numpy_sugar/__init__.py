@@ -13,7 +13,7 @@ from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
 from .testit import test
 
 __name__ = "numpy-sugar"
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 __author__ = "Danilo Horta"
 __author_email__ = "horta@ebi.ac.uk"
 

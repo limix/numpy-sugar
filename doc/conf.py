@@ -1,56 +1,70 @@
-from __future__ import unicode_literals
-
-import re
-from importlib import import_module
-from os import getenv
-from os.path import dirname, join, realpath
-from time import strftime
+import os
+import sys
 
 import sphinx_rtd_theme
-from setuptools import find_packages
+
+sys.path.insert(0, os.path.abspath('..'))
 
 
-def get_init_metadata(name):
-    expr = re.compile(r"__%s__ *= *\"(.*)\"" % name)
-
-    dir_path = dirname(realpath(__file__))
-    pkgname = find_packages(where=join(dir_path, '..'))[0]
-
-    data = open(join("..", pkgname, "__init__.py")).read()
-
-    return re.search(expr, data).group(1).strip()
+def get_version():
+    import numpy_sugar
+    return numpy_sugar.__version__
 
 
-if getenv("READTHEDOCS", "False") == "True":
+def get_name():
+    import numpy_sugar
+    return numpy_sugar.__name__
 
-    prjname = getenv("READTHEDOCS_PROJECT", "unknown")
-    pkgname = prjname.replace("-", "_")
-    pkg = import_module(pkgname)
-
-    project = pkg.__name__
-    version = pkg.__version__
-    author = pkg.__author__
-else:
-    project = get_init_metadata('name')
-    version = get_init_metadata('version')
-    author = get_init_metadata('author')
 
 extensions = [
-    'sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx',
-    'sphinx.ext.coverage', 'sphinx.ext.viewcode', 'sphinx.ext.napoleon',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx', 'sphinx.ext.napoleon', 'sphinx.ext.mathjax'
 ]
-napoleon_google_docstring = True
+
+templates_path = ['_templates']
+
+source_suffix = '.rst'
+
 master_doc = 'index'
-copyright = '%s, %s' % (strftime("%Y"), author)
+
+project = get_name()
+copyright = '2018, Danilo Horta'
+author = 'Danilo Horta'
+
+version = get_version()
 release = version
-language = "en"
+
+language = None
+
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'conf.py']
+
 pygments_style = 'sphinx'
+
+todo_include_todos = False
+
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+html_sidebars = {
+    '**': [
+        'relations.html',
+        'searchbox.html',
+    ]
+}
+
+htmlhelp_basename = '{}doc'.format(project)
+
+man_pages = [(master_doc, get_name(), '{} documentation'.format(project),
+              [author], 1)]
+
+epub_title = project
+epub_author = author
+epub_publisher = author
+epub_copyright = copyright
+
+epub_exclude_files = ['search.html']
+
 intersphinx_mapping = {
     'python': ('http://docs.python.org/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
-    'pandas': ('http://pandas.pydata.org/pandas-docs/stable/', None)
 }
