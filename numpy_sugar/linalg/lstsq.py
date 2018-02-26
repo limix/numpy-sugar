@@ -1,4 +1,5 @@
 from numpy import asarray, dot, newaxis, squeeze
+from numpy.core import double, finfo
 from numpy.linalg import lstsq as npy_lstsq
 
 
@@ -21,4 +22,5 @@ def lstsq(A, b):
     if A.shape[1] == 1:
         return dot(A.T, b) / squeeze(dot(A.T, A))
 
-    return npy_lstsq(A, b, rcond=-1)[0]
+    rcond = finfo(double).eps * max(*A.shape)
+    return npy_lstsq(A, b, rcond=rcond)[0]
