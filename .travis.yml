@@ -2,16 +2,25 @@ language: python
 sudo: false
 python: 3.6
 env:
-  - PKG_NAME=numpy_sugar
+- PKG_NAME=numpy_sugar
 addons:
   apt:
     packages:
-      - pandoc
+    - pandoc
 script:
 - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 notifications:
   email:
     recipients:
-      - danilo.horta@gmail.com
+    - danilo.horta@gmail.com
     on_success: never
     on_failure: always
+deploy:
+  provider: pypi
+  user: dhorta
+  password:
+    secure: CCyNBnDS8XFhBwgzQe9vPOfFq7ZjkjHvkY48aH3XIouaPhHNZn1xieTGrWkYlT1E8srKssddqHl9l5XHKok2Z2bqgDwWCtIyULWnSz5/7jTEsYic9cCSM9DSNyhQjxSPeKxEpL/63ucjpsAxQJW5qxRwGc2p6k03x35cqt9ajHCkYsJ0beC8a1+ROxD9aJwDoeHx3AcxCGGDi7uo/qBVMbFOWjnKK2cQMSMc0MgyZNPJFuLP2EUXELEC/SsXkJ+vMZ7u+gG8W2DRrup+BS/jI/SwHhG4PlIE0MJ0oEi0fkWIUBbi3kd/4ACcl0Zgofg7lP5Q1dn0qrn3MvZT27BtKH4Z1EIIBqvkCwfDI3jaEI5SBy5zlHU8Ks1uGffb2WhxqEFlY2GyQI/h4U2fZHQUExgNPhxTe+FoE0M8JW2sv/oqDfkZsmPJ6Xo57ZJPgQBE1P73TLApYKm8/QlNGSR84DeYXB53Op1Y6dl1M0uG3IlLz95PtLujGKSTUV23sMOYMQKPYNe9kOGFvLAecSVAW3w5wq5qcvH+Z0AgMxVTVI0T2VO9gZVZgVx72YvNJZA96edb2DdHCZgXgc+N5t18zhwZJfKp8bvfHPxRZrZd2eAm1DQRpGzxfsOYNYWCwyJzO7iql1Q/hNbGY3uRG4IoIV2ZhKTa25ENbNK1PP7JSh8=
+  on:
+    tags: true
+    repo: limix/numpy-sugar
+    branch: master
