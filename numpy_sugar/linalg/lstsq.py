@@ -21,4 +21,4 @@ def lstsq(A, b):
     if A.shape[1] == 1:
         return dot(A.T, b) / squeeze(dot(A.T, A))
 
-    return npy_lstsq(A, b, rcond=None)[0]
+    return npy_lstsq(A, b, rcond=-1)[0]
