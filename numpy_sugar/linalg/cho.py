@@ -1,4 +1,4 @@
-from numpy import asarray
+from numpy import asarray, empty
 
 
 def cho_solve(L, b):
@@ -24,4 +24,8 @@ def cho_solve(L, b):
     from scipy.linalg import cho_solve as sp_cho_solve
     L = asarray(L, float)
     b = asarray(b, float)
+    if L.size == 0:
+        if b.size != 0:
+            raise ValueError("Dimension mismatch between L and b.")
+        return empty(b.shape)
     return sp_cho_solve((L, True), b, check_finite=False)

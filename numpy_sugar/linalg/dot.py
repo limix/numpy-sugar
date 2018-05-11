@@ -50,7 +50,7 @@ def ddot(L, R, left=True, out=None):
     else:
         if out is None:
             out = copy(L)
-        return multiply(out, R, out=out)
+        return multiply(L, R, out=out)
 
 
 def cdot(L, out=None):
