@@ -1,10 +1,10 @@
-from numpy import array, asarray, dot, finfo, sqrt, zeros, errstate, isfinite
-from numpy import nan_to_num, errstate
-from numpy import all as npy_all
 from numpy import abs as npy_abs
-from numpy.linalg import LinAlgError
+from numpy import all as npy_all
+from numpy import (array, asarray, dot, errstate, finfo, isfinite, nan_to_num,
+                   sqrt, zeros)
+from numpy.linalg import LinAlgError, lstsq
 from numpy.linalg import solve as npy_solve
-from numpy.linalg import lstsq
+
 from .. import epsilon
 
 _epsilon = sqrt(finfo(float).eps)

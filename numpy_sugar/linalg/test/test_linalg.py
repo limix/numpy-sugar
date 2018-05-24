@@ -7,13 +7,14 @@ from numpy.linalg import norm, slogdet
 from numpy.linalg import solve as npy_solve
 from numpy.random import RandomState
 from numpy.testing import assert_, assert_allclose
+from scipy.linalg import lu_factor
+
 from numpy_sugar.linalg import (cdot, check_definite_positiveness,
                                 check_semidefinite_positiveness,
                                 check_symmetry, cho_solve, ddot, dotd,
                                 economic_qs, economic_qs_linear, economic_svd,
                                 hsolve, lstsq, lu_slogdet, lu_solve, plogdet,
                                 rsolve, solve, stl, sum2diag, trace2)
-from scipy.linalg import lu_factor
 
 
 def test_economic_qs():
@@ -393,3 +394,11 @@ def test_hsolve():
         assert_allclose(e0, e1, atol=1e-7)
         assert_(npy_all(isfinite(x0)))
         assert_allclose(x0, x1)
+
+
+def test_economic_svd_zero_rank():
+    A = zeros((3, 2))
+    SVD = economic_svd(A)
+    assert_(SVD[0].shape == (3, 0))
+    assert_(SVD[1].shape == (0, ))
+    assert_(SVD[2].shape == (0, 2))
