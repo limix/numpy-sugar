@@ -186,6 +186,11 @@ def test_rsolve():
     assert_(rsolve(A, b).ndim == 1)
     assert_(rsolve(A, b).shape[0] == 0)
 
+    A = zeros((0, 1))
+    b = zeros((0, ))
+    assert_(rsolve(A, b).ndim == 1)
+    assert_(rsolve(A, b).shape[0] == 1)
+
 
 def test_lstsq():
     random = RandomState(0)
