@@ -22,6 +22,7 @@ def cho_solve(L, b):
                              factorization.
     """
     from scipy.linalg import cho_solve as sp_cho_solve
+
     L = asarray(L, float)
     b = asarray(b, float)
     if L.size == 0:

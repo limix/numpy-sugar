@@ -19,6 +19,7 @@ def stl(A, b):
     scipy.linalg.solve_triangular: Solve triangular linear equations.
     """
     from scipy.linalg import solve_triangular
+
     A = asarray(A, float)
     b = asarray(b, float)
     return solve_triangular(A, b, lower=True, check_finite=False)

@@ -17,8 +17,9 @@ def lu_slogdet(LU):
 
     s = prod(sign(LU[0].diagonal()))
 
-    nrows_exchange = LU[1].size - \
-        _sum(LU[1] == arange(LU[1].size, dtype='int32'))
+    nrows_exchange = LU[1].size - _sum(
+        LU[1] == arange(LU[1].size, dtype="int32")
+    )
 
     odd = nrows_exchange % 2 == 1
     if odd:
@@ -47,6 +48,7 @@ def lu_solve(LU, b):
     scipy.linalg.lu_solve : Solve linear equations given LU factorization.
     """
     from scipy.linalg import lu_solve as sp_lu_solve
+
     LU = (asarray(LU[0], float), asarray(LU[1], float))
     b = asarray(b, float)
     return sp_lu_solve(LU, b, check_finite=False)

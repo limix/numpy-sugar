@@ -19,7 +19,7 @@ def dotd(A, B):
     if A.ndim == 1 and B.ndim == 1:
         return dot(A, B)
 
-    out = empty((A.shape[0], ), float)
+    out = empty((A.shape[0],), float)
     out[:] = sum(A * B.T, axis=1)
 
     return out

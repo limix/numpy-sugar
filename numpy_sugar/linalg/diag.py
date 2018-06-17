@@ -43,5 +43,5 @@ def sum2diag(A, D, out=None):
         out = copy(A)
     else:
         copyto(out, A)
-    einsum('ii->i', out)[:] += D
+    einsum("ii->i", out)[:] += D
     return out

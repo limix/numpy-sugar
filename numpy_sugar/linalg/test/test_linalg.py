@@ -9,12 +9,28 @@ from numpy.random import RandomState
 from numpy.testing import assert_, assert_allclose
 from scipy.linalg import lu_factor
 
-from numpy_sugar.linalg import (cdot, check_definite_positiveness,
-                                check_semidefinite_positiveness,
-                                check_symmetry, cho_solve, ddot, dotd,
-                                economic_qs, economic_qs_linear, economic_svd,
-                                hsolve, lstsq, lu_slogdet, lu_solve, plogdet,
-                                rsolve, solve, stl, sum2diag, trace2)
+from numpy_sugar.linalg import (
+    cdot,
+    check_definite_positiveness,
+    check_semidefinite_positiveness,
+    check_symmetry,
+    cho_solve,
+    ddot,
+    dotd,
+    economic_qs,
+    economic_qs_linear,
+    economic_svd,
+    hsolve,
+    lstsq,
+    lu_slogdet,
+    lu_solve,
+    plogdet,
+    rsolve,
+    solve,
+    stl,
+    sum2diag,
+    trace2,
+)
 
 
 def test_economic_qs():
@@ -182,12 +198,12 @@ def test_rsolve():
     assert_allclose(rsolve(A, b), zeros(A.shape[1]))
 
     A = zeros((0, 0))
-    b = zeros((0, ))
+    b = zeros((0,))
     assert_(rsolve(A, b).ndim == 1)
     assert_(rsolve(A, b).shape[0] == 0)
 
     A = zeros((0, 1))
-    b = zeros((0, ))
+    b = zeros((0,))
     assert_(rsolve(A, b).ndim == 1)
     assert_(rsolve(A, b).shape[0] == 1)
 
@@ -273,11 +289,16 @@ def test_economic_svd():
     A = random.randn(3, 2)
     A = dot(A, A.T)
 
-    S = [[-0.21740668, 0.56064537], [0.21405445, -0.77127452],
-         [-0.95232086, -0.30135094]]
+    S = [
+        [-0.21740668, 0.56064537],
+        [0.21405445, -0.77127452],
+        [-0.95232086, -0.30135094],
+    ]
     V = [7.65340901, 0.84916508]
-    D = [[-0.21740668, 0.21405445, -0.95232086],
-         [0.56064537, -0.77127452, -0.30135094]]
+    D = [
+        [-0.21740668, 0.21405445, -0.95232086],
+        [0.56064537, -0.77127452, -0.30135094],
+    ]
     SVD = economic_svd(A)
 
     assert_allclose(SVD[0], S)
@@ -370,7 +391,8 @@ def test_hsolve():
     A += [
         zeros((2, 2)),
         array([[1, sqrt(3)], [sqrt(3), 3]]),
-        array([[1.0, 0.5], [0.5, 0.25]]), 1e-7 * ones((2, 2)),
+        array([[1.0, 0.5], [0.5, 0.25]]),
+        1e-7 * ones((2, 2)),
         array([[0.5, 1.0], [0.25, 0.5]]),
         array([[1.0, 0.5], [0.5, 2.0]]),
         array([[0.5, 1.0], [2.0, 0.5]]),
@@ -378,19 +400,40 @@ def test_hsolve():
         array([[0.5, 2.0], [2.0, 0.0]]),
         array([[0, 2.0], [2.0, 1.5]]),
         array([[0, 2.0], [2.0, 0.0]]),
-        array([[0, -2.0], [-2.0, 0.0]]), 1e-12 * ones((2, 2)), 1e-15 * ones(
-            (2, 2)), 1e-16 * ones((2, 2)), 1e-17 * ones((2, 2)), 1e-20 * ones(
-                (2, 2)), 1e-23 * ones((2, 2)), 1e-24 * ones((2, 2)),
-        1e-25 * ones((2, 2)), 1e-27 * ones((2, 2)), 1e-30 * ones((2, 2)),
-        1e-50 * ones((2, 2)), 1e-90 * ones((2, 2)), 1e-300 * ones((2, 2)),
+        array([[0, -2.0], [-2.0, 0.0]]),
+        1e-12 * ones((2, 2)),
+        1e-15 * ones((2, 2)),
+        1e-16 * ones((2, 2)),
+        1e-17 * ones((2, 2)),
+        1e-20 * ones((2, 2)),
+        1e-23 * ones((2, 2)),
+        1e-24 * ones((2, 2)),
+        1e-25 * ones((2, 2)),
+        1e-27 * ones((2, 2)),
+        1e-30 * ones((2, 2)),
+        1e-50 * ones((2, 2)),
+        1e-90 * ones((2, 2)),
+        1e-300 * ones((2, 2)),
         array([[1e-300, 0.1], [0.1, 1e-10]]),
         zeros((2, 2)),
-        array([[1.24683824e+00, 1.10215051e-01],
-               [1.10215051e-01, 1.00000000e+04]]),
-        array([[1.24683824e+00, 1.10215051e-01],
-               [1.10215051e-01, -1.00000000e+04]]),
-        array([[1.24683824e+00, -1.10215051e-01],
-               [-1.10215051e-01, -1.00000000e+04]])
+        array(
+            [
+                [1.24683824e+00, 1.10215051e-01],
+                [1.10215051e-01, 1.00000000e+04],
+            ]
+        ),
+        array(
+            [
+                [1.24683824e+00, 1.10215051e-01],
+                [1.10215051e-01, -1.00000000e+04],
+            ]
+        ),
+        array(
+            [
+                [1.24683824e+00, -1.10215051e-01],
+                [-1.10215051e-01, -1.00000000e+04],
+            ]
+        ),
     ]
 
     A = A + [-a for a in A]
@@ -410,5 +453,5 @@ def test_economic_svd_zero_rank():
     A = zeros((3, 2))
     SVD = economic_svd(A)
     assert_(SVD[0].shape == (3, 0))
-    assert_(SVD[1].shape == (0, ))
+    assert_(SVD[1].shape == (0,))
     assert_(SVD[2].shape == (0, 2))

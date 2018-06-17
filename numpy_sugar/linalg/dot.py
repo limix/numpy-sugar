@@ -22,8 +22,8 @@ def dotd(A, B, out=None):
             return dot(A, B)
         return dot(A, B, out)
     if out is None:
-        out = empty((A.shape[0], ), float)
-    return einsum('ij,ji->i', A, B, out=out)
+        out = empty((A.shape[0],), float)
+    return einsum("ij,ji->i", A, B, out=out)
 
 
 def ddot(L, R, left=True, out=None):
@@ -41,8 +41,10 @@ def ddot(L, R, left=True, out=None):
     R = asarray(R, float)
     ok = min(L.ndim, R.ndim) == 1 and max(L.ndim, R.ndim) == 2
     if not ok:
-        raise ValueError("Wrong array layout. One array should have" +
-                         " ndim=1 and the other one ndim=2.")
+        raise ValueError(
+            "Wrong array layout. One array should have"
+            + " ndim=1 and the other one ndim=2."
+        )
     if L.ndim == 1:
         if out is None:
             out = copy(R)
@@ -76,4 +78,4 @@ def cdot(L, out=None):
     if out is None:
         out = empty((L.shape[0], L.shape[1]), float)
 
-    return einsum('ij,kj->ik', L, L, out=out)
+    return einsum("ij,kj->ik", L, L, out=out)

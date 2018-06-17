@@ -1,7 +1,16 @@
 from numpy import abs as npy_abs
 from numpy import all as npy_all
-from numpy import (array, asarray, dot, errstate, finfo, isfinite, nan_to_num,
-                   sqrt, zeros)
+from numpy import (
+    array,
+    asarray,
+    dot,
+    errstate,
+    finfo,
+    isfinite,
+    nan_to_num,
+    sqrt,
+    zeros,
+)
 from numpy.linalg import LinAlgError, lstsq
 from numpy.linalg import solve as npy_solve
 
@@ -12,7 +21,7 @@ _epsilon = sqrt(finfo(float).eps)
 
 def _norm(x0, x1):
     m = max(abs(x0), abs(x1))
-    with errstate(invalid='ignore'):
+    with errstate(invalid="ignore"):
         a = (x0 / m) * (x0 / m)
         b = (x1 / m) * (x1 / m)
         return nan_to_num(m * sqrt(a + b))
@@ -40,7 +49,7 @@ def hsolve(A, y):
     u1 = A[1, 0]
     nu = _norm(u0, u1)
 
-    with errstate(invalid='ignore', divide='ignore'):
+    with errstate(invalid="ignore", divide="ignore"):
         v0 = nan_to_num(u0 / nu)
         v1 = nan_to_num(u1 / nu)
 
@@ -60,7 +69,7 @@ def hsolve(A, y):
     u1 = D01
     nu = _norm(u0, u1)
 
-    with errstate(invalid='ignore', divide='ignore'):
+    with errstate(invalid="ignore", divide="ignore"):
         v0 = nan_to_num(u0 / nu)
         v1 = nan_to_num(u1 / nu)
 
@@ -74,7 +83,7 @@ def hsolve(A, y):
 
     F11 = (npy_abs(F11) > epsilon.small) * F11
 
-    with errstate(divide='ignore', invalid='ignore'):
+    with errstate(divide="ignore", invalid="ignore"):
         Fi00 = nan_to_num(F00 / F00 / F00)
         Fi11 = nan_to_num(F11 / F11 / F11)
         Fi10 = nan_to_num(-(F01 / F00) * Fi11)
@@ -102,7 +111,7 @@ def solve(A, b):
     b = asarray(b, float)
     if A.shape[0] == 1:
 
-        with errstate(divide='ignore'):
+        with errstate(divide="ignore"):
             A_ = array([[1. / A[0, 0]]])
 
         if not isfinite(A_[0, 0]):
@@ -116,7 +125,7 @@ def solve(A, b):
         d = A[1, 1]
         A_ = array([[d, -b_], [-c, a]])
 
-        with errstate(divide='ignore'):
+        with errstate(divide="ignore"):
             A_ /= a * d - b_ * c
 
         if not npy_all(isfinite(A_)):
@@ -137,9 +146,9 @@ def rsolve(A, b, epsilon=_epsilon):
         :class:`numpy.ndarray`: Solution ``x``.
     """
     if A.shape[0] == 0:
-        return zeros((A.shape[1], ))
+        return zeros((A.shape[1],))
     if A.shape[1] == 0:
-        return zeros((0, ))
+        return zeros((0,))
     x = lstsq(A, b, rcond=epsilon)
     r = sum(x[3] > epsilon)
     if r == 0:

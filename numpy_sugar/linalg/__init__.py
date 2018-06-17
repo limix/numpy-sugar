@@ -63,8 +63,24 @@ from .svd import economic_svd
 from .tri import stl
 
 __all__ = [
-    'cho_solve', 'sum2diag', 'trace2', 'ddot', 'dotd', 'lu_slogdet',
-    'lu_solve', 'check_definite_positiveness', 'check_symmetry', 'economic_qs',
-    'economic_qs_linear', 'solve', 'rsolve', 'economic_svd', 'stl', 'lstsq',
-    'plogdet', 'check_semidefinite_positiveness', 'cdot', 'hsolve'
+    "cho_solve",
+    "sum2diag",
+    "trace2",
+    "ddot",
+    "dotd",
+    "lu_slogdet",
+    "lu_solve",
+    "check_definite_positiveness",
+    "check_symmetry",
+    "economic_qs",
+    "economic_qs_linear",
+    "solve",
+    "rsolve",
+    "economic_svd",
+    "stl",
+    "lstsq",
+    "plogdet",
+    "check_semidefinite_positiveness",
+    "cdot",
+    "hsolve",
 ]
