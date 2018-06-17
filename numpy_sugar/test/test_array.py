@@ -32,8 +32,7 @@ def test_is_all_finite():
 
 
 def test_cartesian():
-    assert_allclose(
-        cartesian((2, 3)), [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]])
+    assert_allclose(cartesian((2, 3)), [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]])
 
 
 def test_unique():

@@ -15,6 +15,7 @@ from numpy import asarray, isfinite, mgrid, prod, rollaxis
 
 try:
     from numba import jit
+
     _NUMBA = True
 except ImportError:
     _NUMBA = False
