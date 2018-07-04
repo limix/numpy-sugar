@@ -18,7 +18,17 @@ def economic_qs(K, epsilon=sqrt(finfo(float).eps)):
     Returns:
         tuple: ``((Q0, Q1), S0)``.
     """
+
     (S, Q) = eigh(K)
+
+    nok = max(S.min(), S.max(), key=abs) < epsilon
+    nok = nok and max(Q[0][0].min(), Q[0][0].max(), key=abs) < epsilon
+    nok = nok and max(K.min(), K.max(), key=abs) >= epsilon
+    if nok:
+        from scipy.linalg import eigh as sp_eigh
+
+        (S, Q) = sp_eigh(K)
+
     ok = S >= epsilon
     nok = logical_not(ok)
     S0 = S[ok]
