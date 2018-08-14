@@ -1,4 +1,4 @@
-from __future__ import absolute_import as _
+from __future__ import absolute_import
 
 from numpy import clip, dot, finfo, inf, sqrt
 from numpy.linalg import eigh

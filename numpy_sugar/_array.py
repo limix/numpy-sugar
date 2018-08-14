@@ -69,7 +69,7 @@ def _is_crescent(arr):
 
 
 if _NUMBA:
-    _is_crescent = jit(_is_crescent, nogil=True, nopython=True)
+    _is_crescent = jit(_is_crescent, nogil=True, nopython=True, cache=True)
 
 
 def _is_all_equal(arr):
@@ -84,7 +84,7 @@ def _is_all_equal(arr):
 
 
 if _NUMBA:
-    _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True)
+    _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True, cache=True)
 
 
 def cartesian(shape):
