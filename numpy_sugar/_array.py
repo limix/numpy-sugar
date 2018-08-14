@@ -12,9 +12,12 @@ Array
 from numpy import sum as _sum
 from numpy import unique as _unique
 from numpy import asarray, isfinite, mgrid, prod, rollaxis
+import pdb
+
+pdb.set_trace()
 
 try:
-    from numba import jit
+    from numba import jit, boolean, float64, int64, char, int32
 
     _NUMBA = True
 except ImportError:
@@ -69,7 +72,13 @@ def _is_crescent(arr):
 
 
 if _NUMBA:
-    _is_crescent = jit(_is_crescent, nogil=True, nopython=True, cache=True)
+    signature = jit(
+        [boolean(float64[:]), boolean(int64[:]), boolean(char[:]), boolean(int32[:])],
+        nogil=True,
+        nopython=True,
+        cache=True,
+    )
+    _is_crescent = signature(_is_crescent)
 
 
 def _is_all_equal(arr):
@@ -84,7 +93,7 @@ def _is_all_equal(arr):
 
 
 if _NUMBA:
-    _is_all_equal = jit(_is_all_equal, nogil=True, nopython=True, cache=True)
+    _is_all_equal = signature(_is_all_equal)
 
 
 def cartesian(shape):
