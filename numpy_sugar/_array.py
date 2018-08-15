@@ -56,7 +56,7 @@ def is_all_finite(arr):
     Returns:
         bool: ``True`` if values are all finite.
     """
-    return isfinite(_sum(arr))
+    return isfinite(_sum(asarray(arr)))
 
 
 def _is_crescent(arr):
