@@ -1,6 +1,6 @@
 import pytest
 from numpy import all as npy_all
-from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros
+from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros, kron
 from numpy.linalg import LinAlgError, cholesky
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import norm, slogdet
@@ -30,6 +30,7 @@ from numpy_sugar.linalg import (
     stl,
     sum2diag,
     trace2,
+    kron_dot,
 )
 
 
@@ -118,7 +119,7 @@ def test_dotd():
 
     a = random.randn(2)
     b = random.randn(2)
-    c = array(0.)
+    c = array(0.0)
 
     assert_allclose(dotd(a, b), -1.05959423672)
     dotd(a, b, out=c)
@@ -295,10 +296,7 @@ def test_economic_svd():
         [-0.95232086, -0.30135094],
     ]
     V = [7.65340901, 0.84916508]
-    D = [
-        [-0.21740668, 0.21405445, -0.95232086],
-        [0.56064537, -0.77127452, -0.30135094],
-    ]
+    D = [[-0.21740668, 0.21405445, -0.95232086], [0.56064537, -0.77127452, -0.30135094]]
     SVD = economic_svd(A)
 
     assert_allclose(SVD[0], S)
@@ -362,7 +360,7 @@ def test_cdot():
 
 def test_hsolve():
 
-    y = [-.3, 2.1]
+    y = [-0.3, 2.1]
 
     A = []
     random = RandomState(0)
@@ -416,24 +414,9 @@ def test_hsolve():
         1e-300 * ones((2, 2)),
         array([[1e-300, 0.1], [0.1, 1e-10]]),
         zeros((2, 2)),
-        array(
-            [
-                [1.24683824e+00, 1.10215051e-01],
-                [1.10215051e-01, 1.00000000e+04],
-            ]
-        ),
-        array(
-            [
-                [1.24683824e+00, 1.10215051e-01],
-                [1.10215051e-01, -1.00000000e+04],
-            ]
-        ),
-        array(
-            [
-                [1.24683824e+00, -1.10215051e-01],
-                [-1.10215051e-01, -1.00000000e+04],
-            ]
-        ),
+        array([[1.24683824e00, 1.10215051e-01], [1.10215051e-01, 1.00000000e04]]),
+        array([[1.24683824e00, 1.10215051e-01], [1.10215051e-01, -1.00000000e04]]),
+        array([[1.24683824e00, -1.10215051e-01], [-1.10215051e-01, -1.00000000e04]]),
     ]
 
     A = A + [-a for a in A]
@@ -455,3 +438,18 @@ def test_economic_svd_zero_rank():
     assert_(SVD[0].shape == (3, 0))
     assert_(SVD[1].shape == (0,))
     assert_(SVD[2].shape == (0, 2))
+
+
+def test_kron_dot():
+    random = RandomState(0)
+    A = random.randn(2, 2)
+    B = random.randn(5, 3)
+    C = random.randn(3, 2)
+    out = dot(kron(A, B), _vec(C)).reshape((5, 2), order="F")
+    assert_allclose(kron_dot(A, B, C), out)
+    out2 = empty((5, 2))
+    assert_allclose(out, out2)
+
+
+def _vec(X):
+    return X.reshape(X.shape[0] * X.shape[1], order="F")

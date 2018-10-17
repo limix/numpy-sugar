@@ -15,6 +15,11 @@ Determinant
 
 .. autofunction:: plogdet
 
+Kronecker product
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: kron_dot
+
 Dot and sum
 ^^^^^^^^^^^
 
@@ -49,16 +54,20 @@ Solvers
 
 """
 
+from ._kron import kron_dot
 from .cho import cho_solve
 from .det import plogdet
 from .diag import sum2diag, trace2
-from .dot import ddot, dotd, cdot
+from .dot import cdot, ddot, dotd
 from .lstsq import lstsq
 from .lu import lu_slogdet, lu_solve
-from .property import check_semidefinite_positiveness
-from .property import check_definite_positiveness, check_symmetry
+from .property import (
+    check_definite_positiveness,
+    check_semidefinite_positiveness,
+    check_symmetry,
+)
 from .qs import economic_qs, economic_qs_linear
-from .solve import rsolve, solve, hsolve
+from .solve import hsolve, rsolve, solve
 from .svd import economic_svd
 from .tri import stl
 
@@ -83,4 +92,5 @@ __all__ = [
     "check_semidefinite_positiveness",
     "cdot",
     "hsolve",
+    "kron_dot",
 ]
