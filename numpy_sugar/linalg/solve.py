@@ -11,6 +11,7 @@ from numpy import (
     sqrt,
     zeros,
 )
+import warnings
 from numpy.linalg import LinAlgError, lstsq
 from numpy.linalg import solve as npy_solve
 
@@ -145,15 +146,21 @@ def rsolve(A, b, epsilon=_epsilon):
     Returns:
         :class:`numpy.ndarray`: Solution ``x``.
     """
+    A = asarray(A, float)
+    b = asarray(b, float)
     if A.shape[0] == 0:
         return zeros((A.shape[1],))
     if A.shape[1] == 0:
         return zeros((0,))
-    x = lstsq(A, b, rcond=epsilon)
-    r = sum(x[3] > epsilon)
-    if r == 0:
-        return zeros(A.shape[1])
-    return x[0]
+    try:
+        x = lstsq(A, b, rcond=epsilon)
+        r = sum(x[3] > epsilon)
+        if r == 0:
+            return zeros(A.shape[1])
+        return x[0]
+    except ValueError as e:
+        warnings.warn(str(e), RuntimeWarning)
+    return solve(A, b)
 
 
 def _solve(A, b):

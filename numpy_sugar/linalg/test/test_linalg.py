@@ -1,6 +1,6 @@
 import pytest
 from numpy import all as npy_all
-from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros, kron
+from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros, kron, inf
 from numpy.linalg import LinAlgError, cholesky
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import norm, slogdet
@@ -205,6 +205,11 @@ def test_rsolve():
 
     A = zeros((0, 1))
     b = zeros((0,))
+    assert_(rsolve(A, b).ndim == 1)
+    assert_(rsolve(A, b).shape[0] == 1)
+
+    A = [[inf]]
+    b = [10]
     assert_(rsolve(A, b).ndim == 1)
     assert_(rsolve(A, b).shape[0] == 1)
 
