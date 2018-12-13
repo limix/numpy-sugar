@@ -1,4 +1,4 @@
-from numpy import asarray, copy, dot, einsum, empty, multiply, newaxis
+from numpy import asarray, copy, dot, einsum, empty, multiply
 
 
 def dotd(A, B, out=None):
@@ -42,10 +42,9 @@ def ddot(L, R, left=None, out=None):
     if left is None:
         ok = min(L.ndim, R.ndim) == 1 and max(L.ndim, R.ndim) == 2
         if not ok:
-            raise ValueError(
-                "Wrong array layout. One array should have"
-                + " ndim=1 and the other one ndim=2."
-            )
+            msg = "Wrong array layout. One array should have"
+            msg += " ndim=1 and the other one ndim=2."
+            raise ValueError(msg)
         left = L.ndim == 1
     if left:
         if out is None:
