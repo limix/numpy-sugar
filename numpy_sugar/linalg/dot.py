@@ -26,7 +26,7 @@ def dotd(A, B, out=None):
     return einsum("ij,ji->i", A, B, out=out)
 
 
-def ddot(L, R, left=True, out=None):
+def ddot(L, R, left=None, out=None):
     r"""Dot product of a matrix and a diagonal one.
 
     Args:
@@ -39,16 +39,19 @@ def ddot(L, R, left=True, out=None):
     """
     L = asarray(L, float)
     R = asarray(R, float)
-    ok = min(L.ndim, R.ndim) == 1 and max(L.ndim, R.ndim) == 2
-    if not ok:
-        raise ValueError(
-            "Wrong array layout. One array should have"
-            + " ndim=1 and the other one ndim=2."
-        )
-    if L.ndim == 1:
+    if left is None:
+        ok = min(L.ndim, R.ndim) == 1 and max(L.ndim, R.ndim) == 2
+        if not ok:
+            raise ValueError(
+                "Wrong array layout. One array should have"
+                + " ndim=1 and the other one ndim=2."
+            )
+        left = L.ndim == 1
+    if left:
         if out is None:
             out = copy(R)
-        return multiply(L[:, newaxis], R, out=out)
+        L = L.reshape(list(L.shape) + [1] * (R.ndim - 1))
+        return multiply(L, R, out=out)
     else:
         if out is None:
             out = copy(L)
