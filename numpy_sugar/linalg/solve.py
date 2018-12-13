@@ -113,7 +113,7 @@ def solve(A, b):
     if A.shape[0] == 1:
 
         with errstate(divide="ignore"):
-            A_ = array([[1. / A[0, 0]]])
+            A_ = array([[1.0 / A[0, 0]]])
 
         if not isfinite(A_[0, 0]):
             raise LinAlgError("Division error.")

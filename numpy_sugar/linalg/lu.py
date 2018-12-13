@@ -17,9 +17,7 @@ def lu_slogdet(LU):
 
     s = prod(sign(LU[0].diagonal()))
 
-    nrows_exchange = LU[1].size - _sum(
-        LU[1] == arange(LU[1].size, dtype="int32")
-    )
+    nrows_exchange = LU[1].size - _sum(LU[1] == arange(LU[1].size, dtype="int32"))
 
     odd = nrows_exchange % 2 == 1
     if odd:

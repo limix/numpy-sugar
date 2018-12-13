@@ -1,6 +1,18 @@
 import pytest
 from numpy import all as npy_all
-from numpy import argsort, array, diag, dot, empty, isfinite, ones, sqrt, zeros, kron, inf
+from numpy import (
+    argsort,
+    array,
+    diag,
+    dot,
+    empty,
+    isfinite,
+    ones,
+    sqrt,
+    zeros,
+    kron,
+    inf,
+)
 from numpy.linalg import LinAlgError, cholesky
 from numpy.linalg import lstsq as npy_lstsq
 from numpy.linalg import norm, slogdet

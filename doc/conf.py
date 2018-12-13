@@ -55,9 +55,7 @@ html_sidebars = {"**": ["relations.html", "searchbox.html"]}
 
 htmlhelp_basename = "{}doc".format(project)
 
-man_pages = [
-    (master_doc, get_name(), "{} documentation".format(project), [author], 1)
-]
+man_pages = [(master_doc, get_name(), "{} documentation".format(project), [author], 1)]
 
 epub_title = project
 epub_author = author
