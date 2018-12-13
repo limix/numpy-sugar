@@ -158,7 +158,7 @@ def rsolve(A, b, epsilon=_epsilon):
         if r == 0:
             return zeros(A.shape[1])
         return x[0]
-    except ValueError as e:
+    except (ValueError, LinAlgError) as e:
         warnings.warn(str(e), RuntimeWarning)
     return solve(A, b)
 
