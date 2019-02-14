@@ -2,17 +2,13 @@ language: python
 sudo: false
 python: 3.6
 env:
-- PKG_NAME=numpy_sugar
-addons:
-  apt:
-    packages:
-    - pandoc
+  - PKG_NAME=numpy_sugar
 script:
-- bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
+  - bash <(curl -fsSL https://raw.githubusercontent.com/horta/ci/master/travis.sh)
 notifications:
   email:
     recipients:
-    - danilo.horta@gmail.com
+      - danilo.horta@pm.me
     on_success: never
     on_failure: always
 deploy:
@@ -24,3 +20,4 @@ deploy:
     tags: true
     repo: limix/numpy-sugar
     branch: master
+    python: 3.6
