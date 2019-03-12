@@ -6,7 +6,6 @@ from numpy import (
     diag,
     dot,
     empty,
-    inf,
     isfinite,
     kron,
     ones,
