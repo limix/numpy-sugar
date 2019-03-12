@@ -1,22 +1,26 @@
 import pytest
-from numpy import all as npy_all
 from numpy import (
+    all as npy_all,
     argsort,
     array,
     diag,
     dot,
     empty,
+    inf,
     isfinite,
+    kron,
     ones,
     sqrt,
     zeros,
-    kron,
-    inf,
 )
-from numpy.linalg import LinAlgError, cholesky
-from numpy.linalg import lstsq as npy_lstsq
-from numpy.linalg import norm, slogdet
-from numpy.linalg import solve as npy_solve
+from numpy.linalg import (
+    LinAlgError,
+    cholesky,
+    lstsq as npy_lstsq,
+    norm,
+    slogdet,
+    solve as npy_solve,
+)
 from numpy.random import RandomState
 from numpy.testing import assert_, assert_allclose
 from scipy.linalg import lu_factor
@@ -33,6 +37,7 @@ from numpy_sugar.linalg import (
     economic_qs_linear,
     economic_svd,
     hsolve,
+    kron_dot,
     lstsq,
     lu_slogdet,
     lu_solve,
@@ -42,7 +47,6 @@ from numpy_sugar.linalg import (
     stl,
     sum2diag,
     trace2,
-    kron_dot,
 )
 
 
@@ -217,11 +221,6 @@ def test_rsolve():
 
     A = zeros((0, 1))
     b = zeros((0,))
-    assert_(rsolve(A, b).ndim == 1)
-    assert_(rsolve(A, b).shape[0] == 1)
-
-    A = [[inf]]
-    b = [10]
     assert_(rsolve(A, b).ndim == 1)
     assert_(rsolve(A, b).shape[0] == 1)
 

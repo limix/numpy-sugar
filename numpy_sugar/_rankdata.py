@@ -1,5 +1,4 @@
-from numpy import integer, issubdtype, asarray, isnan, apply_along_axis
-from scipy.stats import rankdata
+from numpy import apply_along_axis, asarray, integer, isnan, issubdtype
 
 
 def nanrankdata(a, axis=-1, inplace=False):
@@ -36,6 +35,8 @@ def nanrankdata(a, axis=-1, inplace=False):
          [4. 4. 4.]
          [5. 5. 5.]]
     """
+    from scipy.stats import rankdata
+
     if hasattr(a, "dtype") and issubdtype(a.dtype, integer):
         raise ValueError("Integer type is not supported.")
 

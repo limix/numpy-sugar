@@ -13,7 +13,7 @@ from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
 from ._rankdata import nanrankdata
 from ._testit import test
 
-__version__ = "1.4.0"
+__version__ = "1.4.1"
 
 __all__ = [
     "__version__",
