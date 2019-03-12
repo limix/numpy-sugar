@@ -1,5 +1,4 @@
 from numpy import asarray, finfo, sqrt
-from numpy.linalg import svd
 
 
 def economic_svd(G, epsilon=sqrt(finfo(float).eps)):
@@ -18,9 +17,12 @@ def economic_svd(G, epsilon=sqrt(finfo(float).eps)):
     See Also
     --------
     numpy.linalg.svd : Cholesky decomposition.
+    scipy.linalg.svd : Cholesky decomposition.
     """
+    from scipy.linalg import svd
+
     G = asarray(G, float)
-    (U, S, V) = svd(G, full_matrices=False)
+    (U, S, V) = svd(G, full_matrices=False, check_finite=False)
     ok = S >= epsilon
     S = S[ok]
     U = U[:, ok]
