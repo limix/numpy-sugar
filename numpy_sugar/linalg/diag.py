@@ -3,14 +3,14 @@ from numpy import asarray, copy, copyto, einsum
 
 
 def trace2(A, B):
-    r"""Trace of :math:`\mathrm A \mathrm B^\intercal`.
+    r"""Trace of :math:`\mathrm A \mathrm B`.
 
     Args:
         A (array_like): Left-hand side.
         B (array_like): Right-hand side.
 
     Returns:
-        float: Trace of :math:`\mathrm A \mathrm B^\intercal`.
+        float: Trace of :math:`\mathrm A \mathrm B`.
     """
     A = asarray(A, float)
     B = asarray(B, float)
