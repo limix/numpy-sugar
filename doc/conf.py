@@ -1,21 +1,23 @@
-import os
-import sys
+from pathlib import Path
 
 import sphinx_rtd_theme
 
-sys.path.insert(0, os.path.abspath(".."))
+
+def read(filepath):
+    import codecs
+
+    with codecs.open(filepath, "r") as fp:
+        return fp.read()
 
 
-def get_version():
-    import numpy_sugar
+def find_version(filepath):
+    import re
 
-    return numpy_sugar.__version__
-
-
-def get_name():
-    import numpy_sugar
-
-    return numpy_sugar.__name__
+    version_file = read(filepath)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
 
 
 extensions = [
@@ -33,18 +35,18 @@ source_suffix = ".rst"
 
 master_doc = "index"
 
-project = get_name()
+project = "numpy-sugar"
 copyright = "2018, Danilo Horta"
 author = "Danilo Horta"
 
-version = get_version()
+version = find_version(Path(__file__).parents[0] / Path("../numpy_sugar/__init__.py"))
 release = version
 
 language = None
 
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "conf.py"]
 
-pygments_style = "sphinx"
+pygments_style = "default"
 
 todo_include_todos = False
 
@@ -55,14 +57,7 @@ html_sidebars = {"**": ["relations.html", "searchbox.html"]}
 
 htmlhelp_basename = "{}doc".format(project)
 
-man_pages = [(master_doc, get_name(), "{} documentation".format(project), [author], 1)]
-
-epub_title = project
-epub_author = author
-epub_publisher = author
-epub_copyright = copyright
-
-epub_exclude_files = ["search.html"]
+man_pages = [(master_doc, project, "{} documentation".format(project), [author], 1)]
 
 intersphinx_mapping = {
     "python": ("http://docs.python.org/", None),
