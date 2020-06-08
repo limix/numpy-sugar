@@ -9,9 +9,15 @@ Array
 
 """
 
-from numpy import sum as _sum
-from numpy import unique as _unique
-from numpy import asarray, isfinite, mgrid, prod, rollaxis
+from numpy import (
+    asarray,
+    isfinite,
+    mgrid,
+    prod,
+    rollaxis,
+    sum as _sum,
+    unique as _unique,
+)
 
 try:
     from numba import jit, boolean, float64, int64, char, int32

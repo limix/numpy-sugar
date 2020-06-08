@@ -1,7 +1,7 @@
-from numpy_sugar import nanrankdata
-from numpy import nan, array
+from numpy import array, nan
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
+from numpy_sugar import nanrankdata
 
 
 def test_nanrankdata():

@@ -1,9 +1,7 @@
-from numpy import inf, nan
-from numpy.testing import assert_allclose, assert_equal, assert_
 import dask.array as da
-
-from numpy_sugar import cartesian, is_all_finite, is_crescent, is_all_equal
-from numpy_sugar import unique
+from numpy import inf, nan
+from numpy.testing import assert_, assert_allclose, assert_equal
+from numpy_sugar import cartesian, is_all_equal, is_all_finite, is_crescent, unique
 
 
 def test_is_crescent():

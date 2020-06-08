@@ -1,4 +1,4 @@
-from numpy.ma import dot, asarray, sum, empty
+from numpy.ma import asarray, dot, empty, sum
 
 
 def dotd(A, B):

@@ -36,22 +36,32 @@ def economic_qs(K, epsilon=sqrt(finfo(float).eps)):
     return ((Q0, Q1), S0)
 
 
-def economic_qs_linear(G):
-    r"""Economic eigen decomposition for symmetric matrices ``dot(G, G.T)``.
+def economic_qs_linear(G, return_q1=True):
+    """
+    Economic eigen decomposition for a symmetric matrix 𝙺=𝙶𝙶ᵀ.
 
-    It is theoretically equivalent to ``economic_qs(dot(G, G.T))``.
-    Refer to :func:`numpy_sugar.economic_qs` for further information.
+    Let us define ::
+
+        𝙺 = [𝚀₀  𝚀₁] [𝚂₀  𝟎] [𝚀₀ᵀ]
+                     [ 𝟎  𝟎] [𝚀₁ᵀ]
+
+    where the eigenvectors are the columns of [𝚀₀  𝚀₁] and the positive
+    eigenvalues are the diagonal elements of 𝚂₀.
 
     Args:
         G (array_like): Matrix.
+        return_q1 (bool): Return 𝚀₁ matrix. Defaults to ``True``.
 
     Returns:
-        tuple: ``((Q0, Q1), S0)``.
+        tuple: ((𝚀₀, 𝚀₁), 𝚂₀).
     """
     import dask.array as da
 
     if not isinstance(G, da.Array):
         G = asarray(G, float)
+
+    if not return_q1:
+        return _economic_qs_linear_noq1(G)
 
     if G.shape[0] > G.shape[1]:
         (Q, Ssq, _) = svd(G, full_matrices=True)
@@ -61,3 +71,13 @@ def economic_qs_linear(G):
         return ((Q0, Q1), S0)
 
     return economic_qs(G.dot(G.T))
+
+
+def _economic_qs_linear_noq1(G):
+    if G.shape[0] > G.shape[1]:
+        (Q0, Ssq, _) = svd(G, full_matrices=False)
+        S0 = Ssq ** 2
+        return ((Q0,), S0)
+
+    QS = economic_qs(G.dot(G.T))
+    return ((QS[0][0],), QS[1])

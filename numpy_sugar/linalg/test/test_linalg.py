@@ -21,9 +21,7 @@ from numpy.linalg import (
     solve as npy_solve,
 )
 from numpy.random import RandomState
-from numpy.testing import assert_, assert_allclose
-from scipy.linalg import lu_factor
-
+from numpy.testing import assert_, assert_allclose, assert_equal
 from numpy_sugar.linalg import (
     cdot,
     check_definite_positiveness,
@@ -47,6 +45,7 @@ from numpy_sugar.linalg import (
     sum2diag,
     trace2,
 )
+from scipy.linalg import lu_factor
 
 
 def test_economic_qs():
@@ -93,19 +92,26 @@ def test_economic_qs_linear():
     G = random.randn(3, 5)
     QS0 = economic_qs_linear(G)
     QS1 = economic_qs(dot(G, G.T))
+    QS2 = economic_qs_linear(G, return_q1=False)
     assert_allclose(QS0[0][0], QS1[0][0])
+    assert_allclose(QS2[0][0], QS1[0][0])
+    assert_equal(len(QS2[0]), 1)
     assert_allclose(QS0[0][1], QS1[0][1])
     assert_allclose(QS0[1], QS1[1])
+    assert_allclose(QS2[1], QS1[1])
 
     G = G.T.copy()
     QS0 = economic_qs_linear(G)
-
     QS1 = economic_qs(dot(G, G.T))
     idx = argsort(-1 * QS1[1])
     QS1 = ((QS1[0][0][:, idx], QS1[0][1]), QS1[1][idx])
+    QS2 = economic_qs_linear(G, return_q1=False)
 
     assert_allclose(QS0[0][0], QS1[0][0])
+    assert_allclose(QS2[0][0], QS1[0][0])
+    assert_equal(len(QS2[0]), 1)
     assert_allclose(QS0[1], QS1[1])
+    assert_allclose(QS2[1], QS1[1])
 
 
 def test_trace2():

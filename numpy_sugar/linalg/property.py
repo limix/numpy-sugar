@@ -1,4 +1,4 @@
-from numpy import diag_indices_from, empty_like, finfo, sqrt, asanyarray
+from numpy import asanyarray, diag_indices_from, empty_like, finfo, sqrt
 from numpy.linalg import LinAlgError, cholesky
 
 

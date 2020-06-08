@@ -3,7 +3,6 @@ from __future__ import division
 from numpy import dot
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
-
 from numpy_sugar.random import multivariate_normal
 
 

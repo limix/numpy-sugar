@@ -1,5 +1,4 @@
-from numpy import finfo as _finfo
-from numpy import sqrt as _sqrt
+from numpy import finfo as _finfo, sqrt as _sqrt
 
 """Same as ``numpy.finfo(float).tiny``."""
 super_tiny = _finfo(float).tiny

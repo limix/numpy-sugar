@@ -7,12 +7,12 @@ Missing NumPy functionalities.
 
 """
 from . import epsilon, linalg, ma, random
-from .linalg import ddot, dotd
 from ._array import cartesian, is_all_equal, is_all_finite, is_crescent, unique
 from ._rankdata import nanrankdata
 from ._testit import test
+from .linalg import ddot, dotd
 
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 
 __all__ = [
     "__version__",
