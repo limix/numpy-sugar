@@ -1,4 +1,5 @@
-from numpy import finfo, log, sqrt, sum as npsum
+from numpy import finfo, log, sqrt
+from numpy import sum as npsum
 from numpy.linalg import eigvalsh
 
 epsilon = sqrt(finfo(float).eps)

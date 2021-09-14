@@ -2,7 +2,7 @@ from numpy import apply_along_axis, asarray, integer, isnan, issubdtype
 
 
 def nanrankdata(a, axis=-1, inplace=False):
-    """ Rank data for arrays contaning NaN values.
+    """Rank data for arrays contaning NaN values.
 
     Parameters
     ----------

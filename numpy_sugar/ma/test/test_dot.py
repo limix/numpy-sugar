@@ -1,6 +1,7 @@
 from numpy.ma import dot, masked_array
 from numpy.random import RandomState
 from numpy.testing import assert_allclose
+
 from numpy_sugar.ma import dotd
 
 

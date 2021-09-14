@@ -1,4 +1,6 @@
-from numpy import abs as _abs, arange, asarray, log, prod, sign, sum as _sum
+from numpy import abs as _abs
+from numpy import arange, asarray, log, prod, sign
+from numpy import sum as _sum
 
 
 def lu_slogdet(LU):

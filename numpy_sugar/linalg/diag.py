@@ -1,4 +1,5 @@
-from numpy import asarray, copy, copyto, einsum, sum as _sum
+from numpy import asarray, copy, copyto, einsum
+from numpy import sum as _sum
 
 
 def trace2(A, B):

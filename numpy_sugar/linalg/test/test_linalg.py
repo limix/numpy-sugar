@@ -1,27 +1,14 @@
 import pytest
-from numpy import (
-    all as npy_all,
-    argsort,
-    array,
-    diag,
-    dot,
-    empty,
-    isfinite,
-    kron,
-    ones,
-    sqrt,
-    zeros,
-)
-from numpy.linalg import (
-    LinAlgError,
-    cholesky,
-    lstsq as npy_lstsq,
-    norm,
-    slogdet,
-    solve as npy_solve,
-)
+from numpy import all as npy_all
+from numpy import argsort, array, diag, dot, empty, isfinite, kron, ones, sqrt, zeros
+from numpy.linalg import LinAlgError, cholesky
+from numpy.linalg import lstsq as npy_lstsq
+from numpy.linalg import norm, slogdet
+from numpy.linalg import solve as npy_solve
 from numpy.random import RandomState
 from numpy.testing import assert_, assert_allclose, assert_equal
+from scipy.linalg import lu_factor
+
 from numpy_sugar.linalg import (
     cdot,
     check_definite_positiveness,
@@ -45,7 +32,6 @@ from numpy_sugar.linalg import (
     sum2diag,
     trace2,
 )
-from scipy.linalg import lu_factor
 
 
 def test_economic_qs():

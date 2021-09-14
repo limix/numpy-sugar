@@ -1,5 +1,5 @@
 def kron_dot(A, B, C, out=None):
-    r""" Kronecker product followed by dot product.
+    r"""Kronecker product followed by dot product.
 
     Let :math:`\mathrm A`, :math:`\mathrm B`, and :math:`\mathrm C` be matrices of
     dimensions :math:`p\times p`, :math:`n\times d`, and :math:`d\times p`.
@@ -29,7 +29,7 @@ def kron_dot(A, B, C, out=None):
     :class:`numpy.ndarray`
         unvec((A ⊗ B) vec(C))
     """
-    from numpy import dot, zeros, asarray
+    from numpy import asarray, dot, zeros
 
     A = asarray(A)
     B = asarray(B)

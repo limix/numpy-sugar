@@ -1,8 +1,8 @@
 import warnings
 
+from numpy import abs as npy_abs
+from numpy import all as npy_all
 from numpy import (
-    abs as npy_abs,
-    all as npy_all,
     array,
     asarray,
     dot,
@@ -13,7 +13,8 @@ from numpy import (
     sqrt,
     zeros,
 )
-from numpy.linalg import LinAlgError, lstsq, solve as npy_solve
+from numpy.linalg import LinAlgError, lstsq
+from numpy.linalg import solve as npy_solve
 
 from .. import epsilon
 

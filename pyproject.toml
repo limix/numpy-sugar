@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools >= 49.6.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-x --doctest-modules --doctest-glob='*.rst' --ignore='doc/conf.py'"
