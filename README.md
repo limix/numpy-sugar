@@ -9,7 +9,7 @@ Missing NumPy functionalities.
 Enter
 
 ```bash
-pip install numpy-sugar
+pip3 install numpy-sugar
 ```
 
 from the command-line.
@@ -19,7 +19,7 @@ from the command-line.
 Enter
 
 ```python
-python -c "import numpy_sugar; numpy_sugar.test()"
+python3 -c "import numpy_sugar; numpy_sugar.test()"
 ```
 
 
