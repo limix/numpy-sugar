@@ -1,5 +1,5 @@
 from numpy import asanyarray, diag_indices_from, empty_like, finfo, sqrt
-from numpy.linalg import LinAlgError, cholesky, eigvals
+from numpy.linalg import eigvals
 
 
 def check_definite_positiveness(A):
@@ -26,11 +26,7 @@ def check_semidefinite_positiveness(A):
     B = empty_like(A)
     B[:] = A
     B[diag_indices_from(B)] += sqrt(finfo(float).eps)
-    try:
-        cholesky(B)
-    except LinAlgError:
-        return False
-    return True
+    return check_definite_positiveness(B)
 
 
 def check_symmetry(A):

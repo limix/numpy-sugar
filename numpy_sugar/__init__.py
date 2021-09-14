@@ -12,7 +12,7 @@ from ._rankdata import nanrankdata
 from ._testit import test
 from .linalg import ddot, dotd
 
-__version__ = "1.5.3.dev1"
+__version__ = "1.5.3"
 
 __all__ = [
     "__version__",
