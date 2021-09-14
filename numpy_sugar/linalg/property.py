@@ -1,5 +1,5 @@
 from numpy import asanyarray, diag_indices_from, empty_like, finfo, sqrt
-from numpy.linalg import LinAlgError, cholesky
+from numpy.linalg import LinAlgError, cholesky, eigvals
 
 
 def check_definite_positiveness(A):
@@ -11,11 +11,7 @@ def check_definite_positiveness(A):
     Returns:
         bool: ``True`` if ``A`` is definite positive; ``False`` otherwise.
     """
-    try:
-        cholesky(A)
-    except LinAlgError:
-        return False
-    return True
+    return all(eigvals(A) > 0)
 
 
 def check_semidefinite_positiveness(A):
