@@ -1,4 +1,3 @@
-import dask.array as da
 from numpy import inf, nan
 from numpy.testing import assert_, assert_allclose, assert_equal
 
@@ -36,7 +35,4 @@ def test_cartesian():
 
 def test_unique():
     a = [1, 2, 2]
-    assert_allclose(unique(a), [1, 2])
-
-    a = da.asarray(a)
     assert_allclose(unique(a), [1, 2])

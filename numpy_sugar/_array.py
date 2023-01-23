@@ -140,10 +140,9 @@ def unique(ar):
     Returns:
         array_like: the sorted unique elements.
     """
+    if type(ar).__module__.startswith("dask."):
+        import dask.array as da
 
-    import dask.array as da
-
-    if isinstance(ar, da.core.Array):
         return da.unique(ar)
 
     return _unique(ar)
