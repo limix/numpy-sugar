@@ -63,7 +63,7 @@ def economic_qs_linear(G, return_q1=True):
 
     if G.shape[0] > G.shape[1]:
         (Q, Ssq, _) = svd(G, full_matrices=True)
-        S0 = Ssq ** 2
+        S0 = Ssq**2
         rank = len(S0)
         Q0, Q1 = Q[:, :rank], Q[:, rank:]
         return ((Q0, Q1), S0)
@@ -74,7 +74,7 @@ def economic_qs_linear(G, return_q1=True):
 def _economic_qs_linear_noq1(G):
     if G.shape[0] > G.shape[1]:
         (Q0, Ssq, _) = svd(G, full_matrices=False)
-        S0 = Ssq ** 2
+        S0 = Ssq**2
         return ((Q0,), S0)
 
     QS = economic_qs(G.dot(G.T))
