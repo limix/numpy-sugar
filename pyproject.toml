@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "numpy-sugar"
-version = "1.5.4"
+version = "1.5.5"
 description = "Missing NumPy functionalities"
 authors = ["Danilo Horta <danilo.horta@pm.me>"]
 license = "MIT"
