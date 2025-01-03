@@ -1,5 +1,4 @@
-from numpy import asarray, dot, newaxis, squeeze
-from numpy.core import double, finfo
+from numpy import asarray, dot, double, finfo, newaxis, squeeze
 from numpy.linalg import lstsq as npy_lstsq
 
 
