@@ -1,7 +1,5 @@
 # numpy-sugar
 
-[![Documentation](https://readthedocs.org/projects/numpy-sugar/badge/?version=latest)](https://numpy-sugar.readthedocs.io/en/latest/?badge=latest)
-
 Missing NumPy functionalities.
 
 ## Install
@@ -9,18 +7,10 @@ Missing NumPy functionalities.
 Enter
 
 ```bash
-pip3 install numpy-sugar
+pip install numpy-sugar
 ```
 
 from the command-line.
-
-## Running the tests
-
-Enter
-
-```python
-python3 -c "import numpy_sugar; numpy_sugar.test()"
-```
 
 
 ## Authors
